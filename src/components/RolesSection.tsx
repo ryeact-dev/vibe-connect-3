@@ -7,49 +7,25 @@ import {
   HeadphonesIcon,
   ShieldAlert,
 } from "lucide-react";
+import { ROLES_DATA } from "@/lib/roles-data";
 
 interface RolesProps {
   onOpenApplyModal: () => void;
 }
 
 export const RolesSection: React.FC<RolesProps> = ({ onOpenApplyModal }) => {
-  const roles = [
-    {
-      title: "Customer Support Agent",
-      icon: Headphones,
-      description:
-        "Answer inbound customer questions and help resolve customer profile issues. No cold calling.",
-    },
-    {
-      title: "Sales & Retention Specialist",
-      icon: PhoneCall,
-      description:
-        "Warm leads, quick connections, and earn performance commissions by assist customers with renewals.",
-    },
-    {
-      title: "Onboard Support Rep",
-      icon: UserCheck,
-      description:
-        "Assist incoming clients by scheduling, answer questions, and general support.",
-    },
-    {
-      title: "Bilingual Support Agent",
-      icon: HeadphonesIcon,
-      description:
-        "English/Spanish support roles. Bilingual-only roles select on the application.",
-    },
-    {
-      title: "Virtual Assistant / Back Office",
-      icon: ShieldAlert,
-      description: "Admin, data entry, and chat support for account team.",
-    },
-    {
-      title: "Live Chat & Messaging Agent",
-      icon: MessageSquare,
-      description:
-        "Support customers over chat global platform if you prefer typing over talking.",
-    },
+  const roleIcons = [
+    Headphones,
+    PhoneCall,
+    UserCheck,
+    HeadphonesIcon,
+    ShieldAlert,
+    MessageSquare,
   ];
+  const roles = ROLES_DATA.map((role, i) => ({
+    ...role,
+    icon: roleIcons[i] ?? Headphones,
+  }));
 
   return (
     <section id="roles" className="py-20 bg-white">

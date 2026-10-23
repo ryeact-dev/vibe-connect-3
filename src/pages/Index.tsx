@@ -9,11 +9,13 @@ import { RolesSection } from "@/components/RolesSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FinalCTABanner, FooterSection } from "@/components/FooterSection";
 import { ApplicationModal } from "@/components/ApplicationForm";
-import { SEOHead, SITE_DOMAIN } from "@/components/SEOHead";
-import { FAQ_DATA } from "@/lib/faq-data";
-
-const HOMEPAGE_OG_IMAGE =
-  "https://vibe.filesafe.space/1785542809220106141/attachments/dc354123-a298-403e-b9f8-e3f0ed1ce92d.png";
+import { SEOHead } from "@/components/SEOHead";
+import {
+  HOME_DESCRIPTION,
+  HOME_OG_IMAGE,
+  HOME_SCHEMA_GRAPH,
+  HOME_TITLE,
+} from "@/lib/seo-schema";
 
 const Index: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,38 +74,11 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-[#2B2B2B] flex flex-col font-sans selection:bg-[#F0862C]/20 selection:text-[#1B2A4A]">
       <SEOHead
-        title="Work From Home Jobs | No Experience Needed"
-        description="Vibe Connect Virtual connects motivated people across the U.S. with real remote customer service roles. Get paid semi-monthly, no experience required, flexible shifts. Apply in 60 seconds."
+        title={HOME_TITLE}
+        description={HOME_DESCRIPTION}
         canonical="/"
-        ogImage={HOMEPAGE_OG_IMAGE}
-        schemaJson={{
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Vibe Connect Virtual",
-          url: SITE_DOMAIN,
-          description:
-            "Remote customer service and BPO staffing company connecting U.S. job seekers with legitimate work-from-home agent roles.",
-          telephone: "+1-903-847-7904",
-          email: "hello@mail.vibeconnectvs.com",
-        }}
-      />
-      <SEOHead
-        title="Remote Job Application FAQ"
-        description="Answers to common questions about remote customer service jobs at Vibe Connect Virtual: pay schedule, equipment, eligibility, and onboarding."
-        canonical="/#faq"
-        ogImage={HOMEPAGE_OG_IMAGE}
-        schemaJson={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: FAQ_DATA.map((f) => ({
-            "@type": "Question",
-            name: f.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: f.answer,
-            },
-          })),
-        }}
+        ogImage={HOME_OG_IMAGE}
+        schemaJson={HOME_SCHEMA_GRAPH}
       />
 
       {/* 1. Header Navigation */}
