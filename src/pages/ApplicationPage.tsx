@@ -23,7 +23,7 @@ const ApplicationPage: React.FC = () => {
           name: "Apply for Remote Customer Service Jobs | Vibe Connect Virtual",
           description:
             "Apply in 60 seconds for legitimate work-from-home customer service and support roles with Vibe Connect Virtual.",
-          url: "https://vibeconnectvs.com/application-page",
+          url: "https://application.vibeconnectvs.com/application-page",
         }}
       />
       <Navbar onOpenApplyModal={() => {}} />
