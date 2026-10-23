@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-heading: "Poppins", sans-serif;
+    --font-body: "Open Sans", sans-serif;
+
+    /* Custom Color Tokens */
+    --navy-primary: #1b2a4a;
+    --navy-dark: #121d34;
+    --orange-secondary: #f0862c;
+    --orange-hover: #d9731c;
+    --sky-accent: #dceef5;
+    --sky-light: #f2f8fa;
+    --neutral-charcoal: #2b2b2b;
+    --neutral-muted: #5a6578;
+    --neutral-border: #e2e8f0;
+
+    /* Tailwind UI mapping overrides */
+    --background: 0 0% 100%;
+    --foreground: 222 36% 17%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 36% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 36% 17%;
+
+    --primary: 220 46% 20%; /* #1B2A4A */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 27 86% 55%; /* #F0862C */
+    --secondary-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --muted: 197 48% 91%; /* #DCEEF5 */
+    --muted-foreground: 218 14% 41%;
+
+    --accent: 27 86% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 27 86% 55%;
+
+    --radius: 0rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--neutral-charcoal);
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Modal Popup Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: modalScaleIn 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Interactive States & Button Styling */
+.btn-primary {
+  background-color: #f0862c;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(240, 134, 44, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: #d9731c;
+  transform: scale(1.04);
+  box-shadow: 0 8px 20px rgba(240, 134, 44, 0.35);
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-secondary-navy {
+  background-color: #1b2a4a;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(27, 42, 74, 0.2);
+}
+
+.btn-secondary-navy:hover {
+  background-color: #121d34;
+  transform: scale(1.04);
+  box-shadow: 0 8px 20px rgba(27, 42, 74, 0.3);
+}
+
+.btn-outline-sky {
+  border: 2px solid #1b2a4a;
+  color: #1b2a4a;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline-sky:hover {
+  background-color: #1b2a4a;
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+/* Scroll reveal utility classes (used with Intersection Observer) */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger child delays */
+.stagger-1 {
+  transition-delay: 80ms;
+}
+.stagger-2 {
+  transition-delay: 160ms;
+}
+.stagger-3 {
+  transition-delay: 240ms;
+}
+.stagger-4 {
+  transition-delay: 320ms;
+}
+.stagger-5 {
+  transition-delay: 400ms;
+}
+.stagger-6 {
+  transition-delay: 480ms;
+}
