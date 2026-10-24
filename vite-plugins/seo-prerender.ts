@@ -40,7 +40,7 @@ function staticBody(): string {
     (f) => `<div><h3>${esc(f.question)}</h3><p>${esc(f.answer)}</p></div>`,
   ).join("");
 
-  return `<div id="root"><header><nav aria-label="Primary"><a href="/">${esc(SITE_NAME)}</a> <a href="#about">About Us</a> <a href="#roles">Available Roles</a> <a href="#faq">FAQ</a> <a href="/application-page">Apply Now</a></nav></header><main>
+  return `<div id="root" data-prerendered><header><nav aria-label="Primary"><a href="/">${esc(SITE_NAME)}</a> <a href="#about">About Us</a> <a href="#roles">Available Roles</a> <a href="#faq">FAQ</a> <a href="/application-page">Apply Now</a></nav></header><main>
 <section id="home"><h1>Work From Home. Get Paid Semi-Monthly. No Cubicle Required.</h1><p>VibeConnect connects motivated people across the U.S. with real, remote customer service roles. No commute, no rigid 9-to-5, no experience required to start.</p><p><a href="/application-page">Apply Now!</a></p></section>
 <section><h2>Why work with Vibe Connect Virtual?</h2><ul><li><h3>Paid twice a month, on time</h3><p>No waiting a month for your first paycheck. You're paid every 15th and 30th, like clockwork.</p></li><li><h3>No Experience? No Problem</h3><p>We train you. If you're dependable and articulate, we'll teach you the rest for your first live calls.</p></li><li><h3>Truly Remote</h3><p>No office, no commute. Work from eligible states across the U.S., matching shifts 24/7 to fit the rest of your life.</p></li></ul></section>
 <section id="about"><h2>We Are The Best Remote Career Service For Your People</h2><p>VibeConnect Virtual Services was built for one reason: the traditional call center job doesn't work for how people actually want to work anymore. We match reliable, motivated people across 21 states with legitimate work-from-home roles, backed by real training and real support.</p><h2>We're Built Around the Agent, Not Just the Client</h2><p>Most staffing companies optimize for the business paying the bill. We optimize for the person doing the work because agents who feel supported stay longer, perform better, and actually enjoy the job.</p></section>
@@ -53,6 +53,11 @@ function headTags(): string {
   const m = (attr: string, key: string, content: string) =>
     `<meta ${attr}="${key}" content="${esc(content)}" data-vibe-seo />`;
   return [
+    // Hide the static markup from visitors until React mounts (no flash of
+    // unstyled text). It stays in the DOM, so crawlers still read it, and
+    // it is shown if JavaScript is disabled.
+    `<style>#root[data-prerendered]{visibility:hidden}</style>`,
+    `<noscript><style>#root[data-prerendered]{visibility:visible}</style></noscript>`,
     `<link rel="canonical" href="${SITE_DOMAIN}/" data-vibe-seo />`,
     `<meta name="robots" content="index, follow, max-image-preview:large" />`,
     m("property", "og:type", "website"),
