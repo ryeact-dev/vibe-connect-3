@@ -122,7 +122,7 @@ export const FooterSection: React.FC = () => {
                 Follow us:
               </span>
               <a
-                href="#"
+                href="https://www.facebook.com/people/Vibe-Connect-Virtual-Services/61567573289685/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Vibe Connect Virtual on Facebook"
