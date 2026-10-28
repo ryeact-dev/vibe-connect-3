@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Phone, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Phone, Mail, ShieldCheck, Facebook } from "lucide-react";
 
 interface BannerProps {
   onOpenApplyModal: () => void;
@@ -113,6 +113,22 @@ export const FooterSection: React.FC = () => {
               <span>&bull;</span>
               <a href="#faq" className="hover:text-[#F0862C] transition-colors">
                 FAQ
+              </a>
+            </div>
+
+            {/* Social links: replace the placeholder href with the real page URL */}
+            <div className="flex items-center gap-3 pt-3">
+              <span className="text-xs font-semibold text-[#DCEEF5]">
+                Follow us:
+              </span>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Vibe Connect Virtual on Facebook"
+                className="w-9 h-9 bg-[#F0862C] hover:bg-[#D9731C] text-white flex items-center justify-center transition-colors"
+              >
+                <Facebook className="w-4 h-4" />
               </a>
             </div>
           </div>
