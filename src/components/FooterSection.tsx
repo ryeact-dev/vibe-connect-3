@@ -151,6 +151,9 @@ export const FooterSection: React.FC = () => {
           </div>
         </div>
       </div>
+      <div>
+        Website by 
+      </div>
     </footer>
   );
 };
