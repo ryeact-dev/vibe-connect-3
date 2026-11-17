@@ -151,8 +151,10 @@ export const FooterSection: React.FC = () => {
           </div>
         </div>
       </div>
-      <div>
-        Website by 
+     <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#DCEEF5]/60">
+        <p>
+           Website by
+          </p> 
       </div>
     </footer>
   );
