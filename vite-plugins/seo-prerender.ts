@@ -191,11 +191,10 @@ function headTags(): string {
   const m = (attr: string, key: string, content: string) =>
     `<meta ${attr}="${key}" content="${esc(content)}" data-vibe-seo />`;
   return [
-    // Hide the static markup from visitors until React mounts (no flash of
-    // unstyled text). It stays in the DOM, so crawlers still read it, and
-    // it is shown if JavaScript is disabled.
-    `<style>#root[data-prerendered]{visibility:hidden}</style>`,
-    `<noscript><style>#root[data-prerendered]{visibility:visible}</style></noscript>`,
+    // The static markup stays visible so visitors never see a blank page
+    // while the JS bundle loads. A little critical CSS keeps it readable
+    // until React replaces it.
+    `<style>#root[data-prerendered]{font-family:'Open Sans',system-ui,sans-serif;color:#2B2B2B;line-height:1.6;max-width:760px;margin:0 auto;padding:16px}#root[data-prerendered] nav a,#root[data-prerendered] footer a{margin-right:12px}#root[data-prerendered] h1,#root[data-prerendered] h2,#root[data-prerendered] h3{color:#1B2A4A;line-height:1.25}#root[data-prerendered] img{max-width:100%;height:auto}#root[data-prerendered] a{color:#0d627b}#root[data-prerendered] ul{padding-left:1.25rem}#root[data-prerendered] ol{padding-left:1.25rem}</style>`,
     `<link rel="canonical" href="${SITE_DOMAIN}/" data-vibe-seo />`,
     `<meta name="robots" content="index, follow, max-image-preview:large" />`,
     m("property", "og:type", "website"),
