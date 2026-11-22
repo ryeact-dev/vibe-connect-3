@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 
+import { APPLY_URL, HUB_URL } from "@/lib/site-config";
+
 interface NavbarProps {
-  onOpenApplyModal: () => void;
   activeSection?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  onOpenApplyModal,
-  activeSection,
-}) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -22,10 +20,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact Us", href: "#contact" },
+    { name: "Home", href: "/#home" },
+    { name: "About Us", href: "/#about" },
+    { name: "Remote Jobs", href: HUB_URL },
+    { name: "FAQ", href: "/#faq" },
+    { name: "Contact Us", href: "/#contact" },
   ];
 
   return (
@@ -37,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo Image */}
         <a
-          href="#home"
+          href="/"
           className="flex items-center gap-2 group text-decoration-none"
         >
           <img
@@ -48,9 +47,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
           {navLinks.map((link) => {
-            const sectionId = link.href.replace("#", "");
+            const sectionId = link.href.replace("/#", "");
             const isActive = activeSection === sectionId;
             return (
               <a
@@ -73,13 +72,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Desktop CTA Button */}
         <div className="hidden md:flex items-center">
-          <button
-            onClick={onOpenApplyModal}
+          <a
+            href={APPLY_URL}
             className="btn-primary rounded-none px-7 py-3 text-base font-bold tracking-wide cursor-pointer bg-[#DF7B43] hover:bg-[#c96632] text-white transition-transform duration-200 flex items-center gap-2"
           >
             <span>Apply Now!</span>
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-          </button>
+          </a>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -102,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200 px-4 pt-3 pb-6 space-y-3 shadow-xl">
           {navLinks.map((link) => {
-            const sectionId = link.href.replace("#", "");
+            const sectionId = link.href.replace("/#", "");
             const isActive = activeSection === sectionId;
             return (
               <a
@@ -120,16 +119,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             );
           })}
           <div className="pt-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenApplyModal();
-              }}
+            <a
+              href={APPLY_URL}
               className="w-full btn-primary rounded-none py-3 text-center font-heading text-base font-bold bg-[#DF7B43] text-white flex items-center justify-center gap-2"
             >
               <span>Apply Now!</span>
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-            </button>
+            </a>
           </div>
         </div>
       )}

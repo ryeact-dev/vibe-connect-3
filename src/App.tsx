@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ApplicationPage from "./pages/ApplicationPage";
 import NotFound from "./pages/NotFound";
+import { SeoPage } from "./components/SeoPage";
+import { LegalPage } from "./components/LegalPage";
+import { SEO_PAGES } from "./lib/seo-pages";
+import { LEGAL_PAGES } from "./lib/legal-pages";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +22,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/application-page" element={<ApplicationPage />} />
+          {SEO_PAGES.map((p) => (
+            <Route key={p.path} path={p.path} element={<SeoPage page={p} />} />
+          ))}
+          {LEGAL_PAGES.map((p) => (
+            <Route key={p.path} path={p.path} element={<LegalPage page={p} />} />
+          ))}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,22 +1,26 @@
 import { FAQ_DATA } from "./faq-data";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_SCHEMA,
+  ORG_LOGO_URL,
+  SITE_DOMAIN,
+  SITE_LEGAL_NAME,
+  SITE_NAME,
+} from "./site-config";
+
+export { SITE_DOMAIN, SITE_NAME };
 
 /**
  * Homepage structured data, shared by the runtime <SEOHead> (Index page)
  * and the build-time prerender plugin so both emit identical JSON-LD.
  * Uses relative imports only because vite.config.ts loads this file.
  */
-export const SITE_DOMAIN = "https://application.vibeconnectvs.com";
-export const SITE_NAME = "Vibe Connect Virtual";
 
 export const HOME_TITLE = "Work From Home Jobs | No Experience Needed";
 export const HOME_DESCRIPTION =
-  "Vibe Connect Virtual connects motivated people across the U.S. with real remote customer service roles. Get paid semi-monthly, no experience required, flexible shifts. Apply in 60 seconds.";
+  "Remote customer service jobs with Vibe Connect Virtual. Active contractors earn $18.00 per hour, paid semi-monthly. No experience required. Apply in 60 seconds.";
 export const HOME_OG_IMAGE =
   "https://vibe.filesafe.space/1785542809220106141/attachments/dc354123-a298-403e-b9f8-e3f0ed1ce92d.png";
-
-// Bump when the posting is refreshed. Google drops postings after validThrough.
-const DATE_POSTED = "2026-10-24";
-const VALID_THROUGH = "2027-01-31T23:59:59-05:00";
 
 export const HOME_SCHEMA_GRAPH = {
   "@context": "https://schema.org",
@@ -24,46 +28,20 @@ export const HOME_SCHEMA_GRAPH = {
     {
       "@type": "Organization",
       "@id": `${SITE_DOMAIN}/#organization`,
-      name: SITE_NAME,
+      name: SITE_LEGAL_NAME,
       url: SITE_DOMAIN,
       description:
-        "Remote customer service and BPO staffing company connecting U.S. job seekers with legitimate work-from-home agent roles.",
-      telephone: "+1-903-847-7904",
-      email: "hello@mail.vibeconnectvs.com",
+        "Remote customer service and BPO staffing company connecting U.S. job seekers with real work-from-home agent roles as independent contractors on Arise.",
+      logo: ORG_LOGO_URL,
+      telephone: CONTACT_PHONE_SCHEMA,
+      email: CONTACT_EMAIL,
     },
     {
       "@type": "WebSite",
       "@id": `${SITE_DOMAIN}/#website`,
       url: SITE_DOMAIN,
-      name: SITE_NAME,
+      name: SITE_LEGAL_NAME,
       publisher: { "@id": `${SITE_DOMAIN}/#organization` },
-    },
-    {
-      "@type": "JobPosting",
-      "@id": `${SITE_DOMAIN}/#jobposting`,
-      title: "Remote Customer Service Representative",
-      description:
-        "<p>Work from home with Vibe Connect Virtual as a remote customer service agent. No prior call center experience required; full onboarding and training are provided. Choose flexible shifts and get paid semi-monthly on the 15th and 30th. Roles include customer support, sales and retention, onboarding support, bilingual support, virtual assistant / back office, and live chat.</p><p>Requirements: Windows computer, wired internet connection, and a headset. Eligible U.S. states only.</p>",
-      datePosted: DATE_POSTED,
-      validThrough: VALID_THROUGH,
-      employmentType: ["PART_TIME", "FULL_TIME"],
-      directApply: true,
-      url: SITE_DOMAIN,
-      identifier: {
-        "@type": "PropertyValue",
-        name: SITE_NAME,
-        value: "remote-customer-service",
-      },
-      hiringOrganization: {
-        "@type": "Organization",
-        name: SITE_NAME,
-        sameAs: SITE_DOMAIN,
-      },
-      jobLocationType: "TELECOMMUTE",
-      applicantLocationRequirements: {
-        "@type": "Country",
-        name: "US",
-      },
     },
     {
       "@type": "FAQPage",

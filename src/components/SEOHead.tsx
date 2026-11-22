@@ -5,8 +5,8 @@ import type { FC } from "react";
  * Site-wide defaults used as fallbacks by every page.
  * Centralised here so a rebrand only touches one file.
  */
-export const SITE_NAME = "Vibe Connect Virtual";
-export const SITE_DOMAIN = "https://application.vibeconnectvs.com";
+import { SITE_DOMAIN, SITE_NAME } from "@/lib/site-config";
+export { SITE_DOMAIN, SITE_NAME };
 export const DEFAULT_OG_IMAGE =
   "https://vibe.filesafe.space/meta/1785542809220106141/og_image.png";
 
@@ -23,6 +23,8 @@ export interface SEOHeadProps {
   noIndex?: boolean;
   /** Optional JSON-LD structured data object rendered as a script tag */
   schemaJson?: Record<string, unknown>;
+  /** Use `title` as the full <title> (it already includes the site name) */
+  rawTitle?: boolean;
 }
 
 /**
@@ -84,8 +86,9 @@ export const SEOHead: FC<SEOHeadProps> = ({
   ogImage = DEFAULT_OG_IMAGE,
   noIndex = false,
   schemaJson,
+  rawTitle = false,
 }) => {
-  const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+  const fullTitle = rawTitle || title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical.startsWith("http")
     ? canonical
     : `${SITE_DOMAIN}${canonical}`;

@@ -14,7 +14,7 @@ const ApplicationPage: React.FC = () => {
     <div className="min-h-screen bg-[#F2F8FA] text-[#2B2B2B] flex flex-col font-sans selection:bg-[#F0862C]/20 selection:text-[#1B2A4A]">
       <SEOHead
         title="Apply for Remote Customer Service Jobs"
-        description="Apply in 60 seconds for legitimate work-from-home customer service and support roles with Vibe Connect Virtual. Quick screening form, semi-monthly pay, no experience required."
+        description="Apply in 60 seconds for real work-from-home customer service and support roles with Vibe Connect Virtual. Quick screening form, semi-monthly pay, no experience required."
         canonical="/application-page"
         ogImage={APPLICATION_OG_IMAGE}
         schemaJson={{
@@ -22,11 +22,11 @@ const ApplicationPage: React.FC = () => {
           "@type": "WebPage",
           name: "Apply for Remote Customer Service Jobs | Vibe Connect Virtual",
           description:
-            "Apply in 60 seconds for legitimate work-from-home customer service and support roles with Vibe Connect Virtual.",
+            "Apply in 60 seconds for real work-from-home customer service and support roles with Vibe Connect Virtual.",
           url: "https://application.vibeconnectvs.com/application-page",
         }}
       />
-      <Navbar onOpenApplyModal={() => {}} />
+      <Navbar />
 
       <main className="flex-grow py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
         <div className="mb-6">
@@ -46,7 +46,7 @@ const ApplicationPage: React.FC = () => {
               Apply For Remote Agent Roles
             </h1>
             <p className="text-sm text-[#DCEEF5]/90 max-w-lg mx-auto">
-              Complete this quick screening form to get reviewed for legitimate
+              Complete this quick screening form to get reviewed for real
               work-from-home customer service and support opportunities with
               Vibe Connect Virtual.
             </p>

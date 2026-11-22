@@ -1,11 +1,15 @@
 import React from "react";
 import { ArrowRight, Phone, Mail, ShieldCheck, Facebook } from "lucide-react";
 
-interface BannerProps {
-  onOpenApplyModal: () => void;
-}
+import {
+  APPLY_URL,
+  CONTACT_EMAIL,
+  CONTACT_PHONE_TEL,
+  HUB_URL,
+} from "@/lib/site-config";
+import { FINAL_CTA_BODY } from "@/lib/home-copy";
 
-export const FinalCTABanner: React.FC<BannerProps> = ({ onOpenApplyModal }) => {
+export const FinalCTABanner: React.FC = () => {
   return (
     <section className="py-20 bg-[#1B2A4A] text-white relative overflow-hidden">
       {/* Decorative Warm Accent Ambient Glow */}
@@ -17,19 +21,17 @@ export const FinalCTABanner: React.FC<BannerProps> = ({ onOpenApplyModal }) => {
         </h2>
 
         <p className="text-base sm:text-lg text-[#DCEEF5]/90 font-normal max-w-2xl mx-auto leading-relaxed">
-          Skip the traffic, avoid expensive office attire, and earn steady
-          semi-monthly income right from your home workstation. Applications
-          take less than 60 seconds.
+          {FINAL_CTA_BODY}
         </p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={onOpenApplyModal}
+          <a
+            href={APPLY_URL}
             className="w-full sm:w-auto btn-primary px-9 py-4 text-base font-bold flex items-center justify-center gap-2.5 shadow-xl cursor-pointer"
           >
             Apply Now
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -57,7 +59,7 @@ export const FooterSection: React.FC = () => {
 
             <div className="space-y-3 pt-2">
               <a
-                href="tel:+19038477904"
+                href={`tel:${CONTACT_PHONE_TEL}`}
                 className="flex items-center gap-3 text-sm font-semibold text-white hover:text-[#F0862C] transition-colors"
               >
                 <div className="w-8 h-8 bg-[#F0862C] text-white flex items-center justify-center shrink-0">
@@ -67,13 +69,13 @@ export const FooterSection: React.FC = () => {
               </a>
 
               <a
-                href="mailto:hello@mail.vibeconnectvs.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="flex items-center gap-3 text-sm font-semibold text-white hover:text-[#F0862C] transition-colors"
               >
                 <div className="w-8 h-8 bg-[#F0862C] text-white flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span>hello@mail.vibeconnectvs.com</span>
+                <span>{CONTACT_EMAIL}</span>
               </a>
             </div>
           </div>
@@ -86,32 +88,39 @@ export const FooterSection: React.FC = () => {
             <p className="text-sm text-[#DCEEF5]/80 font-normal leading-relaxed">
               We know searching for work-from-home positions can be daunting.
               That's why Vibe Connect Virtual provides transparent expectations,
-              prompt candidate communication, and zero hidden costs.
+              and prompt candidate communication.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2 text-xs font-semibold text-[#DCEEF5]">
               <a
-                href="#home"
+                href="/#home"
                 className="hover:text-[#F0862C] transition-colors"
               >
                 Home
               </a>
               <span>&bull;</span>
               <a
-                href="#about"
+                href="/#about"
                 className="hover:text-[#F0862C] transition-colors"
               >
                 About Us
               </a>
               <span>&bull;</span>
               <a
-                href="#roles"
+                href="/#roles"
                 className="hover:text-[#F0862C] transition-colors"
               >
                 Available Roles
               </a>
               <span>&bull;</span>
-              <a href="#faq" className="hover:text-[#F0862C] transition-colors">
+              <a
+                href={HUB_URL}
+                className="hover:text-[#F0862C] transition-colors"
+              >
+                Remote Work From Home Jobs
+              </a>
+              <span>&bull;</span>
+              <a href="/#faq" className="hover:text-[#F0862C] transition-colors">
                 FAQ
               </a>
             </div>
@@ -138,14 +147,15 @@ export const FooterSection: React.FC = () => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#DCEEF5]/60">
           <p>
             &copy; {new Date().getFullYear()} Vibe Connect Virtual LLC. All
-            rights reserved. Equal Opportunity Remote Staffing Partner.
+            rights reserved. Equal Opportunity Remote Staffing Partner. Agents
+            are independent contractors (1099), not employees.
           </p>
 
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="/terms" className="hover:text-white transition-colors">
               Terms of Service
             </a>
           </div>

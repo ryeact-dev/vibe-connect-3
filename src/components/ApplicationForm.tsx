@@ -592,7 +592,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div className="flex items-center justify-center gap-2 pt-1 text-[11px] text-[#5A6578]">
         <ShieldCheck className="w-4 h-4 text-[#1B2A4A]" />
         <span>
-          Your data is encrypted &bull; 100% Free Candidate Application
+          $0 upfront to apply &bull; Independent contractor (1099) roles
         </span>
       </div>
     </form>
