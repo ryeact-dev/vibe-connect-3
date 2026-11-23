@@ -78,7 +78,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Remote work from home in the US means doing customer service or sales by phone from your own home. Vibe Connect Virtual Services helps you start as an independent contractor on Arise in 18 eligible states. Active contractors earn $18.00 per hour, paid in 30-minute serviced intervals.",
     banner: {
       file: "remote-work-from-home-jobs-us-banner.webp",
-      alt: "Person wearing a headset working from home at a kitchen table with a laptop",
+      alt: "Woman wearing a headset smiling as she works on a laptop from a living room sofa",
     },
     intro: [
       "Remote work from home in the US is easier to find when you know what to look for and what to expect. Vibe Connect Virtual Services helps people get started as independent contractors on Arise, the platform where you register and find online work-from-home jobs in customer service, sales and bilingual roles. You work from your own space, on shifts that fit your life, and you are paid twice a month. There is no commute and no cubicle. For most roles you do not need call center experience, and certification training on Arise is paid once your certification days begin.",
@@ -194,7 +194,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Remote customer service jobs let you help customers by phone from home, and most do not require experience. You work as an independent contractor through Vibe Connect and Arise. Active contractors earn $18.00 per hour, paid in 30-minute serviced intervals.",
     banner: {
       file: "remote-customer-service-jobs-banner.webp",
-      alt: "Remote customer service agent wearing a headset and helping a customer from a home desk",
+      alt: "Smiling customer service agent in a headset talking to a computer screen at a desk",
     },
     intro: [
       "Starting a remote customer service job with no experience is realistic when the company trains you. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where Customer Support Agents help the customers of client companies, mostly by phone, from home. You complete onboarding with us and certification training on Arise, which is paid, then begin taking real customer conversations.",
@@ -300,7 +300,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Part-time work from home customer service jobs are possible because shifts are flexible, but weekly hours depend on the job and the company you apply to. You work as an independent contractor through Arise, and active contractors earn $18.00 per hour.",
     banner: {
       file: "part-time-work-from-home-customer-service-banner.webp",
-      alt: "Parent working part time from home on a laptop with a headset",
+      alt: "Parent holding a baby while working on a laptop with a headset",
     },
     intro: [
       "Not everyone wants a full-time schedule, and not everyone can have one. If you need income that fits around school, family, a second job or your own routine, part-time work from home customer service can be a practical answer. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where shifts are flexible and pay arrives twice a month, so you can earn without giving up your whole week.",
@@ -403,7 +403,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Remote call center jobs let you take customer calls from home with a headset and a quiet room. Most roles need no call center experience. You work as an independent contractor through Arise, and active contractors earn $18.00 per hour.",
     banner: {
       file: "remote-call-center-jobs-banner.webp",
-      alt: "Remote call center agent taking a phone call with a headset in a quiet room",
+      alt: "Smiling call center agent in a headset touching the microphone while working at a computer",
     },
     intro: [
       "A remote call center job lets you do phone-based customer support without sitting in an office. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where you can find inbound support and onboarding roles for client companies. You take calls from your home, you learn the work in paid Arise training, and you are paid on the 15th and the 30th of each month. No call center experience is required to apply.",
@@ -509,7 +509,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Bilingual work from home jobs are customer service roles for English and Spanish speakers, and you do not need to be a native speaker. Active contractors earn $18.00 per hour, paid in 30-minute serviced intervals. Some programs are omnichannel.",
     banner: {
       file: "bilingual-work-from-home-jobs-banner.webp",
-      alt: "Bilingual English and Spanish customer service agent wearing a headset at home",
+      alt: "Smiling woman in headphones working on a laptop at a desk",
     },
     intro: [
       "If you speak both English and Spanish, your language skills are a real advantage. Many companies want to serve customers in the language those customers are most comfortable with, and they need people who can do it well. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where bilingual support agents find remote roles with client companies and are paid twice a month.",
