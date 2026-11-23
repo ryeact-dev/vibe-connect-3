@@ -27,7 +27,7 @@ export const AboutSection: React.FC<SectionProps> = ({ onOpenApplyModal }) => {
 
             <p className="text-sm sm:text-base text-[#5A6578] leading-relaxed font-normal">
               <strong className="font-bold text-[#F0862C]">
-                VibeConnect Virtual Services
+                Vibe Connect Virtual Services
               </strong>{" "}
               was built for one reason: the traditional call center job the
               commute, the fluorescent lights, the rigid break schedule doesn't

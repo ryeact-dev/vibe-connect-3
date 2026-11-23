@@ -8,7 +8,7 @@ export const HOME_H1 =
   "Work From Home. Get Paid Semi-Monthly. No Cubicle Required.";
 
 export const HOME_INTRO =
-  "VibeConnect connects motivated people across the U.S. with real, remote customer service roles. No commute, no rigid 9-to-5, no experience required to start.";
+  "Vibe Connect connects motivated people across the U.S. with real, remote customer service roles. No commute, no rigid 9-to-5, no experience required to start.";
 
 export const VALUE_PROPS = [
   {
