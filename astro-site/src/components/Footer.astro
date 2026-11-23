@@ -23,24 +23,23 @@ const year = new Date().getFullYear();
 <footer id="contact" class="border-t border-white/10 bg-navy-dark pb-10 pt-14 text-white">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="footer-grid">
-      <div class="area-contact space-y-5 border border-white/10 bg-navy p-6 sm:p-8">
+      <div class="area-contact @container space-y-5 border border-white/10 bg-navy p-6 sm:p-8">
         <div class="space-y-3">
-          <p class="text-xs font-bold uppercase tracking-wider text-orange">Contact Us &amp; More Details</p>
           <h2 class="font-heading text-2xl font-bold text-white">Have Questions Before You Apply?</h2>
           <p class="text-sm leading-relaxed text-sky/80">We know searching for work-from-home positions can be daunting. That's why Vibe Connect Virtual provides transparent expectations, and prompt candidate communication. Have a specific question about client contracts or onboarding support? Our recruitment desk is standing by to help.</p>
         </div>
-        <div class="space-y-3 pt-1">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-3 pt-1 @md:grid-cols-2">
           <a href={`tel:${CONTACT_PHONE_TEL}`} class="flex items-center gap-3 text-sm font-semibold text-white hover:text-orange">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange text-white"><Icon name="phone" class="text-base" /></span>
             <span>+1.903.847.7904 &bull; Call or Text</span>
           </a>
-          <a href={`mailto:${CONTACT_EMAIL}`} class="flex items-center gap-3 break-all text-sm font-semibold text-white hover:text-orange">
-            <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange text-white"><Icon name="mail" class="text-base" /></span>
-            <span>{CONTACT_EMAIL}</span>
-          </a>
           <a href="https://www.facebook.com/people/Vibe-Connect-Virtual-Services/61567573289685/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-sm font-semibold text-white hover:text-orange">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange text-white"><Icon name="facebook" class="text-base" /></span>
             <span>Follow us on Facebook</span>
+          </a>
+          <a href={`mailto:${CONTACT_EMAIL}`} class="flex items-center gap-3 break-all text-sm font-semibold text-white hover:text-orange @md:col-span-2">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange text-white"><Icon name="mail" class="text-base" /></span>
+            <span>{CONTACT_EMAIL}</span>
           </a>
         </div>
       </div>
