@@ -1,9 +1,3 @@
-import {
-  CONTACT_EMAIL,
-  CONTACT_PHONE_DISPLAY,
-  STATES_LIST_OXFORD,
-} from "./site-config";
-
 /**
  * Single source of truth for the FAQ content that is both rendered on the
  * page (FAQSection.tsx) and emitted as JSON-LD structured data (Index page).
@@ -17,42 +11,34 @@ export interface FAQItem {
 
 export const FAQ_DATA: FAQItem[] = [
   {
-    question: "What is Arise, and how does it relate to Vibe Connect?",
-    answer:
-      "Arise is the platform where independent contractors register and find online jobs. Vibe Connect Virtual Services helps you get started on Arise: you apply and complete onboarding with us, pass the Arise assessment (taken through Harver), complete your Arise registration and background check (unpaid), take your paid certification days, and then find jobs on Arise.",
-  },
-  {
     question: "Is this a real job or a scam?",
-    answer: `No money is required to apply: Vibe Connect charges $0 upfront to apply or register. Agents are independent contractors, not employees, and applying does not promise you a job. You can reach us any time at ${CONTACT_EMAIL} or ${CONTACT_PHONE_DISPLAY}.`,
+    answer:
+      "This is 100% legitimate work. Vibe Connect Virtual is a verified remote staffing agency partnered with nationwide U.S. client brands. We do NOT ask for money from applicants, we do NOT sell starter kits, and we pay guaranteed semi-monthly earnings directly into your bank account via direct deposit.",
   },
   {
-    question: "Which states do you accept?",
-    answer: `We currently accept applicants residing in the following 18 states: ${STATES_LIST_OXFORD}.`,
+    question: "What states can I apply from?",
+    answer:
+      "We're currently live in a growing list of U.S. states and the fastest way to know if yours qualifies is to apply. It only takes a minute, and you'll find out right away whether your state is eligible.",
   },
   {
     question: "Do I need prior call center experience?",
     answer:
-      "No prior call center experience is required for entry-level support roles! While previous customer service, retail, or hospitality experience is a plus, certification on Arise covers client software, call handling, and customer interaction guidelines.",
+      "No prior call center experience is required for entry-level support roles! While previous customer service, retail, or hospitality experience is a plus, we provide comprehensive account onboarding that covers client software, call handling, and customer interaction guidelines.",
   },
   {
-    question: "What equipment do I need?",
+    question: "What equipment do I need to work from home?",
     answer:
-      "You will need a Windows 10 or 11 desktop or laptop computer (Chromebooks and Macs are not compatible with client systems), a hardwired Ethernet connection to your router (no Wi-Fi), a USB corded headset with microphone, and a working webcam (required for the initial 10-minute platform assessment).",
-  },
-  {
-    question: "Is there a cost to apply?",
-    answer:
-      "Vibe Connect charges $0 upfront to apply or register under our agency. All roles are 1099 independent contractor positions, not W-2 employment. Before enrolling in a client certification class on the Arise platform, Arise requires a standard third-party national background check ($30 paid directly to the background check provider).",
+      "A Windows computer, ethernet cable connected to a router with stable internet connection and a headset and that's it. No fancy setup, no software to buy. Once you're approved, we'll walk you through the exact specs so you're fully ready before day one. If you can video call your family, you already have what it takes.",
   },
   {
     question: "How and when do I get paid?",
     answer:
-      "Active independent contractors supporting clients through Vibe Connect earn $18.00 per hour (paid in 30-minute serviced intervals), with performance incentives available to earn even more. Payments are issued semi-monthly via direct deposit. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures, and class schedules unlock inside the Arise portal immediately after you complete registration and sign the standard Agent NDA. Certification training on Arise is paid from the first day of class. Incentives are not guaranteed, and eligibility requirements apply.",
+      "Every 15th and 30th, guaranteed no waiting a full month to see your first paycheck like a lot of jobs make you do. You'll know your exact pay rate before you say yes to anything, so there's never a surprise waiting for you on payday.",
   },
   {
     question: "Is the schedule flexible?",
     answer:
-      "Yes, you choose from available shifts that fit your life. Exact class schedules appear in the Arise portal after you complete registration and sign the standard Agent NDA, and weekly hours depend on the job and the company you apply to.",
+      "Yes and you'll choose from available shifts that actually work with your life, not the other way around. We'll walk you through real shift options during onboarding so you know exactly what to expect before you commit to anything. No guessing, no fine print.",
   },
   {
     question: "What happens if I don't pass the assessment?",

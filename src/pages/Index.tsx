@@ -8,6 +8,7 @@ import {
 import { RolesSection } from "@/components/RolesSection";
 import { FAQSection } from "@/components/FAQSection";
 import { FinalCTABanner, FooterSection } from "@/components/FooterSection";
+import { ApplicationModal } from "@/components/ApplicationForm";
 import { SEOHead } from "@/components/SEOHead";
 import {
   HOME_DESCRIPTION,
@@ -17,7 +18,11 @@ import {
 } from "@/lib/seo-schema";
 
 const Index: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   // Intersection Observer for scroll reveal animations and active nav tracking
   useEffect(() => {
@@ -77,34 +82,40 @@ const Index: React.FC = () => {
       />
 
       {/* 1. Header Navigation */}
-      <Navbar activeSection={activeSection} />
+      <Navbar
+        onOpenApplyModal={handleOpenModal}
+        activeSection={activeSection}
+      />
 
       {/* Main Page Flow (Strict Section Order) */}
       <main className="flex-grow">
         {/* 2. Hero Section (Split layout with friendly remote agent) */}
-        <Hero />
+        <Hero onOpenApplyModal={handleOpenModal} />
 
         {/* 3. Three Value Props Row */}
         <ValueProps />
 
         {/* 4. "We Are the Best Remote Career Service For Your People" (About section) */}
-        <AboutSection />
+        <AboutSection onOpenApplyModal={handleOpenModal} />
 
         {/* 5. "We're Built Around the Agent, Not Just the Client" (Dark Navy Section) */}
-        <AgentCentricDarkSection />
+        <AgentCentricDarkSection onOpenApplyModal={handleOpenModal} />
 
         {/* 6. "Find the Role That Fits You" (6-card grid) */}
-        <RolesSection />
+        <RolesSection onOpenApplyModal={handleOpenModal} />
 
         {/* 7. FAQ Accordion Section */}
         <FAQSection />
 
         {/* 8. Final CTA Banner */}
-        <FinalCTABanner />
+        <FinalCTABanner onOpenApplyModal={handleOpenModal} />
       </main>
 
       {/* 9. Contact / Footer Block */}
       <FooterSection />
+
+      {/* Universal Popup Modal triggered from any "Apply Now" button */}
+      <ApplicationModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };

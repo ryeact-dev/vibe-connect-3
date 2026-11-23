@@ -1,9 +1,11 @@
 import React from "react";
 import { DollarSign, GraduationCap, Home, ArrowRight } from "lucide-react";
-import { ApplyLink } from "@/components/ApplyModalProvider";
-import { HOME_INTRO, VALUE_PROPS } from "@/lib/home-copy";
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onOpenApplyModal: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onOpenApplyModal }) => {
   return (
     <section
       id="home"
@@ -32,14 +34,19 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-[#4A5568] font-normal leading-relaxed mb-8 max-w-lg">
-            {HOME_INTRO}
+            VibeConnect connects motivated people across the U.S. with real,
+            remote customer service roles. No commute, no rigid 9-to-5, no
+            experience required to start.
           </p>
 
           <div>
-            <ApplyLink className="bg-[#F0862C] hover:bg-[#D9731C] text-white px-9 py-4 font-bold text-base shadow-md cursor-pointer transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] inline-flex items-center justify-center gap-2.5">
+            <button
+              onClick={onOpenApplyModal}
+              className="bg-[#F0862C] hover:bg-[#D9731C] text-white px-9 py-4 font-bold text-base shadow-md cursor-pointer transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-2.5"
+            >
               <span>Apply Now!</span>
               <ArrowRight className="w-5 h-5 stroke-[2.5]" />
-            </ApplyLink>
+            </button>
           </div>
         </div>
       </div>
@@ -59,10 +66,11 @@ export const ValueProps: React.FC = () => {
                 <DollarSign className="w-6 h-6 stroke-[2.2]" />
               </div>
               <h3 className="text-xl font-heading font-bold text-white mb-3">
-                {VALUE_PROPS[0].title}
+                Paid twice a month, on time
               </h3>
               <p className="text-sm text-white/95 leading-relaxed font-normal">
-                {VALUE_PROPS[0].body}
+                No waiting a month for your first paycheck. You're paid every
+                15th and 30th, like clockwork.
               </p>
             </div>
           </div>
@@ -74,10 +82,11 @@ export const ValueProps: React.FC = () => {
                 <GraduationCap className="w-6 h-6 stroke-[2.2]" />
               </div>
               <h3 className="text-xl font-heading font-bold text-[#1B2A4A] mb-3">
-                {VALUE_PROPS[1].title}
+                No Experience? No Problem
               </h3>
               <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                {VALUE_PROPS[1].body}
+                We train you. If you're dependable and articulate, we'll teach
+                you the rest for your first live calls.
               </p>
             </div>
           </div>
@@ -89,10 +98,11 @@ export const ValueProps: React.FC = () => {
                 <Home className="w-6 h-6 stroke-[2.2]" />
               </div>
               <h3 className="text-xl font-heading font-bold text-[#1B2A4A] mb-3">
-                {VALUE_PROPS[2].title}
+                Truly Remote
               </h3>
               <p className="text-sm text-[#5A6578] leading-relaxed font-normal">
-                {VALUE_PROPS[2].body}
+                No office, no commute. Work from eligible states across the
+                U.S., matching shifts 24/7 to fit the rest of your life.
               </p>
             </div>
           </div>

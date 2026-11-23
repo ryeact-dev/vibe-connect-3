@@ -215,16 +215,6 @@ export const ApplicationForm: React.FC<FormProps> = ({
     const firstName = nameParts[0] || formData.fullName;
     const lastName = nameParts.slice(1).join(" ") || "";
 
-    const getTrackingSessionId = () => {
-      try {
-        const sid = document.cookie.match(
-          /(?:^|;\s*)__vibe_sid=([0-9a-f-]{36})(?:;|$)/,
-        )?.[1];
-        if (sid) return sid;
-      } catch {}
-      return crypto.randomUUID();
-    };
-
     const trackingPayload = {
       type: "external_form_submission",
       timestamp: Date.now(),
@@ -248,7 +238,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       trackingId: "tk_2e4829c6cdbe4a32a29d41fcec39fd0e",
       locationId: "2pGpEHYvndYECBOCEp4h",
       projectId: "1785542809220106141",
-      sessionId: getTrackingSessionId(),
+      sessionId: crypto.randomUUID(),
       properties: {
         deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
           ? "mobile"
@@ -436,8 +426,10 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           2. Do you have a Windows computer, a quiet and distraction-free
-          workspace, stable wired internet connection, a USB wired headset, and
-          a working webcam? <span className="text-[#F0862C]">*</span>
+          workspace, stable wired internet connection, and a USB wired headset
+          (Plantronics or Logitech is recommended, but please indicate if you
+          are using a different brand)?{" "}
+          <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
           {["Yes", "No"].map((opt) => (
@@ -486,9 +478,9 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           4. Are you currently residing in one of the approved states (Alabama,
-          Arizona, Arkansas, Delaware, Florida, Georgia, Kentucky, Louisiana,
-          Michigan, Mississippi, Missouri, Nevada, North Carolina, Ohio,
-          Oklahoma, South Carolina, Texas, Washington)?{" "}
+          Arizona, Arkansas, Delaware, Florida, Georgia, Kentucky,
+          Louisiana, Michigan, Mississippi, Missouri, Nevada, North Carolina,
+          Ohio, Oklahoma, South Carolina, Texas, Washington)?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
@@ -512,9 +504,8 @@ export const ApplicationForm: React.FC<FormProps> = ({
       {/* Q5: Unpaid Onboarding Steps */}
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
-          5. Are you willing to complete the unpaid initial registration steps
-          (profile setup, Arise (Harver) assessment, and $30 background check)
-          before starting paid certification training and client production?{" "}
+          5. Are you willing to complete unpaid onboarding steps (registration,
+          background check, certification) before paid work begins?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
@@ -601,7 +592,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div className="flex items-center justify-center gap-2 pt-1 text-[11px] text-[#5A6578]">
         <ShieldCheck className="w-4 h-4 text-[#1B2A4A]" />
         <span>
-          $0 upfront to apply &bull; Independent contractor (1099) roles
+          Your data is encrypted &bull; 100% Free Candidate Application
         </span>
       </div>
     </form>
