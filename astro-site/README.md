@@ -56,11 +56,13 @@ silently lost. `astro dev` does not run the function; use
 After a successful submission the form redirects to `/thank-you` (noindex, not in the sitemap).
 The page shows a "coming soon" placeholder until you add the files:
 
-- **Video:** save an MP4 as `public/videos/orientation.mp4` (optional poster:
-  `public/videos/orientation-poster.jpg`), or set `ORIENTATION_VIDEO_EMBED_URL` in
-  `src/config/orientation.ts` to a YouTube / Vimeo / Cloudflare Stream embed URL.
-  Cloudflare Pages rejects files over 25 MB, so host larger videos elsewhere and embed them.
-- **PDF:** save it as `public/downloads/vibe-connect-orientation.pdf`.
+- **Video hosted in GoHighLevel:** upload the MP4 to the GHL Media Library, copy its direct link and
+  paste it into `ORIENTATION_VIDEO_URL` in `src/config/orientation.ts`.
+- **Other video options:** set `ORIENTATION_VIDEO_EMBED_URL` (YouTube / Vimeo / Cloudflare Stream
+  embed URL), or save an MP4 as `public/videos/orientation.mp4` (optional poster:
+  `public/videos/orientation-poster.jpg`). Cloudflare Pages rejects files over 25 MB.
+- **PDF:** paste a direct link (for example from the GHL Media Library) into `ORIENTATION_PDF_URL`, or
+  save the file as `public/downloads/vibe-connect-orientation.pdf`.
 
 Commit and push; the placeholder switches to the real video and download button automatically.
 

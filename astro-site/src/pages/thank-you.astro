@@ -6,14 +6,17 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import {
-  ORIENTATION_PDF_FILE, ORIENTATION_PDF_LABEL, ORIENTATION_VIDEO_EMBED_URL, ORIENTATION_VIDEO_FILE, ORIENTATION_VIDEO_POSTER,
+  ORIENTATION_PDF_FILE, ORIENTATION_PDF_LABEL, ORIENTATION_PDF_URL, ORIENTATION_VIDEO_EMBED_URL, ORIENTATION_VIDEO_FILE, ORIENTATION_VIDEO_POSTER, ORIENTATION_VIDEO_URL,
 } from "../config/orientation";
 import { CONTACT_EMAIL } from "../config/site";
 
 const exists = (url: string) => fs.existsSync(path.join(process.cwd(), "public", url));
-const videoMode = ORIENTATION_VIDEO_EMBED_URL ? "embed" : exists(ORIENTATION_VIDEO_FILE) ? "file" : "placeholder";
+const videoMode = ORIENTATION_VIDEO_EMBED_URL ? "embed" : ORIENTATION_VIDEO_URL ? "url" : exists(ORIENTATION_VIDEO_FILE) ? "file" : "placeholder";
+const videoSrc = videoMode === "url" ? ORIENTATION_VIDEO_URL : ORIENTATION_VIDEO_FILE;
 const hasPoster = exists(ORIENTATION_VIDEO_POSTER);
-const hasPdf = exists(ORIENTATION_PDF_FILE);
+const pdfExternal = Boolean(ORIENTATION_PDF_URL);
+const pdfHref = pdfExternal ? ORIENTATION_PDF_URL : ORIENTATION_PDF_FILE;
+const hasPdf = pdfExternal || exists(ORIENTATION_PDF_FILE);
 ---
 <Base
   title="Thank You for Applying | Vibe Connect Virtual"
@@ -43,9 +46,9 @@ const hasPdf = exists(ORIENTATION_PDF_FILE);
           {videoMode === "embed" && (
             <iframe src={ORIENTATION_VIDEO_EMBED_URL} title="Vibe Connect orientation video" class="absolute inset-0 h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
           )}
-          {videoMode === "file" && (
-            <video class="absolute inset-0 h-full w-full bg-black" controls playsinline preload="metadata" poster={hasPoster ? ORIENTATION_VIDEO_POSTER : undefined}>
-              <source src={ORIENTATION_VIDEO_FILE} type="video/mp4" />
+          {(videoMode === "file" || videoMode === "url") && (
+            <video class="absolute inset-0 h-full w-full bg-black" controls playsinline preload="metadata" poster={videoMode === "file" && hasPoster ? ORIENTATION_VIDEO_POSTER : undefined}>
+              <source src={videoSrc} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           )}
@@ -67,7 +70,7 @@ const hasPdf = exists(ORIENTATION_PDF_FILE);
             <p class="text-base leading-relaxed text-charcoal/85">{hasPdf ? "Keep the orientation PDF handy while you complete your next steps." : "The orientation PDF will be available here soon."}</p>
           </div>
           {hasPdf ? (
-            <a href={ORIENTATION_PDF_FILE} download class="btn-primary inline-flex w-full items-center justify-center gap-2.5 px-7 py-3.5 text-base font-bold sm:w-auto">
+            <a href={pdfHref} download={pdfExternal ? undefined : true} target={pdfExternal ? "_blank" : undefined} rel={pdfExternal ? "noopener" : undefined} class="btn-primary inline-flex w-full items-center justify-center gap-2.5 px-7 py-3.5 text-base font-bold sm:w-auto">
               <Icon name="download" class="text-xl" />{ORIENTATION_PDF_LABEL}
             </a>
           ) : (
