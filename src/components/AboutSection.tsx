@@ -9,11 +9,10 @@ import {
   LifeBuoy,
   Calendar,
 } from "lucide-react";
-interface SectionProps {
-  onOpenApplyModal: () => void;
-}
+import { APPLY_URL } from "@/lib/site-config";
+import { ABOUT_PARAGRAPH } from "@/lib/home-copy";
 
-export const AboutSection: React.FC<SectionProps> = ({ onOpenApplyModal }) => {
+export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,14 +25,7 @@ export const AboutSection: React.FC<SectionProps> = ({ onOpenApplyModal }) => {
             </h2>
 
             <p className="text-sm sm:text-base text-[#5A6578] leading-relaxed font-normal">
-              <strong className="font-bold text-[#F0862C]">
-                VibeConnect Virtual Services
-              </strong>{" "}
-              was built for one reason: the traditional call center job the
-              commute, the fluorescent lights, the rigid break schedule doesn't
-              work for how people actually want to work anymore. We match
-              reliable, motivated people across 21 states with legitimate
-              work-from-home roles, backed by real training and real support.
+              {ABOUT_PARAGRAPH}
             </p>
 
             {/* 3 Features Grid (matching uploaded layout & copy) */}
@@ -88,13 +80,13 @@ export const AboutSection: React.FC<SectionProps> = ({ onOpenApplyModal }) => {
             </div>
 
             <div className="pt-2">
-              <button
-                onClick={onOpenApplyModal}
-                className="btn-primary px-7 py-3.5 font-bold text-sm flex items-center gap-2 cursor-pointer"
+              <a
+                href={APPLY_URL}
+                className="btn-primary px-7 py-3.5 font-bold text-sm inline-flex items-center gap-2 cursor-pointer"
               >
                 Start Your Remote Journey
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -115,9 +107,7 @@ export const AboutSection: React.FC<SectionProps> = ({ onOpenApplyModal }) => {
   );
 };
 
-export const AgentCentricDarkSection: React.FC<SectionProps> = ({
-  onOpenApplyModal,
-}) => {
+export const AgentCentricDarkSection: React.FC = () => {
   return (
     <section className="bg-[#1B2A4A] text-white w-full overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-[560px] lg:min-h-[620px]">
@@ -179,13 +169,13 @@ export const AgentCentricDarkSection: React.FC<SectionProps> = ({
           </div>
 
           <div>
-            <button
-              onClick={onOpenApplyModal}
+            <a
+              href={APPLY_URL}
               className="btn-primary px-10 py-4 text-base font-bold shadow-lg w-full sm:w-auto inline-flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <span>Apply Now!</span>
               <ArrowRight className="w-5 h-5 stroke-[2.5]" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

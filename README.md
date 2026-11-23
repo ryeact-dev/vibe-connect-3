@@ -31,6 +31,17 @@ npm run dev
 - `npm run test` - run Vitest tests once
 - `npm run test:watch` - run Vitest in watch mode
 
+## Static prerendering (SEO)
+
+`npm run build` runs three steps: the client build, an SSR build of
+`src/entry-server.tsx` (to `dist-ssr/`), then `scripts/prerender.mjs`, which
+renders every route in `ROUTES` with the real React components and writes
+`dist/<route>/index.html` with full head tags, JSON-LD and body HTML. The
+browser hydrates that HTML (`src/main.tsx`). To add a page, add a route in
+`src/App.tsx` and make sure it is listed in `ROUTES`. The host must serve
+`/<slug>` from `dist/<slug>/index.html` (most static hosts do; `vite preview`
+does not without a trailing slash).
+
 ## Verification commands
 
 Use these to verify repository health:

@@ -426,9 +426,8 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           2. Do you have a Windows computer, a quiet and distraction-free
-          workspace, stable wired internet connection, and a USB wired headset
-          (Plantronics or Logitech is recommended, but please indicate if you
-          are using a different brand)?{" "}
+          workspace, stable wired internet connection, a USB wired headset,
+          and a working webcam?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
@@ -504,8 +503,9 @@ export const ApplicationForm: React.FC<FormProps> = ({
       {/* Q5: Unpaid Onboarding Steps */}
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
-          5. Are you willing to complete unpaid onboarding steps (registration,
-          background check, certification) before paid work begins?{" "}
+          5. Are you willing to complete the unpaid initial registration steps
+          (profile setup, Arise (Harver) assessment, and $30 background check) before
+          starting paid certification training and client production?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
@@ -592,7 +592,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div className="flex items-center justify-center gap-2 pt-1 text-[11px] text-[#5A6578]">
         <ShieldCheck className="w-4 h-4 text-[#1B2A4A]" />
         <span>
-          Your data is encrypted &bull; 100% Free Candidate Application
+          $0 upfront to apply &bull; Independent contractor (1099) roles
         </span>
       </div>
     </form>
