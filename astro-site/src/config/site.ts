@@ -4,7 +4,7 @@
  */
 /** Origin of the deployed site: set PUBLIC_SITE_URL at build time (see astro.config.mjs). */
 export const SITE_DOMAIN = (
-  (import.meta.env.SITE as string | undefined) ?? "https://application.vibeconnectvs.com"
+  (import.meta.env.SITE as string | undefined) ?? "https://vibe-connect-3.pages.dev"
 ).replace(/\/$/, "");
 export const SITE_NAME = "Vibe Connect Virtual";
 export const SITE_LEGAL_NAME = "Vibe Connect Virtual Services";
