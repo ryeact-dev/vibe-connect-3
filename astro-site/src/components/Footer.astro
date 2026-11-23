@@ -23,10 +23,13 @@ const year = new Date().getFullYear();
 <footer id="contact" class="border-t border-white/10 bg-navy-dark pb-10 pt-14 text-white">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="footer-grid">
-      <div class="area-contact space-y-4 border border-white/10 bg-navy p-6 sm:p-8">
-        <h2 class="font-heading text-xl font-bold text-white">Contact Us &amp; More Details</h2>
-        <p class="text-sm text-sky/80">Have a specific question about client contracts or onboarding support? Our recruitment desk is standing by to help.</p>
-        <div class="space-y-3 pt-2">
+      <div class="area-contact space-y-5 border border-white/10 bg-navy p-6 sm:p-8">
+        <div class="space-y-3">
+          <p class="text-xs font-bold uppercase tracking-wider text-orange">Contact Us &amp; More Details</p>
+          <h2 class="font-heading text-2xl font-bold text-white">Have Questions Before You Apply?</h2>
+          <p class="text-sm leading-relaxed text-sky/80">We know searching for work-from-home positions can be daunting. That's why Vibe Connect Virtual provides transparent expectations, and prompt candidate communication. Have a specific question about client contracts or onboarding support? Our recruitment desk is standing by to help.</p>
+        </div>
+        <div class="space-y-3 pt-1">
           <a href={`tel:${CONTACT_PHONE_TEL}`} class="flex items-center gap-3 text-sm font-semibold text-white hover:text-orange">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange text-white"><Icon name="phone" class="text-base" /></span>
             <span>+1.903.847.7904 &bull; Call or Text</span>
@@ -42,13 +45,9 @@ const year = new Date().getFullYear();
         </div>
       </div>
 
-      <div class="area-intro space-y-3 text-left">
-        <h3 class="font-heading text-2xl font-bold text-white">Have Questions Before You Apply?</h3>
-        <p class="text-sm leading-relaxed text-sky/80">We know searching for work-from-home positions can be daunting. That's why Vibe Connect Virtual provides transparent expectations, and prompt candidate communication.</p>
-      </div>
-
-      <nav aria-label="Footer" class="area-links">
-        <ul class="space-y-1 text-sm font-semibold text-sky">
+      <nav aria-labelledby="footer-links-title" class="area-links">
+        <h3 id="footer-links-title" class="font-heading text-xl font-bold text-white">Quick links</h3>
+        <ul class="mt-4 space-y-1 border-l-2 border-orange/60 pl-4 text-sm font-semibold text-sky">
           {ROLE_PAGES.map((r) => <li><a href={r.path} class="block py-1.5 hover:text-orange">{r.crumb}</a></li>)}
           <li><a href="/orientation" class="block py-1.5 hover:text-orange">Orientation</a></li>
         </ul>
@@ -73,19 +72,18 @@ const year = new Date().getFullYear();
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
-    grid-template-areas: "contact" "intro" "links" "bottom" "credit";
+    grid-template-areas: "contact" "links" "bottom" "credit";
   }
   .area-contact { grid-area: contact; }
-  .area-intro { grid-area: intro; }
-  .area-links { grid-area: links; }
+    .area-links { grid-area: links; }
   .area-bottom { grid-area: bottom; }
   .area-credit { grid-area: credit; }
   @media (min-width: 768px) {
     .footer-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
       column-gap: 3rem;
       row-gap: 1.5rem;
-      grid-template-areas: "contact intro" "contact links" "bottom bottom" "credit credit";
+      grid-template-areas: "contact links" "bottom bottom" "credit credit";
     }
     .area-contact { align-self: start; }
     .area-bottom { margin-top: 1.5rem; }
