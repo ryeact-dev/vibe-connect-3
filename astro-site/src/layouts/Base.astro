@@ -60,8 +60,13 @@ const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
           (entries) => {
             for (const e of entries) {
               if (e.isIntersecting) {
-                e.target.classList.add("in");
-                io.unobserve(e.target);
+                const el = e.target as HTMLElement;
+                el.classList.add("in");
+                io.unobserve(el);
+                // Once the entrance is done, drop the reveal classes so the element's own
+                // hover transitions are not slowed by the reveal's duration/delay.
+                const delay = parseFloat(getComputedStyle(el).getPropertyValue("--d")) || 0;
+                setTimeout(() => el.classList.remove("reveal", "in"), 420 + delay + 60);
               }
             }
           },
@@ -70,7 +75,7 @@ const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
         els.forEach((el) => io.observe(el));
         // Safety net: never leave content hidden for visitors who do not scroll
         // (print, screenshot tools, long-page renderers).
-        setTimeout(() => els.forEach((el) => el.classList.add("in")), 4000);
+        setTimeout(() => els.forEach((el) => { if (el.classList.contains("reveal")) el.classList.add("in"); }), 4000);
       } else {
         els.forEach((el) => el.classList.add("in"));
       }

@@ -71,9 +71,6 @@ details.faq > summary { list-style: none; cursor: pointer; }
 details.faq > summary::-webkit-details-marker { display: none; }
 details.faq .faq-icon { transition: transform 200ms var(--ease-out-expo); }
 details.faq[open] .faq-icon { transform: rotate(45deg); }
-details.faq .faq-body { animation: faq-in 220ms var(--ease-out-expo); }
-@keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { details.faq .faq-body { animation: none; } }
 
 /* ---- Application pop-up ---- */
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
