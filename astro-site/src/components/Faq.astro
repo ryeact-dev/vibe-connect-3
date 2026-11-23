@@ -24,30 +24,58 @@ const { items, heading = "Frequently Asked Questions", intro } = Astro.props;
 </section>
 
 <script>
+  // Exclusive accordion with smooth open/close (Web Animations API). Opening an item
+  // closes the one that was open. Reduced-motion users get the same behaviour, instantly.
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const DURATION = 240;
-  const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
-  const running = new WeakMap<HTMLDetailsElement, Animation>();
+  const DURATION = 380;
+  const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+  const items = Array.from(document.querySelectorAll<HTMLDetailsElement>("details.faq"));
+  const running = new WeakMap<HTMLDetailsElement, Animation[]>();
 
-  document.querySelectorAll<HTMLDetailsElement>("details.faq").forEach((d) => {
-    const summary = d.querySelector("summary")!;
-    summary.addEventListener("click", (e) => {
-      if (reduce || !("animate" in d)) return; // native instant toggle
+  function stop(d: HTMLDetailsElement) {
+    running.get(d)?.forEach((a) => a.cancel());
+    running.delete(d);
+  }
+
+  function toggle(d: HTMLDetailsElement, opening: boolean) {
+    const summary = d.querySelector("summary") as HTMLElement;
+    const body = d.querySelector(".faq-body") as HTMLElement;
+    stop(d);
+    if (reduce || !("animate" in d)) { d.open = opening; return; }
+
+    const closedH = summary.offsetHeight;
+    if (opening) d.open = true;
+    const fullH = d.offsetHeight;
+    d.style.overflow = "hidden";
+
+    const box = d.animate(
+      { height: opening ? [`${closedH}px`, `${fullH}px`] : [`${fullH}px`, `${closedH}px`] },
+      { duration: DURATION, easing: EASE },
+    );
+    const text = body.animate(
+      opening ? { opacity: [0, 1], transform: ["translateY(-6px)", "none"] } : { opacity: [1, 0] },
+      { duration: DURATION * (opening ? 0.9 : 0.5), easing: "ease-out", delay: opening ? DURATION * 0.1 : 0 },
+    );
+    running.set(d, [box, text]);
+    box.onfinish = () => { d.open = opening; d.style.overflow = ""; running.delete(d); };
+    box.oncancel = () => { d.style.overflow = ""; };
+  }
+
+  // dataset.state is the *target* state, so rapid clicks mid-animation behave sensibly.
+  items.forEach((d) => (d.dataset.state = d.open ? "open" : "closed"));
+
+  items.forEach((d) => {
+    d.querySelector("summary")!.addEventListener("click", (e) => {
       e.preventDefault();
-      running.get(d)?.cancel();
-      const closed = summary.offsetHeight;
-      const opening = !d.open;
-      if (opening) d.open = true;
-      const full = d.offsetHeight;
-      d.style.overflow = "hidden";
-      const anim = d.animate(
-        { height: opening ? [`${closed}px`, `${full}px`] : [`${full}px`, `${closed}px`] },
-        { duration: DURATION, easing: EASE },
-      );
-      running.set(d, anim);
-      const done = (open: boolean) => { d.open = open; d.style.overflow = ""; running.delete(d); };
-      anim.onfinish = () => done(opening);
-      anim.oncancel = () => { d.style.overflow = ""; };
+      const opening = d.dataset.state !== "open";
+      d.dataset.state = opening ? "open" : "closed";
+      if (opening) {
+        // one at a time: close every other item that is open (or opening)
+        items.forEach((o) => {
+          if (o !== d && o.dataset.state === "open") { o.dataset.state = "closed"; toggle(o, false); }
+        });
+      }
+      toggle(d, opening);
     });
   });
 </script>
