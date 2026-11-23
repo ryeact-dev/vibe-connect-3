@@ -74,12 +74,13 @@ export interface WebPageOptions {
   image?: { url: string; width: number; height: number };
   breadcrumb?: boolean;
   speakableSelector?: string;
-  faq?: { q: string; a: string }[];
+  /** When set, the WebPage points at a separate FAQPage node (see faqPageNode). */
+  faq?: boolean;
 }
 
 /** WebPage (also FAQPage when `faq` is given) linked to the shared Organization and WebSite. */
 export const webPageNode = (o: WebPageOptions) => ({
-  "@type": o.faq ? ["WebPage", "FAQPage"] : (o.types ?? ["WebPage"]),
+  "@type": o.types ?? ["WebPage"],
   "@id": `${o.url}#webpage`,
   url: o.url,
   name: o.name,
@@ -96,13 +97,22 @@ export const webPageNode = (o: WebPageOptions) => ({
   ...(o.speakableSelector && {
     speakable: { "@type": "SpeakableSpecification", cssSelector: [o.speakableSelector] },
   }),
-  ...(o.faq && {
-    mainEntity: o.faq.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  }),
+  ...(o.faq && { mainEntity: { "@id": `${o.url}#faq` } }),
+});
+
+/** FAQPage as its own node (many scanners only read one @type per node), linked to the WebPage. */
+export const faqPageNode = (url: string, faq: { q: string; a: string }[]) => ({
+  "@type": "FAQPage",
+  "@id": `${url}#faq`,
+  url,
+  inLanguage: "en-US",
+  isPartOf: { "@id": `${url}#webpage` },
+  mainEntityOfPage: { "@id": `${url}#webpage` },
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 });
 
 export const graph = (...nodes: Record<string, unknown>[]) => ({

@@ -1,4 +1,4 @@
-import { breadcrumbNode, graph, organizationNode, webPageNode, websiteNode } from "./schema";
+import { breadcrumbNode, faqPageNode, graph, organizationNode, webPageNode, websiteNode } from "./schema";
 import {
   APPLY_URL,
   CONTACT_EMAIL,
@@ -691,6 +691,9 @@ export const SEO_PAGES: SeoPageData[] = [
 export const HUB_PAGE = SEO_PAGES[0];
 export const ROLE_PAGES = SEO_PAGES.filter((p) => !p.isHub);
 
+/** 1200x630 JPG used for og:image / twitter:image (see scripts/make-og-images.py). */
+export const ogImageUrl = (p: SeoPageData) => `${SITE_DOMAIN}/og/${p.slug}.jpg`;
+
 export const bannerUrl = (p: SeoPageData) =>
   `${SITE_DOMAIN}/images/${p.banner.file}`;
 
@@ -716,8 +719,9 @@ export function buildPageSchema(p: SeoPageData) {
       image: img,
       breadcrumb: true,
       speakableSelector: "#quick-answer",
-      faq: p.faq.map((f) => ({ q: f.q, a: plain(f.a) })),
+      faq: true,
     }),
+    faqPageNode(url, p.faq.map((f) => ({ q: f.q, a: plain(f.a) }))),
     breadcrumbNode(url, crumbs),
   );
 }
