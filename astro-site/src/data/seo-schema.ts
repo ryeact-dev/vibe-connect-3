@@ -1,5 +1,5 @@
 import { FAQ_DATA } from "./faq-data";
-import { graph, organizationNode, webPageNode, websiteNode } from "./schema";
+import { faqPageNode, graph, organizationNode, webPageNode, websiteNode } from "./schema";
 import { SITE_DOMAIN, SITE_NAME } from "../config/site";
 
 export { SITE_DOMAIN, SITE_NAME };
@@ -21,6 +21,7 @@ export const HOME_SCHEMA_GRAPH = graph(
     url: `${SITE_DOMAIN}/`,
     name: `${HOME_TITLE} | ${SITE_NAME}`,
     description: HOME_DESCRIPTION,
-    faq: FAQ_DATA.map((f) => ({ q: f.question, a: f.answer })),
+    faq: true,
   }),
+  faqPageNode(`${SITE_DOMAIN}/`, FAQ_DATA.map((f) => ({ q: f.question, a: f.answer }))),
 );

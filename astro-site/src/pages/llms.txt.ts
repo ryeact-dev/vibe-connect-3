@@ -25,7 +25,7 @@ export const GET: APIRoute = () => {
     `- Pay: active independent contractors earn ${PAY_RATE}, paid in 30-minute serviced intervals, with performance incentives available (not guaranteed). Payments are issued semi-monthly by direct deposit, on the 15th and the 30th. ${PAY_SOURCE}`,
     `- Eligible states (${ELIGIBLE_STATES.length}): ${ELIGIBLE_STATES.join(", ")}.`,
     "- Process: apply, onboarding with Vibe Connect, pass the Arise assessment, Arise registration and background check (unpaid), certification days (paid), then find jobs on Arise.",
-    "- Cost: $0 upfront to apply or register with Vibe Connect. Before enrolling in a client certification class, Arise requires a standard third-party national background check ($30, paid directly to the background check provider).",
+    "- Cost: $0 upfront to apply or register with Vibe Connect. Before enrolling in a client certification class, Arise requires a standard third-party national background check ($30, paid directly to the background check provider). It is a one-time $30.00 fee paid directly to Arise's screening vendor, valid for 36 months, prior to client enrollment.",
     "- Equipment: Windows 10 or 11 desktop or laptop (Chromebooks and Macs are not compatible), hardwired Ethernet connection (no Wi-Fi), USB corded headset with microphone, and a working webcam.",
     `- Contact: ${CONTACT_PHONE_DISPLAY}; ${CONTACT_EMAIL}`,
     "",

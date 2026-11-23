@@ -11,13 +11,13 @@ const links = [
   { name: "Contact Us", href: "/#contact", id: "contact" },
 ];
 // Static builds can report "/page.html" or "/page/": normalise before comparing.
-const path = Astro.url.pathname.replace(/\.html$/, "").replace(/\/+$/, "") || "/";
+const path = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "").replace(/\/+$/, "") || "/";
 // The hub and every role page belong to the "Remote Jobs" section.
 const inJobs = SEO_PAGES.some((p) => p.path === path);
 const isActive = (id: string) => id === "jobs" && inJobs;
 ---
 <div id="top-sentinel" aria-hidden="true" class="absolute top-0 left-0 h-6 w-px pointer-events-none"></div>
-<header id="site-header" class="fixed top-0 inset-x-0 z-40 bg-white py-3 transition-shadow duration-200 data-[scrolled=true]:shadow-md">
+<header id="site-header" data-default={inJobs ? "jobs" : ""} data-sticky={path === "/" ? "1" : "0"} class="fixed top-0 inset-x-0 z-40 bg-white py-3 transition-shadow duration-200 data-[scrolled=true]:shadow-md">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
     <a href="/" class="flex items-center" aria-label={`${SITE_LEGAL_NAME} home`}>
       <img
@@ -97,17 +97,30 @@ const isActive = (id: string) => id === "jobs" && inJobs;
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hasAttribute("hidden")) { setOpen(false); toggle.focus(); } });
   matchMedia("(min-width: 1024px)").addEventListener("change", (m) => { if (m.matches) setOpen(false); });
 
-  // Homepage scroll-spy (only runs where the sections exist).
+  // Scroll-spy. Sections that exist on the page (home sections, or just the footer's #contact)
+  // highlight their nav link while mostly in view. When none is in view, the nav returns to the
+  // page's own link ("Remote Jobs" on the hub/role pages); on the homepage the last one stays.
   const ids = ["home", "about", "faq", "contact"];
   const targets = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+  const fallback = header.dataset.default || "";
+  const sticky = header.dataset.sticky === "1";
   if (targets.length && "IntersectionObserver" in window) {
+    const inView = new Set<string>();
+    let current = fallback;
+    const paint = (id: string) => {
+      current = id;
+      document.querySelectorAll<HTMLElement>("[data-nav]").forEach((a) =>
+        a.setAttribute("data-active", String(a.dataset.nav === id)));
+    };
     const spy = new IntersectionObserver((entries) => {
       for (const e of entries) {
-        if (!e.isIntersecting) continue;
-        document.querySelectorAll<HTMLElement>("[data-nav]").forEach((a) =>
-          a.setAttribute("data-active", String(a.dataset.nav === e.target.id)));
+        if (e.intersectionRatio >= 0.3 || (e.isIntersecting && e.intersectionRatio > 0 && e.boundingClientRect.height > innerHeight && e.intersectionRect.height >= innerHeight * 0.3)) inView.add(e.target.id);
+        else inView.delete(e.target.id);
       }
-    }, { threshold: 0.3 });
+      const active = [...targets].reverse().find((t) => inView.has(t.id));
+      if (active) paint(active.id);
+      else if (fallback || !sticky) paint(fallback);
+    }, { threshold: [0, 0.3, 0.6, 1] });
     targets.forEach((t) => spy.observe(t));
   }
 </script>

@@ -4,9 +4,11 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-// Set PUBLIC_SITE_URL (e.g. https://www.example.com) in your host's build
-// environment. It drives canonical URLs, JSON-LD, the sitemap and llms.txt.
-const site = process.env.PUBLIC_SITE_URL || "https://application.vibeconnectvs.com";
+// The site URL drives canonical URLs, JSON-LD, the sitemap, robots.txt and llms.txt.
+// It defaults to the Cloudflare Pages address. When the custom domain is approved, set
+// PUBLIC_SITE_URL (e.g. https://application.vibeconnectvs.com) in the host's build
+// environment and redeploy; no code change is needed.
+const site = process.env.PUBLIC_SITE_URL || "https://vibe-connect-3.pages.dev";
 
 export default defineConfig({
   site,

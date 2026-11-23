@@ -8,13 +8,11 @@ import Faq from "../components/Faq.astro";
 import Footer from "../components/Footer.astro";
 import { FAQ_DATA } from "../data/faq-data";
 import { HOME_DESCRIPTION, HOME_SCHEMA_GRAPH, HOME_TITLE, SITE_NAME } from "../data/seo-schema";
-import { OG_IMAGE } from "../data/images";
 ---
 <Base
   title={`${HOME_TITLE} | ${SITE_NAME}`}
   description={HOME_DESCRIPTION}
   path="/"
-  ogImage={OG_IMAGE}
   jsonLd={HOME_SCHEMA_GRAPH}
 >
   <Navbar />

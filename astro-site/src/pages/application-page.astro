@@ -5,7 +5,6 @@ import Footer from "../components/Footer.astro";
 import ApplicationFormPage from "../react/ApplicationFormPage";
 import { SITE_DOMAIN } from "../config/site";
 import { breadcrumbNode, graph, organizationNode, webPageNode, websiteNode } from "../data/schema";
-import { OG_IMAGE } from "../data/images";
 
 const pageUrl = `${SITE_DOMAIN}/application-page`;
 const title = "Apply for Remote Customer Service Jobs | Vibe Connect Virtual";
@@ -16,7 +15,6 @@ const description =
   title={title}
   description={description}
   path="/application-page"
-  ogImage={OG_IMAGE}
   jsonLd={graph(
     organizationNode(),
     websiteNode(),

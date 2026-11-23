@@ -7,8 +7,9 @@ import Footer from "../components/Footer.astro";
 import Inline from "../components/Inline.astro";
 import ApplyButton from "../components/ApplyButton.astro";
 import LegalText from "../components/LegalText.astro";
+import Faq from "../components/Faq.astro";
 import {
-  ARISE_DEFINITION, HUB_PAGE, LAST_UPDATED_LINE, SEO_PAGES, bannerUrl, buildPageSchema,
+  ARISE_DEFINITION, HUB_PAGE, plain, LAST_UPDATED_LINE, SEO_PAGES, ogImageUrl, buildPageSchema,
   type SeoPageData,
 } from "../data/seo-pages";
 import { LEGAL_PAGES, type LegalPageData } from "../data/legal-pages";
@@ -43,7 +44,8 @@ const banner = seo ? banners[`../assets/banners/${seo.banner.file}`]?.default : 
   title={page.title}
   description={page.description}
   path={page.path}
-  ogImage={seo ? bannerUrl(seo) : undefined}
+  ogImage={seo ? ogImageUrl(seo) : undefined}
+  ogImageAlt={seo ? seo.banner.alt : undefined}
   jsonLd={seo ? buildPageSchema(seo) : legalSchema}
 >
   <Navbar />
@@ -113,15 +115,7 @@ const banner = seo ? banners[`../assets/banners/${seo.banner.file}`]?.default : 
               </>
             ))}
 
-            <section class="space-y-5 pt-6">
-              <h2 class="font-heading text-2xl font-bold text-navy">Frequently asked questions</h2>
-              {seo.faq.map((f) => (
-                <div class="space-y-1">
-                  <h3 class="font-heading text-lg font-bold text-navy">{f.q}</h3>
-                  <p class="text-base leading-relaxed text-charcoal/85"><Inline text={f.a} /></p>
-                </div>
-              ))}
-            </section>
+            <Faq embedded heading="Frequently asked questions" items={seo.faq.map((f) => ({ question: f.q, answer: plain(f.a) }))} />
 
             {!seo.isHub && (
               <p class="pt-4 text-base">

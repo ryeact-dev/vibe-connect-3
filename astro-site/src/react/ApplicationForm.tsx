@@ -149,7 +149,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
         <h3 className="text-2xl font-heading font-bold text-[#1B2A4A]">
           Thank you for applying to Vibe Connect Virtual!
         </h3>
-        <div className="text-md text-[#5A6578] max-w-md mx-auto space-y-3 text-left">
+        <div className="text-base text-[#5A6578] max-w-md mx-auto space-y-3 text-left">
           <p>Your application has been received and is now under review.</p>
           <p>
             Please check your inbox at{" "}
@@ -186,7 +186,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-1.5">
+          <label className="block font-sans text-sm sm:text-[15px] font-semibold text-[#1B2A4A] mb-1.5">
             Full Legal Name <span className="text-[#F0862C]">*</span>
           </label>
           <input
@@ -197,12 +197,12 @@ export const ApplicationForm: React.FC<FormProps> = ({
             onChange={(e) =>
               setFormData({ ...formData, fullName: e.target.value })
             }
-            className="w-full px-4 py-3 text-sm bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent transition-all"
+            className="w-full px-4 py-3 text-base bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent transition-all"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-1.5">
+          <label className="block font-sans text-sm sm:text-[15px] font-semibold text-[#1B2A4A] mb-1.5">
             Contact Number <span className="text-[#F0862C]">*</span>
           </label>
           <input
@@ -223,13 +223,13 @@ export const ApplicationForm: React.FC<FormProps> = ({
               }
               setFormData({ ...formData, phone: formatted });
             }}
-            className="w-full px-4 py-3 text-sm bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent transition-all"
+            className="w-full px-4 py-3 text-base bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent transition-all"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-1.5">
+        <label className="block font-sans text-sm sm:text-[15px] font-semibold text-[#1B2A4A] mb-1.5">
           Email Address <span className="text-[#F0862C]">*</span>
         </label>
         <input
@@ -238,13 +238,13 @@ export const ApplicationForm: React.FC<FormProps> = ({
           placeholder="your@email.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-3 text-sm bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent transition-all"
+          className="w-full px-4 py-3 text-base bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent transition-all"
         />
       </div>
 
       {/* Q1: 1099 Contractor */}
       <div>
-        <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
+        <label className="block font-sans text-[15px] sm:text-base font-normal text-[#1B2A4A] mb-2.5 leading-snug">
           1. Please read carefully: This is a 1099 Independent Contractor
           position, NOT a W-2 employee role. This means you will be operating as
           your own business. You are responsible for your own taxes (no
@@ -259,7 +259,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
               type="button"
               key={opt}
               onClick={() => setFormData({ ...formData, q1Contractor: opt })}
-              className={`flex-1 py-2.5 px-4 border text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-3 px-4 border text-base font-semibold transition-all duration-200 cursor-pointer ${
                 formData.q1Contractor === opt
                   ? "bg-[#1B2A4A] border-[#1B2A4A] text-white shadow-sm"
                   : "bg-white border-gray-300 text-gray-700 hover:bg-[#1B2A4A] hover:border-[#1B2A4A] hover:text-white"
@@ -273,7 +273,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
 
       {/* Q2: Equipment */}
       <div>
-        <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
+        <label className="block font-sans text-[15px] sm:text-base font-normal text-[#1B2A4A] mb-2.5 leading-snug">
           2. Do you have a Windows computer, a quiet and distraction-free
           workspace, stable wired internet connection, a USB wired headset, and
           a working webcam? <span className="text-[#F0862C]">*</span>
@@ -284,7 +284,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
               type="button"
               key={opt}
               onClick={() => setFormData({ ...formData, q2Equipment: opt })}
-              className={`flex-1 py-2.5 px-4 border text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-3 px-4 border text-base font-semibold transition-all duration-200 cursor-pointer ${
                 formData.q2Equipment === opt
                   ? "bg-[#1B2A4A] border-[#1B2A4A] text-white shadow-sm"
                   : "bg-white border-gray-300 text-gray-700 hover:bg-[#1B2A4A] hover:border-[#1B2A4A] hover:text-white"
@@ -298,7 +298,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
 
       {/* Q3: Act Promptly */}
       <div>
-        <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
+        <label className="block font-sans text-[15px] sm:text-base font-normal text-[#1B2A4A] mb-2.5 leading-snug">
           3. Since Arise programs open and close quickly, are you able to act
           promptly when opportunities become available?{" "}
           <span className="text-[#F0862C]">*</span>
@@ -309,7 +309,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
               type="button"
               key={opt}
               onClick={() => setFormData({ ...formData, q3StartPromptly: opt })}
-              className={`flex-1 py-2.5 px-4 border text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-3 px-4 border text-base font-semibold transition-all duration-200 cursor-pointer ${
                 formData.q3StartPromptly === opt
                   ? "bg-[#1B2A4A] border-[#1B2A4A] text-white shadow-sm"
                   : "bg-white border-gray-300 text-gray-700 hover:bg-[#1B2A4A] hover:border-[#1B2A4A] hover:text-white"
@@ -323,7 +323,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
 
       {/* Q4: Approved State */}
       <div>
-        <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
+        <label className="block font-sans text-[15px] sm:text-base font-normal text-[#1B2A4A] mb-2.5 leading-snug">
           4. Are you currently residing in one of the approved states (Alabama,
           Arizona, Arkansas, Delaware, Florida, Georgia, Kentucky, Louisiana,
           Michigan, Mississippi, Missouri, Nevada, North Carolina, Ohio,
@@ -336,7 +336,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
               type="button"
               key={opt}
               onClick={() => setFormData({ ...formData, q4ApprovedState: opt })}
-              className={`flex-1 py-2.5 px-4 border text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-3 px-4 border text-base font-semibold transition-all duration-200 cursor-pointer ${
                 formData.q4ApprovedState === opt
                   ? "bg-[#1B2A4A] border-[#1B2A4A] text-white shadow-sm"
                   : "bg-white border-gray-300 text-gray-700 hover:bg-[#1B2A4A] hover:border-[#1B2A4A] hover:text-white"
@@ -350,7 +350,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
 
       {/* Q5: Unpaid Onboarding Steps */}
       <div>
-        <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
+        <label className="block font-sans text-[15px] sm:text-base font-normal text-[#1B2A4A] mb-2.5 leading-snug">
           5. Are you willing to complete the unpaid initial registration steps
           (profile setup, Arise assessment, and $30 background check)
           before starting paid certification training and client production?{" "}
@@ -364,7 +364,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
               onClick={() =>
                 setFormData({ ...formData, q5OnboardingSteps: opt })
               }
-              className={`flex-1 py-2.5 px-4 border text-sm font-semibold transition-all duration-200 cursor-pointer ${
+              className={`flex-1 py-3 px-4 border text-base font-semibold transition-all duration-200 cursor-pointer ${
                 formData.q5OnboardingSteps === opt
                   ? "bg-[#1B2A4A] border-[#1B2A4A] text-white shadow-sm"
                   : "bg-white border-gray-300 text-gray-700 hover:bg-[#1B2A4A] hover:border-[#1B2A4A] hover:text-white"
@@ -377,7 +377,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       </div>
 
       {/* Text message consent (A2P 10DLC): optional, separate boxes, links to the program terms */}
-      <p className="pt-1 text-[11px] leading-normal text-gray-600">
+      <p className="pt-1 text-[13px] leading-normal text-gray-600">
         Text messages are optional and are not a condition of applying. Each box
         below is a separate choice.
       </p>
@@ -393,7 +393,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
             }
             className="mt-1 w-4 h-4 text-[#008080] focus:ring-[#008080] border-gray-300 cursor-pointer shrink-0"
           />
-          <span className="text-[11px] text-gray-600 leading-normal">
+          <span className="text-[13px] text-gray-600 leading-normal">
             By checking this box, I consent to receive non-marketing text
             messages from <strong>Vibe Connect Virtual Services</strong> about
             Job Hiring and Newsletter. Message frequency varies. Message & data
@@ -413,7 +413,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
             }
             className="mt-1 w-4 h-4 text-[#008080] focus:ring-[#008080] border-gray-300 cursor-pointer shrink-0"
           />
-          <span className="text-[11px] text-gray-600 leading-normal">
+          <span className="text-[13px] text-gray-600 leading-normal">
             By checking this box, I consent to receive marketing and promotional
             messages including special offers, discounts, new product updates
             among others, from <strong>Vibe Connect Virtual Services</strong> on
@@ -423,7 +423,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
         </label>
       </div>
 
-      <p className="text-[11px] leading-normal text-gray-600">
+      <p className="text-[13px] leading-normal text-gray-600">
         By submitting this form you agree to our{" "}
         <a href="/terms" target="_blank" rel="noopener noreferrer" className="font-semibold underline">
           Terms of Service
@@ -442,7 +442,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       </p>
 
       {notice && (
-        <div ref={noticeRef} role="alert" className="border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div ref={noticeRef} role="alert" className="border border-red-300 bg-red-50 px-4 py-3 text-[15px] text-red-800">
           <p className="font-bold">{notice.title}</p>
           <p>{notice.description}</p>
           {notice.link && (
@@ -475,7 +475,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
         </button>
       </div>
 
-      <div className="flex items-center justify-center gap-2 pt-1 text-[11px] text-[#5A6578]">
+      <div className="flex items-center justify-center gap-2 pt-1 text-[13px] text-[#5A6578]">
         <ShieldCheck className="w-4 h-4 text-[#1B2A4A]" />
         <span>
           $0 upfront to apply &bull; Independent contractor (1099) roles

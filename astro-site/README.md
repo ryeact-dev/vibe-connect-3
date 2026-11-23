@@ -16,8 +16,8 @@ npm run check      # type check
 
 ## Deploying to a new domain
 
-1. Build with the new origin so canonicals, JSON-LD, the sitemap and `llms.txt`
-   are correct:
+1. The site URL defaults to `https://vibe-connect-3.pages.dev`. Build with the new
+   origin so canonicals, JSON-LD, the sitemap, `robots.txt` and `llms.txt` use it:
 
    ```bash
    PUBLIC_SITE_URL=https://www.your-domain.com npm run build
@@ -25,7 +25,7 @@ npm run check      # type check
 
    On Cloudflare Pages / Netlify / Vercel, set `PUBLIC_SITE_URL` as a build
    environment variable (build command `npm run build`, output `dist`).
-2. Update the `Sitemap:` line in `public/robots.txt` to the new domain.
+2. `robots.txt` is generated at build, so its `Sitemap:` line follows the same variable.
 3. The build writes clean URLs as files (`/terms` is `dist/terms.html`). Cloudflare
    Pages, Netlify, Vercel and GitHub Pages serve these without extra setup.
    nginx/S3 need `try_files $uri $uri.html =404`.
