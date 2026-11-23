@@ -82,7 +82,7 @@ export const SEO_PAGES: SeoPageData[] = [
       alt: "Woman wearing a headset smiling as she works on a laptop from a living room sofa",
     },
     intro: [
-      "Remote work from home in the US is easier to find when you know what to look for and what to expect. Vibe Connect Virtual Services helps people get started as independent contractors on Arise, the platform where you register and find online work-from-home jobs in customer service, sales and bilingual roles. You work from your own space, on shifts that fit your life, and you are paid twice a month. There is no commute and no cubicle. For most roles you do not need call center experience, and certification training on Arise is paid once your certification days begin.",
+      "Remote work from home in the US is easier to find when you know what to look for and what to expect. Vibe Connect Virtual helps people get started as independent contractors on Arise, the platform where you register and find online work-from-home jobs in customer service, sales and bilingual roles. You work from your own space, on shifts that fit your life, and you are paid twice a month. There is no commute and no cubicle. For most roles you do not need call center experience, and certification training on Arise is paid once your certification days begin.",
     ],
     sections: [
       {
@@ -221,7 +221,7 @@ export const SEO_PAGES: SeoPageData[] = [
       alt: "Smiling customer service agent in a headset talking to a computer screen at a desk",
     },
     intro: [
-      "Starting a remote customer service job with no experience is realistic when the company trains you. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where Customer Support Agents help the customers of client companies, mostly by phone, from home. You complete onboarding with us and certification training on Arise, which is paid, then begin taking real customer conversations.",
+      "Starting a remote customer service job with no experience is realistic when the company trains you. Vibe Connect Virtual helps you get started as an independent contractor on Arise, where Customer Support Agents help the customers of client companies, mostly by phone, from home. You complete onboarding with us and certification training on Arise, which is paid, then begin taking real customer conversations.",
     ],
     sections: [
       {
@@ -341,7 +341,7 @@ export const SEO_PAGES: SeoPageData[] = [
       alt: "Parent holding a baby while working on a laptop with a headset",
     },
     intro: [
-      "Not everyone wants a full-time schedule, and not everyone can have one. If you need income that fits around school, family, a second job or your own routine, part-time work from home customer service can be a practical answer. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where shifts are flexible and pay arrives twice a month, so you can earn without giving up your whole week.",
+      "Not everyone wants a full-time schedule, and not everyone can have one. If you need income that fits around school, family, a second job or your own routine, part-time work from home customer service can be a practical answer. Vibe Connect Virtual helps you get started as an independent contractor on Arise, where shifts are flexible and pay arrives twice a month, so you can earn without giving up your whole week.",
     ],
     sections: [
       {
@@ -464,7 +464,7 @@ export const SEO_PAGES: SeoPageData[] = [
       alt: "Smiling call center agent in a headset touching the microphone while working at a computer",
     },
     intro: [
-      "A remote call center job lets you do phone-based customer support without sitting in an office. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where you can find inbound support and onboarding roles for client companies. You take calls from your home, you learn the work in paid Arise training, and you are paid on the 15th and the 30th of each month. No call center experience is required to apply.",
+      "A remote call center job lets you do phone-based customer support without sitting in an office. Vibe Connect Virtual helps you get started as an independent contractor on Arise, where you can find inbound support and onboarding roles for client companies. You take calls from your home, you learn the work in paid Arise training, and you are paid on the 15th and the 30th of each month. No call center experience is required to apply.",
     ],
     sections: [
       {
@@ -584,7 +584,7 @@ export const SEO_PAGES: SeoPageData[] = [
       alt: "Smiling woman in headphones working on a laptop at a desk",
     },
     intro: [
-      "If you speak both English and Spanish, your language skills are a real advantage. Many companies want to serve customers in the language those customers are most comfortable with, and they need people who can do it well. Vibe Connect Virtual Services helps you get started as an independent contractor on Arise, where bilingual support agents find remote roles with client companies and are paid twice a month.",
+      "If you speak both English and Spanish, your language skills are a real advantage. Many companies want to serve customers in the language those customers are most comfortable with, and they need people who can do it well. Vibe Connect Virtual helps you get started as an independent contractor on Arise, where bilingual support agents find remote roles with client companies and are paid twice a month.",
     ],
     sections: [
       {
