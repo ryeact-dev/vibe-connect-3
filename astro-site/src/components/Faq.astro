@@ -12,7 +12,7 @@ const { items, heading = "Frequently Asked Questions", intro } = Astro.props;
     <div class="mx-auto max-w-3xl space-y-3">
       {items.map((f, i) => (
         <details class="faq overflow-hidden border border-[#e67320]/30 bg-white" open={i === 0}>
-          <summary class="flex min-h-[48px] items-center justify-between gap-4 bg-[#f38c32] px-5 py-4 text-left font-heading text-sm font-bold text-white hover:bg-[#e67b25] sm:text-base">
+          <summary class="flex min-h-[48px] items-center justify-between gap-4 bg-[#f38c32] px-5 py-4 text-left font-heading text-sm font-bold text-white transition-colors duration-150 hover:bg-[#e67b25] sm:text-base">
             <span class="flex-1">{f.question}</span>
             <Icon name="plus" class="faq-icon text-xl" />
           </summary>
@@ -22,3 +22,32 @@ const { items, heading = "Frequently Asked Questions", intro } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const DURATION = 240;
+  const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+  const running = new WeakMap<HTMLDetailsElement, Animation>();
+
+  document.querySelectorAll<HTMLDetailsElement>("details.faq").forEach((d) => {
+    const summary = d.querySelector("summary")!;
+    summary.addEventListener("click", (e) => {
+      if (reduce || !("animate" in d)) return; // native instant toggle
+      e.preventDefault();
+      running.get(d)?.cancel();
+      const closed = summary.offsetHeight;
+      const opening = !d.open;
+      if (opening) d.open = true;
+      const full = d.offsetHeight;
+      d.style.overflow = "hidden";
+      const anim = d.animate(
+        { height: opening ? [`${closed}px`, `${full}px`] : [`${full}px`, `${closed}px`] },
+        { duration: DURATION, easing: EASE },
+      );
+      running.set(d, anim);
+      const done = (open: boolean) => { d.open = open; d.style.overflow = ""; running.delete(d); };
+      anim.onfinish = () => done(opening);
+      anim.oncancel = () => { d.style.overflow = ""; };
+    });
+  });
+</script>
