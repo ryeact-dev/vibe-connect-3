@@ -16,11 +16,11 @@ const icons = ["headphones", "phoneCall", "userCheck", "headphones"] as const;
     </div>
     <ul class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
       {ROLES_DATA.map((r, i) => (
-        <li class="reveal group flex flex-col items-center border border-sky bg-white p-6 text-center transition-[box-shadow,border-color,transform] duration-200 hover:-translate-y-1 hover:border-orange/40 hover:shadow-lg" style={`--d:${(i % 4) * 60}ms`}>
-          <div class="mb-4 flex h-14 w-14 items-center justify-center bg-sky text-[#0d627b] transition-colors group-hover:bg-orange group-hover:text-white">
+        <li class="reveal group flex flex-col items-center border border-sky bg-white p-6 text-center transition-[box-shadow,border-color,translate] duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-orange/40 hover:shadow-lg" style={`--d:${(i % 4) * 60}ms`}>
+          <div class="mb-4 flex h-14 w-14 items-center justify-center bg-sky text-[#0d627b] transition-colors duration-[400ms] ease-out group-hover:bg-orange group-hover:text-white">
             <Icon name={icons[i] ?? "headphones"} class="text-[28px]" strokeWidth={2} />
           </div>
-          <h3 class="mb-2 font-heading text-lg font-bold text-navy transition-colors group-hover:text-orange">{r.title}</h3>
+          <h3 class="mb-2 font-heading text-lg font-bold text-navy transition-colors duration-[400ms] ease-out group-hover:text-orange">{r.title}</h3>
           <p class="text-sm leading-relaxed text-muted">{r.description}</p>
         </li>
       ))}

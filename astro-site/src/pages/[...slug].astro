@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Inline from "../components/Inline.astro";
 import ApplyButton from "../components/ApplyButton.astro";
+import LegalText from "../components/LegalText.astro";
 import {
   ARISE_DEFINITION, HUB_PAGE, LAST_UPDATED_LINE, SEO_PAGES, bannerUrl, buildPageSchema,
   type SeoPageData,
@@ -143,10 +144,17 @@ const banner = seo ? banners[`../assets/banners/${seo.banner.file}`]?.default : 
         <h1 class="font-heading text-3xl font-extrabold text-navy sm:text-4xl">{legal.h1}</h1>
         <p class="text-sm text-muted">Last updated: {legal.updated}</p>
         {legal.sections.map((s) => (
-          <section class="space-y-3 pt-2">
+          <section id={s.id} class="space-y-3 pt-2">
             <h2 class="font-heading text-xl font-bold text-navy">{s.h2}</h2>
-            {s.paragraphs?.map((t) => <p class="text-base leading-relaxed text-charcoal/85">{t}</p>)}
-            {s.items && <ul class="list-disc space-y-2 pl-6 text-base leading-relaxed text-charcoal/85">{s.items.map((t) => <li>{t}</li>)}</ul>}
+            {s.blocks.map((b) =>
+              b.type === "p" ? <p class="text-base leading-relaxed text-charcoal/85"><LegalText text={b.text} /></p>
+              : b.type === "h3" ? <h3 class="pt-1 font-heading text-lg font-bold text-navy">{b.text}</h3>
+              : <ul class="list-disc space-y-2 pl-6 text-base leading-relaxed text-charcoal/85">
+                  {b.items.map((it) => typeof it === "string"
+                    ? <li><LegalText text={it} /></li>
+                    : <li><strong class="font-semibold text-navy">{it.lead}</strong> <LegalText text={it.text} /></li>)}
+                </ul>
+            )}
           </section>
         ))}
       </article>

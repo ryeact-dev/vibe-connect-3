@@ -1,7 +1,7 @@
 ---
 import Icon from "./Icon.astro";
 import { APPLY_URL } from "../config/site";
-import { ABOUT_PARAGRAPH } from "../data/home-copy";
+import { ABOUT_PARAGRAPH, ABOUT_STATES, ABOUT_STATES_LABEL } from "../data/home-copy";
 import { ABOUT_IMAGE, AGENT_IMAGE } from "../data/images";
 ---
 <section id="about" class="bg-white py-14 sm:py-20">
@@ -12,6 +12,7 @@ import { ABOUT_IMAGE, AGENT_IMAGE } from "../data/images";
           We Are The Best Remote Career Service For Your People
         </h2>
         <p class="text-base leading-relaxed text-muted">{ABOUT_PARAGRAPH}</p>
+        <p class="text-sm leading-relaxed text-muted"><strong class="font-semibold text-navy">{ABOUT_STATES_LABEL}</strong> {ABOUT_STATES}.</p>
 
         <div class="grid grid-cols-1 gap-x-6 gap-y-6 pt-2 sm:grid-cols-2">
           <div class="flex items-start gap-3">

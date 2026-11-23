@@ -25,7 +25,11 @@ export const VALUE_PROPS = [
   },
 ];
 
-export const ABOUT_PARAGRAPH = `VibeConnect Virtual Services was built for one reason: the traditional call center job the commute, the fluorescent lights, the rigid break schedule doesn't work for how people actually want to work anymore. We help reliable, motivated people in 18 states (${STATES_LIST_OXFORD}) get started with real work-from-home roles, backed by paid certification on Arise and real support.`;
+export const ABOUT_PARAGRAPH =
+  "Vibe Connect Virtual Services helps reliable, motivated people in 18 states start real work-from-home roles. No commute, no fluorescent lights, no rigid break schedule: just paid certification on Arise and real support.";
+
+export const ABOUT_STATES_LABEL = "Eligible states:";
+export const ABOUT_STATES = STATES_LIST_OXFORD;
 
 export const ROLES_INTRO =
   "Whether you prefer taking customer service calls or making sales calls, we help you get started with client contracts that match your skill level. Most jobs are phone-based, and some bilingual programs are omnichannel.";
