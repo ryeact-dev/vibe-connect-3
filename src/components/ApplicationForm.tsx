@@ -426,9 +426,9 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           2. Do you have a Windows computer, a quiet and distraction-free
-          workspace, stable wired internet connection, and a USB wired headset
+          workspace, stable wired internet connection, a USB wired headset
           (Plantronics or Logitech is recommended, but please indicate if you
-          are using a different brand)?{" "}
+          are using a different brand), and a working webcam?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
@@ -504,8 +504,9 @@ export const ApplicationForm: React.FC<FormProps> = ({
       {/* Q5: Unpaid Onboarding Steps */}
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
-          5. Are you willing to complete unpaid onboarding steps (registration,
-          background check, certification) before paid work begins?{" "}
+          5. Are you willing to complete the unpaid initial registration steps
+          (profile setup, Harver assessment, and $30 background check) before
+          starting paid certification training and client production?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
