@@ -1,3 +1,4 @@
+import { breadcrumbNode, graph, imageNode, organizationNode, webPageNode, websiteNode } from "./schema";
 import {
   APPLY_URL,
   CONTACT_EMAIL,
@@ -704,60 +705,22 @@ export function buildPageSchema(p: SeoPageData) {
     { name: HUB_PAGE.crumb, url: `${SITE_DOMAIN}${HUB_URL}` },
     ...(p.isHub ? [] : [{ name: p.crumb, url }]),
   ];
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": `${SITE_DOMAIN}/#organization`,
-        name: SITE_LEGAL_NAME,
-        url: SITE_DOMAIN,
-        logo: ORG_LOGO_URL,
-        telephone: CONTACT_PHONE_SCHEMA,
-        email: CONTACT_EMAIL,
-      },
-      {
-        "@type": "WebSite",
-        "@id": `${SITE_DOMAIN}/#website`,
-        url: SITE_DOMAIN,
-        name: SITE_LEGAL_NAME,
-        publisher: { "@id": `${SITE_DOMAIN}/#organization` },
-      },
-      {
-        "@type": ["WebPage", "FAQPage"],
-        "@id": `${url}#webpage`,
-        url,
-        name: p.title,
-        description: p.description,
-        inLanguage: "en-US",
-        dateModified: LAST_UPDATED_ISO,
-        isPartOf: { "@id": `${SITE_DOMAIN}/#website` },
-        publisher: { "@id": `${SITE_DOMAIN}/#organization` },
-        primaryImageOfPage: {
-          "@type": "ImageObject",
-          url: bannerUrl(p),
-          width: 1600,
-          height: 600,
-        },
-        breadcrumb: { "@id": `${url}#breadcrumb` },
-        mainEntity: p.faq.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: plain(f.a) },
-        })),
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `${url}#breadcrumb`,
-        itemListElement: crumbs.map((c, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          name: c.name,
-          item: c.url,
-        })),
-      },
-    ],
-  };
+  const img = { url: bannerUrl(p), width: 1600, height: 600 };
+  return graph(
+    organizationNode(),
+    websiteNode(),
+    webPageNode({
+      url,
+      name: p.title,
+      description: p.description,
+      image: img,
+      breadcrumb: true,
+      speakableSelector: "#quick-answer",
+      faq: p.faq.map((f) => ({ q: f.q, a: plain(f.a) })),
+    }),
+    imageNode(url, img),
+    breadcrumbNode(url, crumbs),
+  );
 }
 
 export const LAST_UPDATED_LINE = `Last updated: ${LAST_UPDATED_DISPLAY}`;

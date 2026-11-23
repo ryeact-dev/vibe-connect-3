@@ -11,7 +11,8 @@ import {
   type SeoPageData,
 } from "../data/seo-pages";
 import { LEGAL_PAGES, type LegalPageData } from "../data/legal-pages";
-import { HUB_URL, PAY_SOURCE } from "../config/site";
+import { HUB_URL, PAY_SOURCE, SITE_DOMAIN } from "../config/site";
+import { breadcrumbNode, graph, organizationNode, webPageNode, websiteNode } from "../data/schema";
 
 export function getStaticPaths() {
   return [
@@ -26,6 +27,15 @@ const { kind, page } = Astro.props as
   | { kind: "legal"; page: LegalPageData };
 const seo = kind === "seo" ? (page as SeoPageData) : null;
 const legal = kind === "legal" ? (page as LegalPageData) : null;
+const legalUrl = `${SITE_DOMAIN}${page.path}`;
+const legalSchema = legal
+  ? graph(
+      organizationNode(),
+      websiteNode(),
+      webPageNode({ url: legalUrl, name: legal.title, description: legal.description, breadcrumb: true }),
+      breadcrumbNode(legalUrl, [{ name: "Home", url: `${SITE_DOMAIN}/` }, { name: legal.h1, url: legalUrl }]),
+    )
+  : undefined;
 const banner = seo ? banners[`../assets/banners/${seo.banner.file}`]?.default : undefined;
 ---
 <Base
@@ -33,7 +43,7 @@ const banner = seo ? banners[`../assets/banners/${seo.banner.file}`]?.default : 
   description={page.description}
   path={page.path}
   ogImage={seo ? bannerUrl(seo) : undefined}
-  jsonLd={seo ? buildPageSchema(seo) : undefined}
+  jsonLd={seo ? buildPageSchema(seo) : legalSchema}
 >
   <Navbar />
   <main class="mt-[72px]">
@@ -70,7 +80,7 @@ const banner = seo ? banners[`../assets/banners/${seo.banner.file}`]?.default : 
           <div class="mx-auto max-w-3xl space-y-5 px-4 py-8 sm:px-6 sm:py-10">
             <h1 class="font-heading text-[28px] font-extrabold leading-tight text-navy sm:text-4xl">{seo.h1}</h1>
 
-            <aside aria-label="Quick answer" class="space-y-2 border-l-4 border-orange bg-sky-light p-5">
+            <aside id="quick-answer" aria-label="Quick answer" class="space-y-2 border-l-4 border-orange bg-sky-light p-5">
               <p class="text-xs font-bold uppercase tracking-wide text-orange">Quick answer</p>
               <p class="text-base leading-relaxed text-navy">{seo.quickAnswer}</p>
               <p class="text-sm text-muted">{ARISE_DEFINITION}</p>

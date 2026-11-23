@@ -19,7 +19,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     question: "What is Arise, and how does it relate to Vibe Connect?",
     answer:
-      "Arise is the platform where independent contractors register and find online jobs. Vibe Connect Virtual Services helps you get started on Arise: you apply and complete onboarding with us, pass the Arise assessment (taken through Harver), complete your Arise registration and background check (unpaid), take your paid certification days, and then find jobs on Arise.",
+      "Arise is the platform where independent contractors register and find online jobs. Vibe Connect Virtual Services helps you get started on Arise: you apply and complete onboarding with us, pass the Arise assessment, complete your Arise registration and background check (unpaid), take your paid certification days, and then find jobs on Arise.",
   },
   {
     question: "Is this a real job or a scam?",

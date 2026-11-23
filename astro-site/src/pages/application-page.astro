@@ -4,8 +4,10 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import ApplicationFormPage from "../react/ApplicationFormPage";
 import { SITE_DOMAIN } from "../config/site";
+import { breadcrumbNode, graph, organizationNode, webPageNode, websiteNode } from "../data/schema";
 import { OG_IMAGE } from "../data/images";
 
+const pageUrl = `${SITE_DOMAIN}/application-page`;
 const title = "Apply for Remote Customer Service Jobs | Vibe Connect Virtual";
 const description =
   "Apply in 60 seconds for real work-from-home customer service and support roles with Vibe Connect Virtual. Quick screening form, semi-monthly pay, no experience required.";
@@ -15,7 +17,12 @@ const description =
   description={description}
   path="/application-page"
   ogImage={OG_IMAGE}
-  jsonLd={{ "@context": "https://schema.org", "@type": "WebPage", name: title, description, url: `${SITE_DOMAIN}/application-page` }}
+  jsonLd={graph(
+    organizationNode(),
+    websiteNode(),
+    webPageNode({ url: pageUrl, name: title, description, breadcrumb: true }),
+    breadcrumbNode(pageUrl, [{ name: "Home", url: `${SITE_DOMAIN}/` }, { name: "Apply", url: pageUrl }]),
+  )}
 >
   <Navbar />
   <main class="mt-[72px] bg-sky-light px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
