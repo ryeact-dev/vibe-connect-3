@@ -1,0 +1,16 @@
+---
+// Turns the mentions of "Privacy Policy" / "Terms of Service" in legal copy into links,
+// and the contact email and phone into mailto/tel links.
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL } from "../config/site";
+const { text } = Astro.props as { text: string };
+const parts = text.split(new RegExp(`(Privacy Policy|Terms of Service|${CONTACT_EMAIL.replace(/\./g, "\\.")}|${CONTACT_PHONE_DISPLAY.replace(/[()+]/g, "\\$&")})`, "g"));
+const cls = "font-semibold text-[#0d627b] underline underline-offset-4 hover:text-orange";
+const here = Astro.url.pathname.replace(/\.html$/, "");
+---
+{parts.map((x) =>
+  x === "Privacy Policy" && here !== "/privacy-policy" ? <a href="/privacy-policy" class={cls}>{x}</a>
+  : x === "Terms of Service" && here !== "/terms" ? <a href="/terms" class={cls}>{x}</a>
+  : x === CONTACT_EMAIL ? <a href={`mailto:${CONTACT_EMAIL}`} class={cls}>{x}</a>
+  : x === CONTACT_PHONE_DISPLAY ? <a href={`tel:${CONTACT_PHONE_TEL}`} class={cls}>{x}</a>
+  : x
+)}

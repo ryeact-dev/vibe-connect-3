@@ -376,6 +376,12 @@ export const ApplicationForm: React.FC<FormProps> = ({
         </div>
       </div>
 
+      {/* Text message consent (A2P 10DLC): optional, separate boxes, links to the program terms */}
+      <p className="pt-1 text-[11px] leading-normal text-gray-600">
+        Text messages are optional and are not a condition of applying. Each box
+        below is a separate choice.
+      </p>
+
       {/* Checkbox 1 */}
       <div className="pt-1">
         <label className="flex items-start gap-3 cursor-pointer">
@@ -416,6 +422,24 @@ export const ApplicationForm: React.FC<FormProps> = ({
           </span>
         </label>
       </div>
+
+      <p className="text-[11px] leading-normal text-gray-600">
+        By submitting this form you agree to our{" "}
+        <a href="/terms" target="_blank" rel="noopener noreferrer" className="font-semibold underline">
+          Terms of Service
+        </a>{" "}
+        and{" "}
+        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="font-semibold underline">
+          Privacy Policy
+        </a>
+        . See the{" "}
+        <a href="/terms#sms" target="_blank" rel="noopener noreferrer" className="font-semibold underline">
+          text message terms
+        </a>{" "}
+        for how our text programs work. We do not share mobile numbers or text
+        message consent with third parties or affiliates for their marketing
+        purposes.
+      </p>
 
       {notice && (
         <div ref={noticeRef} role="alert" className="border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">
