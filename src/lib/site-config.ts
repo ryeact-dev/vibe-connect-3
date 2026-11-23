@@ -22,7 +22,8 @@ export const ORG_LOGO_URL =
 export const PAY_RATE = "$18.00 per hour";
 export const LAST_UPDATED_DISPLAY = "November 23, 2026";
 export const LAST_UPDATED_ISO = "2026-11-23";
-export const PAY_SOURCE = "Source: Vibe Connect program announcements, November 2026.";
+export const PAY_SOURCE =
+  "Source: Vibe Connect program announcements, November 2026.";
 
 export const ELIGIBLE_STATES = [
   "Alabama",

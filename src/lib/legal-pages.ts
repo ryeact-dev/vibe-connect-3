@@ -1,4 +1,8 @@
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, SITE_LEGAL_NAME } from "./site-config";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  SITE_LEGAL_NAME,
+} from "./site-config";
 
 /**
  * Privacy Policy and Terms of Service. Drafted from what the site actually

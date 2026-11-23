@@ -19,9 +19,7 @@ export const RolesSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#1B2A4A] leading-[1.3]">
             Find the Role That Fits You
           </h2>
-          <p className="text-base text-[#5A6578] font-normal">
-            {ROLES_INTRO}
-          </p>
+          <p className="text-base text-[#5A6578] font-normal">{ROLES_INTRO}</p>
           <p className="text-base font-semibold">
             <a
               href={HUB_URL}

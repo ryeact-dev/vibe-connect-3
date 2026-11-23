@@ -25,7 +25,10 @@ export const LegalPage: React.FC<{ page: LegalPageData }> = ({ page }) => (
               {s.h2}
             </h2>
             {s.paragraphs?.map((t) => (
-              <p key={t} className="text-base leading-relaxed text-[#2B2B2B]/85">
+              <p
+                key={t}
+                className="text-base leading-relaxed text-[#2B2B2B]/85"
+              >
                 {t}
               </p>
             ))}

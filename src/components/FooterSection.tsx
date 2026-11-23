@@ -120,7 +120,10 @@ export const FooterSection: React.FC = () => {
                 Remote Work From Home Jobs
               </a>
               <span>&bull;</span>
-              <a href="/#faq" className="hover:text-[#F0862C] transition-colors">
+              <a
+                href="/#faq"
+                className="hover:text-[#F0862C] transition-colors"
+              >
                 FAQ
               </a>
             </div>
@@ -152,7 +155,10 @@ export const FooterSection: React.FC = () => {
           </p>
 
           <div className="flex items-center gap-6">
-            <a href="/privacy-policy" className="hover:text-white transition-colors">
+            <a
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
               Privacy Policy
             </a>
             <a href="/terms" className="hover:text-white transition-colors">
@@ -161,10 +167,13 @@ export const FooterSection: React.FC = () => {
           </div>
         </div>
       </div>
-     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex items-center justify-between gap-4 text-xs text-[#DCEEF5]/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex items-center justify-between gap-4 text-xs text-[#DCEEF5]/60">
         <p>
-           Website by <a href="https://www.rmdigitalsolutionsph.com/">RM Digital Solutions</a>
-          </p> 
+          Website by{" "}
+          <a href="https://www.rmdigitalsolutionsph.com/">
+            RM Digital Solutions
+          </a>
+        </p>
       </div>
     </footer>
   );

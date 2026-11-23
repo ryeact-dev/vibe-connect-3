@@ -109,7 +109,8 @@ export const SEOHead: FC<SEOHeadProps> = ({
   schemaJson,
   rawTitle = false,
 }) => {
-  const fullTitle = rawTitle || title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+  const fullTitle =
+    rawTitle || title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical.startsWith("http")
     ? canonical
     : `${SITE_DOMAIN}${canonical}`;

@@ -105,7 +105,6 @@ const Index: React.FC = () => {
 
       {/* 9. Contact / Footer Block */}
       <FooterSection />
-
     </div>
   );
 };

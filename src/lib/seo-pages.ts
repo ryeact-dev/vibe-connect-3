@@ -58,7 +58,8 @@ const EQUIP_BASE = [
   "A Windows 10 or 11 desktop or laptop (no Mac or Chromebook)",
   "A hardwired Ethernet connection to your router (no Wi-Fi)",
 ];
-const HEADSET = "A USB corded headset with a microphone, and a working webcam for the platform assessment";
+const HEADSET =
+  "A USB corded headset with a microphone, and a working webcam for the platform assessment";
 
 export const ARISE_DEFINITION =
   "Arise is the platform where independent contractors register and find online jobs.";
@@ -118,12 +119,22 @@ export const SEO_PAGES: SeoPageData[] = [
       {
         h2: "What you need to get started",
         blocks: [
-          { type: "p", text: "You do not need call center experience. You do need a few basics:" },
+          {
+            type: "p",
+            text: "You do not need call center experience. You do need a few basics:",
+          },
           {
             type: "ul",
-            items: [...EQUIP_BASE, HEADSET, "A quiet place to work during your shift"],
+            items: [
+              ...EQUIP_BASE,
+              HEADSET,
+              "A quiet place to work during your shift",
+            ],
           },
-          { type: "p", text: "The application starts with a short form that takes about 60 seconds." },
+          {
+            type: "p",
+            text: "The application starts with a short form that takes about 60 seconds.",
+          },
         ],
       },
       {
@@ -166,13 +177,26 @@ export const SEO_PAGES: SeoPageData[] = [
     midCta: {
       afterSection: "Remote roles you can apply for",
       heading: "Ready to work from home in the US?",
-      subline: "Check that your state is eligible, then start the 60-second application.",
+      subline:
+        "Check that your state is eligible, then start the 60-second application.",
     },
     faq: [
-      { q: "Do I need experience to work from home?", a: "No. Most roles are open to beginners, and certification training on Arise is paid." },
-      { q: "Can I work part time?", a: "Yes. Shifts are flexible, and many roles offer part-time hours." },
-      { q: "Is this an employee role or contract work?", a: "Contract work. Agents are independent contractors, not employees. You apply to the companies that are hiring, and your hours depend on the job." },
-      { q: "What if my state is not on the list?", a: `Contact us at ${CONTACT_EMAIL} or call or text +1 (903) 847-7904, and we will tell you when it opens.` },
+      {
+        q: "Do I need experience to work from home?",
+        a: "No. Most roles are open to beginners, and certification training on Arise is paid.",
+      },
+      {
+        q: "Can I work part time?",
+        a: "Yes. Shifts are flexible, and many roles offer part-time hours.",
+      },
+      {
+        q: "Is this an employee role or contract work?",
+        a: "Contract work. Agents are independent contractors, not employees. You apply to the companies that are hiring, and your hours depend on the job.",
+      },
+      {
+        q: "What if my state is not on the list?",
+        a: `Contact us at ${CONTACT_EMAIL} or call or text +1 (903) 847-7904, and we will tell you when it opens.`,
+      },
     ],
     finalCta: {
       heading: "Ready to trade the commute for a headset?",
@@ -233,7 +257,11 @@ export const SEO_PAGES: SeoPageData[] = [
         blocks: [
           {
             type: "ul",
-            items: [...EQUIP_BASE, HEADSET, "A quiet place where customers can hear you clearly"],
+            items: [
+              ...EQUIP_BASE,
+              HEADSET,
+              "A quiet place where customers can hear you clearly",
+            ],
           },
         ],
       },
@@ -276,9 +304,18 @@ export const SEO_PAGES: SeoPageData[] = [
       subline: "Apply in about 60 seconds.",
     },
     faq: [
-      { q: "Can I really start with no experience?", a: "Yes. Beginners are welcome, and certification training on Arise is paid." },
-      { q: "Will I talk on the phone all day?", a: "Most roles are phone-based, either customer service or sales by phone." },
-      { q: "Which states can I work from?", a: `You can apply if you live in one of 18 states: ${STATES_LIST}.` },
+      {
+        q: "Can I really start with no experience?",
+        a: "Yes. Beginners are welcome, and certification training on Arise is paid.",
+      },
+      {
+        q: "Will I talk on the phone all day?",
+        a: "Most roles are phone-based, either customer service or sales by phone.",
+      },
+      {
+        q: "Which states can I work from?",
+        a: `You can apply if you live in one of 18 states: ${STATES_LIST}.`,
+      },
     ],
     finalCta: {
       heading: "Ready to apply?",
@@ -292,7 +329,8 @@ export const SEO_PAGES: SeoPageData[] = [
     path: "/part-time-work-from-home-customer-service-jobs",
     isHub: false,
     crumb: "Part-Time Work From Home Customer Service Jobs",
-    title: "Part-Time Work From Home Customer Service Jobs | Vibe Connect Virtual",
+    title:
+      "Part-Time Work From Home Customer Service Jobs | Vibe Connect Virtual",
     description:
       "Part-time work from home customer service jobs with flexible shifts, paid Arise training and semi-monthly pay. No experience needed. Apply today.",
     h1: "Part-Time Work From Home Customer Service Jobs",
@@ -340,13 +378,23 @@ export const SEO_PAGES: SeoPageData[] = [
               "Log in a few minutes early so you begin on time.",
             ],
           },
-          { type: "p", text: "Weekly hours depend on the job and the company you apply to, so check each opening for its hours." },
+          {
+            type: "p",
+            text: "Weekly hours depend on the job and the company you apply to, so check each opening for its hours.",
+          },
         ],
       },
       {
         h2: "What you need",
         blocks: [
-          { type: "ul", items: [...EQUIP_BASE, HEADSET, "A quiet space during your scheduled hours"] },
+          {
+            type: "ul",
+            items: [
+              ...EQUIP_BASE,
+              HEADSET,
+              "A quiet space during your scheduled hours",
+            ],
+          },
         ],
       },
       {
@@ -376,12 +424,22 @@ export const SEO_PAGES: SeoPageData[] = [
     midCta: {
       afterSection: "How flexible shifts work",
       heading: "Looking for flexible hours?",
-      subline: "Apply in about 60 seconds and see which jobs fit your schedule.",
+      subline:
+        "Apply in about 60 seconds and see which jobs fit your schedule.",
     },
     faq: [
-      { q: "Do I need experience for a part-time role?", a: "No. Beginners are welcome, and certification training on Arise is paid." },
-      { q: "Can I work around another job?", a: "Many agents do. Choose shifts that do not overlap with your other commitments." },
-      { q: "Is part-time work available in every state?", a: `No. Applications are open in 18 states: ${STATES_LIST}. Part-time hours depend on the job and the company.` },
+      {
+        q: "Do I need experience for a part-time role?",
+        a: "No. Beginners are welcome, and certification training on Arise is paid.",
+      },
+      {
+        q: "Can I work around another job?",
+        a: "Many agents do. Choose shifts that do not overlap with your other commitments.",
+      },
+      {
+        q: "Is part-time work available in every state?",
+        a: `No. Applications are open in 18 states: ${STATES_LIST}. Part-time hours depend on the job and the company.`,
+      },
     ],
     finalCta: {
       heading: "Ready to start part time?",
@@ -481,13 +539,26 @@ export const SEO_PAGES: SeoPageData[] = [
     midCta: {
       afterSection: "What a typical call looks like",
       heading: "Take customer calls from home.",
-      subline: "Apply in about 60 seconds. No call center experience needed for most roles.",
+      subline:
+        "Apply in about 60 seconds. No call center experience needed for most roles.",
     },
     faq: [
-      { q: "Do I need call center experience?", a: "No. Beginners are welcome, and certification training on Arise is paid." },
-      { q: "Can I work from any room?", a: "Choose a quiet room with a stable connection. Background noise can make calls hard to hear." },
-      { q: "Do I have to make sales calls?", a: "Support and onboarding roles focus on helping customers. Sales and retention roles are separate and include commission." },
-      { q: "Where can I apply from?", a: `You can apply from 18 states: ${STATES_LIST}.` },
+      {
+        q: "Do I need call center experience?",
+        a: "No. Beginners are welcome, and certification training on Arise is paid.",
+      },
+      {
+        q: "Can I work from any room?",
+        a: "Choose a quiet room with a stable connection. Background noise can make calls hard to hear.",
+      },
+      {
+        q: "Do I have to make sales calls?",
+        a: "Support and onboarding roles focus on helping customers. Sales and retention roles are separate and include commission.",
+      },
+      {
+        q: "Where can I apply from?",
+        a: `You can apply from 18 states: ${STATES_LIST}.`,
+      },
     ],
     finalCta: {
       heading: "Ready to apply?",
@@ -501,7 +572,8 @@ export const SEO_PAGES: SeoPageData[] = [
     path: "/bilingual-work-from-home-jobs",
     isHub: false,
     crumb: "Bilingual Work From Home Jobs",
-    title: "Bilingual Work From Home Jobs (English/Spanish) | Vibe Connect Virtual",
+    title:
+      "Bilingual Work From Home Jobs (English/Spanish) | Vibe Connect Virtual",
     description:
       "Bilingual work from home jobs for English and Spanish speakers. Paid Arise training, flexible shifts and pay twice a month. Apply in 60 seconds.",
     h1: "Bilingual Work From Home Jobs for English and Spanish Speakers",
@@ -566,7 +638,12 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         h2: "What you need",
-        blocks: [{ type: "ul", items: [...EQUIP_BASE, HEADSET, "A quiet place to work"] }],
+        blocks: [
+          {
+            type: "ul",
+            items: [...EQUIP_BASE, HEADSET, "A quiet place to work"],
+          },
+        ],
       },
       {
         h2: "Pay and schedule",
@@ -582,13 +659,26 @@ export const SEO_PAGES: SeoPageData[] = [
     midCta: {
       afterSection: "How fluent do you need to be?",
       heading: "Put your Spanish to work.",
-      subline: "Apply in about 60 seconds and tell us you speak English and Spanish.",
+      subline:
+        "Apply in about 60 seconds and tell us you speak English and Spanish.",
     },
     faq: [
-      { q: "Do I need to be a native Spanish speaker?", a: "You need to be comfortable and professional in both languages. You do not need to be a native speaker. What matters is that you can speak Spanish well." },
-      { q: "Is this a translation job?", a: "No. You support customers directly in English or Spanish. It is customer service, not document translation." },
-      { q: "Can I work part time?", a: "Yes. Shifts are flexible, and part-time hours may be available." },
-      { q: "Which states are eligible?", a: `You can apply from 18 states: ${STATES_LIST}.` },
+      {
+        q: "Do I need to be a native Spanish speaker?",
+        a: "You need to be comfortable and professional in both languages. You do not need to be a native speaker. What matters is that you can speak Spanish well.",
+      },
+      {
+        q: "Is this a translation job?",
+        a: "No. You support customers directly in English or Spanish. It is customer service, not document translation.",
+      },
+      {
+        q: "Can I work part time?",
+        a: "Yes. Shifts are flexible, and part-time hours may be available.",
+      },
+      {
+        q: "Which states are eligible?",
+        a: `You can apply from 18 states: ${STATES_LIST}.`,
+      },
     ],
     finalCta: {
       heading: "Ready to put your languages to work?",
@@ -600,7 +690,8 @@ export const SEO_PAGES: SeoPageData[] = [
 export const HUB_PAGE = SEO_PAGES[0];
 export const ROLE_PAGES = SEO_PAGES.filter((p) => !p.isHub);
 
-export const bannerUrl = (p: SeoPageData) => `${SITE_DOMAIN}/images/${p.banner.file}`;
+export const bannerUrl = (p: SeoPageData) =>
+  `${SITE_DOMAIN}/images/${p.banner.file}`;
 
 /** Strip [text](url) markup to plain text (for JSON-LD, which must match the visible FAQ). */
 export const plain = (s: string) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
@@ -642,7 +733,12 @@ export function buildPageSchema(p: SeoPageData) {
         dateModified: LAST_UPDATED_ISO,
         isPartOf: { "@id": `${SITE_DOMAIN}/#website` },
         publisher: { "@id": `${SITE_DOMAIN}/#organization` },
-        primaryImageOfPage: { "@type": "ImageObject", url: bannerUrl(p), width: 1600, height: 600 },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: bannerUrl(p),
+          width: 1600,
+          height: 600,
+        },
         breadcrumb: { "@id": `${url}#breadcrumb` },
         mainEntity: p.faq.map((f) => ({
           "@type": "Question",

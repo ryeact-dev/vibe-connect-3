@@ -426,9 +426,8 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           2. Do you have a Windows computer, a quiet and distraction-free
-          workspace, stable wired internet connection, a USB wired headset,
-          and a working webcam?{" "}
-          <span className="text-[#F0862C]">*</span>
+          workspace, stable wired internet connection, a USB wired headset, and
+          a working webcam? <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
           {["Yes", "No"].map((opt) => (
@@ -477,9 +476,9 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           4. Are you currently residing in one of the approved states (Alabama,
-          Arizona, Arkansas, Delaware, Florida, Georgia, Kentucky,
-          Louisiana, Michigan, Mississippi, Missouri, Nevada, North Carolina,
-          Ohio, Oklahoma, South Carolina, Texas, Washington)?{" "}
+          Arizona, Arkansas, Delaware, Florida, Georgia, Kentucky, Louisiana,
+          Michigan, Mississippi, Missouri, Nevada, North Carolina, Ohio,
+          Oklahoma, South Carolina, Texas, Washington)?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
@@ -504,8 +503,8 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           5. Are you willing to complete the unpaid initial registration steps
-          (profile setup, Arise (Harver) assessment, and $30 background check) before
-          starting paid certification training and client production?{" "}
+          (profile setup, Arise (Harver) assessment, and $30 background check)
+          before starting paid certification training and client production?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
