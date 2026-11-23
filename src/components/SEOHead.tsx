@@ -1,12 +1,12 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import type { FC } from "react";
 
 /**
  * Site-wide defaults used as fallbacks by every page.
  * Centralised here so a rebrand only touches one file.
  */
-import { SITE_DOMAIN, SITE_NAME } from "@/lib/site-config";
-export { SITE_DOMAIN, SITE_NAME };
+export const SITE_NAME = "Vibe Connect Virtual";
+export const SITE_DOMAIN = "https://application.vibeconnectvs.com";
 export const DEFAULT_OG_IMAGE =
   "https://vibe.filesafe.space/meta/1785542809220106141/og_image.png";
 
@@ -23,30 +23,7 @@ export interface SEOHeadProps {
   noIndex?: boolean;
   /** Optional JSON-LD structured data object rendered as a script tag */
   schemaJson?: Record<string, unknown>;
-  /** Use `title` as the full <title> (it already includes the site name) */
-  rawTitle?: boolean;
 }
-
-// useLayoutEffect warns during SSR; the effect only matters in the browser.
-const useIsoLayoutEffect =
-  typeof window === "undefined" ? useEffect : useLayoutEffect;
-
-/**
- * Build-time prerender hook: entry-server.tsx sets `current` to an array, and
- * every <SEOHead> rendered during SSR pushes its resolved tags into it, so
- * the static HTML head is generated from the same props as the live page.
- */
-export interface ResolvedHead {
-  title: string;
-  description: string;
-  canonicalUrl: string;
-  ogImage: string;
-  noIndex: boolean;
-  schemaJson?: Record<string, unknown>;
-}
-export const headCollector: { current: ResolvedHead[] | null } = {
-  current: null,
-};
 
 /**
  * Marks every tag this component manages so we can clean up stale
@@ -107,24 +84,13 @@ export const SEOHead: FC<SEOHeadProps> = ({
   ogImage = DEFAULT_OG_IMAGE,
   noIndex = false,
   schemaJson,
-  rawTitle = false,
 }) => {
-  const fullTitle =
-    rawTitle || title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+  const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = canonical.startsWith("http")
     ? canonical
     : `${SITE_DOMAIN}${canonical}`;
 
-  headCollector.current?.push({
-    title: fullTitle,
-    description,
-    canonicalUrl,
-    ogImage,
-    noIndex,
-    schemaJson,
-  });
-
-  useIsoLayoutEffect(() => {
+  useLayoutEffect(() => {
     document.title = fullTitle;
     upsertMeta("name", "description", description);
     upsertLink("canonical", canonicalUrl);

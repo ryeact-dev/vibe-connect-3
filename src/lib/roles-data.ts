@@ -8,10 +8,6 @@ export interface RoleItem {
   description: string;
 }
 
-/*
- * Held until the jobs are confirmed: "Virtual Assistant / Back Office".
- * Removed: "Live Chat & Messaging Agent" (there are no chat-only roles).
- */
 export const ROLES_DATA: RoleItem[] = [
   {
     title: "Customer Support Agent",
@@ -32,5 +28,14 @@ export const ROLES_DATA: RoleItem[] = [
     title: "Bilingual Support Agent",
     description:
       "English/Spanish support roles. Bilingual-only roles select on the application.",
+  },
+  {
+    title: "Virtual Assistant / Back Office",
+    description: "Admin, data entry, and chat support for account team.",
+  },
+  {
+    title: "Live Chat & Messaging Agent",
+    description:
+      "Support customers over chat global platform if you prefer typing over talking.",
   },
 ];

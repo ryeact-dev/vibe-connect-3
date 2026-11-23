@@ -1,13 +1,11 @@
-import { createRoot, hydrateRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
 const container = document.getElementById("root")!;
+// Drop the build-time prerendered SEO markup (see vite-plugins/seo-prerender.ts)
+// and un-hide the root before React takes over.
+container.removeAttribute("data-prerendered");
+container.innerHTML = "";
 
-// Production pages ship server-rendered HTML (see scripts/prerender.mjs), so
-// hydrate it. In dev there is no prerendered markup, so render from scratch.
-if (container.hasChildNodes()) {
-  hydrateRoot(container, <App />);
-} else {
-  createRoot(container).render(<App />);
-}
+createRoot(container).render(<App />);

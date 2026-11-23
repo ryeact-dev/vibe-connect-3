@@ -1,11 +1,27 @@
 import React from "react";
-import { Headphones, PhoneCall, UserCheck, HeadphonesIcon } from "lucide-react";
+import {
+  Headphones,
+  PhoneCall,
+  UserCheck,
+  MessageSquare,
+  HeadphonesIcon,
+  ShieldAlert,
+} from "lucide-react";
 import { ROLES_DATA } from "@/lib/roles-data";
-import { HUB_LINK_TEXT, ROLES_INTRO } from "@/lib/home-copy";
-import { HUB_URL } from "@/lib/site-config";
 
-export const RolesSection: React.FC = () => {
-  const roleIcons = [Headphones, PhoneCall, UserCheck, HeadphonesIcon];
+interface RolesProps {
+  onOpenApplyModal: () => void;
+}
+
+export const RolesSection: React.FC<RolesProps> = ({ onOpenApplyModal }) => {
+  const roleIcons = [
+    Headphones,
+    PhoneCall,
+    UserCheck,
+    HeadphonesIcon,
+    ShieldAlert,
+    MessageSquare,
+  ];
   const roles = ROLES_DATA.map((role, i) => ({
     ...role,
     icon: roleIcons[i] ?? Headphones,
@@ -19,19 +35,15 @@ export const RolesSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#1B2A4A] leading-[1.3]">
             Find the Role That Fits You
           </h2>
-          <p className="text-base text-[#5A6578] font-normal">{ROLES_INTRO}</p>
-          <p className="text-base font-semibold">
-            <a
-              href={HUB_URL}
-              className="text-[#0d627b] underline underline-offset-4 hover:text-[#F0862C]"
-            >
-              {HUB_LINK_TEXT}
-            </a>
+          <p className="text-base text-[#5A6578] font-normal">
+            Whether you prefer voice calls, live messaging, or back-office
+            processing, we connect you with client contracts that match your
+            skill level.
           </p>
         </div>
 
-        {/* 4-Card Grid: 3-col desktop, 2-col tablet, 1-col mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 6-Card Grid: 3-col desktop, 2-col tablet, 1-col mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {roles.map((role, idx) => {
             const IconComp = role.icon;
             return (
