@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import { SeoPage } from "./components/SeoPage";
 import { LegalPage } from "./components/LegalPage";
 import { SEO_PAGES } from "./lib/seo-pages";
+import { ApplyModalProvider } from "./components/ApplyModalProvider";
 import { LEGAL_PAGES } from "./lib/legal-pages";
 
 const queryClient = new QueryClient();
@@ -20,7 +21,7 @@ export const AppShell = ({ children }: { children: ReactNode }) => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      {children}
+      <ApplyModalProvider>{children}</ApplyModalProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
