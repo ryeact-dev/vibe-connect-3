@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { CheckCircle2, ShieldCheck, Send } from "lucide-react";
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, GHL_FORM_URL } from "../config/site";
+import { ShieldCheck, Send } from "lucide-react";
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, GHL_FORM_URL, THANK_YOU_URL } from "../config/site";
 
 interface FormProps {
   onSuccess?: () => void;
@@ -18,7 +18,6 @@ export const ApplicationForm: React.FC<FormProps> = ({
     requestAnimationFrame(() => noticeRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }));
   };
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   // --- Spam prevention state ---
   const formStartTime = useRef<number>(Date.now()); // detect bots that submit too fast
@@ -102,6 +101,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
     }
 
     setSubmitting(true);
+    let redirecting = false;
 
     // The server function (functions/api/apply.ts) creates/updates the contact in
     // GoHighLevel with the private integration key, which never reaches the browser.
@@ -128,7 +128,9 @@ export const ApplicationForm: React.FC<FormProps> = ({
       .then((r) => {
         if (!r.ok) throw new Error(String(r.status));
         lastSubmitTime.current = Date.now(); // record for cooldown
-        setSubmitted(true);
+        try { sessionStorage.setItem("vc_applicant_email", formData.email.trim()); } catch { /* private mode */ }
+        window.location.assign(THANK_YOU_URL); // keep the button disabled while we navigate
+        redirecting = true;
       })
       .catch(() =>
         notify(
@@ -137,34 +139,8 @@ export const ApplicationForm: React.FC<FormProps> = ({
           GHL_FORM_URL,
         ),
       )
-      .finally(() => setSubmitting(false));
+      .finally(() => { if (!redirecting) setSubmitting(false); });
   };
-
-  if (submitted) {
-    return (
-      <div className="py-8 px-6 text-center space-y-4">
-        <div className="w-16 h-16 bg-[#F0862C]/15 text-[#F0862C] flex items-center justify-center mx-auto">
-          <CheckCircle2 className="w-10 h-10" />
-        </div>
-        <h3 className="text-2xl font-heading font-bold text-[#1B2A4A]">
-          Thank you for applying to Vibe Connect Virtual!
-        </h3>
-        <div className="text-base text-[#5A6578] max-w-md mx-auto space-y-3 text-left">
-          <p>Your application has been received and is now under review.</p>
-          <p>
-            Please check your inbox at{" "}
-            <strong className="text-[#1B2A4A]">
-              {formData.email || "your email"}
-            </strong>{" "}
-            for your next steps checklist and be sure to check your{" "}
-            <strong className="text-[#1B2A4A]">Spam or Junk folder</strong>,
-            just in case it lands there.
-          </p>
-          <p>We're excited about the possibility of having you on our team!</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 text-left">
@@ -192,7 +168,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
           <input
             type="text"
             required
-            placeholder="Enter your full legal name"
+            placeholder="Your legal full name"
             value={formData.fullName}
             onChange={(e) =>
               setFormData({ ...formData, fullName: e.target.value })

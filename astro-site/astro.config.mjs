@@ -20,7 +20,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.endsWith("/404"),
+      filter: (page) => !page.endsWith("/404") && !page.endsWith("/thank-you"),
       serialize(item) {
         // Pages whose content changes with pay updates carry the last-updated date.
         item.lastmod = process.env.SITEMAP_LASTMOD || "2026-11-23";

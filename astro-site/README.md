@@ -51,6 +51,19 @@ backup form (`GHL_FORM_URL` in `src/config/site.ts`), so no application is
 silently lost. `astro dev` does not run the function; use
 `npx wrangler pages dev dist` after a build to test it locally.
 
+## Thank-you page (orientation video and PDF)
+
+After a successful submission the form redirects to `/thank-you` (noindex, not in the sitemap).
+The page shows a "coming soon" placeholder until you add the files:
+
+- **Video:** save an MP4 as `public/videos/orientation.mp4` (optional poster:
+  `public/videos/orientation-poster.jpg`), or set `ORIENTATION_VIDEO_EMBED_URL` in
+  `src/config/orientation.ts` to a YouTube / Vimeo / Cloudflare Stream embed URL.
+  Cloudflare Pages rejects files over 25 MB, so host larger videos elsewhere and embed them.
+- **PDF:** save it as `public/downloads/vibe-connect-orientation.pdf`.
+
+Commit and push; the placeholder switches to the real video and download button automatically.
+
 ## Where things are
 
 | What | Where |

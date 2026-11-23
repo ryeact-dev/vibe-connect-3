@@ -1,0 +1,94 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import {
+  ORIENTATION_PDF_FILE, ORIENTATION_PDF_LABEL, ORIENTATION_VIDEO_EMBED_URL, ORIENTATION_VIDEO_FILE, ORIENTATION_VIDEO_POSTER,
+} from "../config/orientation";
+import { CONTACT_EMAIL } from "../config/site";
+
+const exists = (url: string) => fs.existsSync(path.join(process.cwd(), "public", url));
+const videoMode = ORIENTATION_VIDEO_EMBED_URL ? "embed" : exists(ORIENTATION_VIDEO_FILE) ? "file" : "placeholder";
+const hasPoster = exists(ORIENTATION_VIDEO_POSTER);
+const hasPdf = exists(ORIENTATION_PDF_FILE);
+---
+<Base
+  title="Thank You for Applying | Vibe Connect Virtual"
+  description="Your application to Vibe Connect Virtual Services has been received. Watch the orientation video and download the orientation PDF."
+  path="/thank-you"
+  noindex
+>
+  <Navbar />
+  <main class="mt-[72px] bg-sky-light px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+    <div class="mx-auto max-w-3xl space-y-10">
+      <section class="space-y-4 text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center bg-orange/15 text-orange"><Icon name="check" class="text-4xl" strokeWidth={2} /></div>
+        <h1 class="font-heading text-3xl font-extrabold text-navy sm:text-4xl">Thank you for applying to Vibe Connect Virtual!</h1>
+        <div class="mx-auto max-w-xl space-y-3 text-left text-base leading-relaxed text-muted">
+          <p>Your application has been received and is now under review.</p>
+          <p>
+            Please check your inbox at <strong class="font-semibold text-navy" id="applicant-email">your email</strong> for your next steps
+            checklist and be sure to check your <strong class="font-semibold text-navy">Spam or Junk folder</strong>, just in case it lands there.
+          </p>
+          <p>We're excited about the possibility of having you on our team!</p>
+        </div>
+      </section>
+
+      <section class="space-y-4" aria-labelledby="orientation-heading">
+        <h2 id="orientation-heading" class="font-heading text-2xl font-bold text-navy">Watch your orientation video</h2>
+        <div class="relative aspect-video w-full overflow-hidden bg-navy shadow-lg">
+          {videoMode === "embed" && (
+            <iframe src={ORIENTATION_VIDEO_EMBED_URL} title="Vibe Connect orientation video" class="absolute inset-0 h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+          )}
+          {videoMode === "file" && (
+            <video class="absolute inset-0 h-full w-full bg-black" controls playsinline preload="metadata" poster={hasPoster ? ORIENTATION_VIDEO_POSTER : undefined}>
+              <source src={ORIENTATION_VIDEO_FILE} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
+          {videoMode === "placeholder" && (
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center text-white" role="img" aria-label="Orientation video placeholder">
+              <span class="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/60"><Icon name="play" class="text-3xl" strokeWidth={2} /></span>
+              <p class="font-heading text-lg font-bold">Orientation video coming soon</p>
+              <p class="max-w-sm text-sm text-sky/80">Your orientation video will appear here.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section class="space-y-4" aria-labelledby="pdf-heading">
+        <h2 id="pdf-heading" class="font-heading text-2xl font-bold text-navy">Download your orientation guide</h2>
+        <div class="flex flex-col items-start gap-4 border border-sky bg-white p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div class="flex items-start gap-4">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center bg-orange/15 text-orange"><Icon name="fileText" class="text-2xl" strokeWidth={2} /></span>
+            <p class="text-base leading-relaxed text-charcoal/85">{hasPdf ? "Keep the orientation PDF handy while you complete your next steps." : "The orientation PDF will be available here soon."}</p>
+          </div>
+          {hasPdf ? (
+            <a href={ORIENTATION_PDF_FILE} download class="btn-primary inline-flex w-full items-center justify-center gap-2.5 px-7 py-3.5 text-base font-bold sm:w-auto">
+              <Icon name="download" class="text-xl" />{ORIENTATION_PDF_LABEL}
+            </a>
+          ) : (
+            <span class="inline-flex w-full cursor-not-allowed items-center justify-center gap-2.5 bg-gray-200 px-7 py-3.5 text-base font-bold text-gray-500 sm:w-auto" aria-disabled="true">
+              <Icon name="download" class="text-xl" />PDF coming soon
+            </span>
+          )}
+        </div>
+      </section>
+
+      <p class="text-center text-sm text-muted">Questions? Email <a class="font-semibold text-[#0d627b] underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    </div>
+  </main>
+  <Footer cta={false} />
+
+  <script>
+    // Show the email the applicant entered (kept only in this tab's sessionStorage).
+    try {
+      const email = sessionStorage.getItem("vc_applicant_email");
+      const el = document.getElementById("applicant-email");
+      if (email && el) el.textContent = email;
+    } catch { /* storage unavailable: keep the generic text */ }
+  </script>
+</Base>
