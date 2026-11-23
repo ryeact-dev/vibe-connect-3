@@ -13,11 +13,15 @@ import phone from "lucide-static/icons/phone.svg?raw";
 import mail from "lucide-static/icons/mail.svg?raw";
 import plus from "lucide-static/icons/plus.svg?raw";
 import shield from "lucide-static/icons/shield.svg?raw";
+import check from "lucide-static/icons/circle-check.svg?raw";
+import play from "lucide-static/icons/play.svg?raw";
+import fileText from "lucide-static/icons/file-text.svg?raw";
+import download from "lucide-static/icons/download.svg?raw";
 
 const facebook =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>';
 
-const icons = { arrowRight, menu, x, dollarSign, graduationCap, house, headphones, phoneCall, userCheck, phone, mail, plus, shield, facebook } as const;
+const icons = { arrowRight, menu, x, dollarSign, graduationCap, house, headphones, phoneCall, userCheck, phone, mail, plus, shield, check, play, fileText, download, facebook } as const;
 
 interface Props {
   name: keyof typeof icons;

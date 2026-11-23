@@ -56,3 +56,6 @@ export const STATES_LIST = `${ELIGIBLE_STATES.slice(0, -1).join(", ")} and ${ELI
 
 /** Hosted GoHighLevel form: used only as a backup if the on-site form cannot submit. */
 export const GHL_FORM_URL = "https://api.leadconnectorhq.com/widget/form/QmbwgwlB0obs3GKFFY78";
+
+/** Where applicants land after a successful submission (noindex, not in the sitemap). */
+export const THANK_YOU_URL = "/thank-you";
