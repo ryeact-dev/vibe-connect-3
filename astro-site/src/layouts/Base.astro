@@ -1,0 +1,96 @@
+---
+import "../styles/global.css";
+import { SITE_DOMAIN, SITE_NAME, SITE_LEGAL_NAME } from "../config/site";
+
+interface Props {
+  title: string;          // full <title>
+  description: string;
+  path: string;           // canonical path, e.g. "/" or "/terms"
+  ogImage?: string;       // absolute URL
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  preloadImage?: string;  // LCP image URL, if any
+}
+const { title, description, path, ogImage, noindex = false, jsonLd, preloadImage } = Astro.props;
+const canonical = `${SITE_DOMAIN}${path === "/" ? "/" : path}`;
+const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1"} />
+    <meta name="theme-color" content="#1b2a4a" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable summary" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+
+    {ld.map((j) => <script type="application/ld+json" set:html={JSON.stringify(j).replace(/</g, "\\u003c")} />)}
+
+    <!-- Enables scroll-reveal only when JS runs; no-JS visitors see everything. -->
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <meta name="generator" content={SITE_LEGAL_NAME} />
+  </head>
+  <body class="bg-white text-charcoal font-sans antialiased selection:bg-orange/20 selection:text-navy">
+    <slot />
+
+    <script>
+      // ---- Scroll reveal (one shared observer, one-shot) ----
+      const els = document.querySelectorAll<HTMLElement>(".reveal");
+      if ("IntersectionObserver" in window && els.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+        );
+        els.forEach((el) => io.observe(el));
+        // Safety net: never leave content hidden for visitors who do not scroll
+        // (print, screenshot tools, long-page renderers).
+        setTimeout(() => els.forEach((el) => el.classList.add("in")), 4000);
+      } else {
+        els.forEach((el) => el.classList.add("in"));
+      }
+
+      // ---- Application pop-up: load React only when someone shows intent ----
+      let modalLoad: Promise<{ openApplyModal: () => void }> | null = null;
+      const load = () => (modalLoad ??= import("../react/mount-modal"));
+      const isApply = (t: EventTarget | null) =>
+        t instanceof Element ? (t.closest("a[data-apply]") as HTMLAnchorElement | null) : null;
+
+      for (const ev of ["pointerover", "touchstart", "focusin"] as const) {
+        document.addEventListener(ev, (e) => { if (isApply(e.target)) load(); }, { passive: true, once: false });
+      }
+      document.addEventListener("click", (e) => {
+        const a = isApply(e.target);
+        if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        if (location.pathname === new URL(a.href).pathname) return; // already on the form page
+        e.preventDefault();
+        load().then((m) => m.openApplyModal()).catch(() => { location.href = a.href; });
+      });
+    </script>
+  </body>
+</html>

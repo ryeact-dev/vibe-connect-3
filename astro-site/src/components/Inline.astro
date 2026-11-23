@@ -1,0 +1,18 @@
+---
+// Renders "[text](url)" markup from the page data as real links.
+import { parseInline } from "../data/inline";
+import { APPLY_URL } from "../config/site";
+interface Props { text: string; }
+const { text } = Astro.props;
+const parts = parseInline(text);
+const linkClass = "font-semibold text-[#0d627b] underline underline-offset-4 hover:text-orange";
+---
+{parts.map((p) =>
+  p.href === APPLY_URL ? (
+    <a href={APPLY_URL} data-apply class={linkClass}>{p.text}</a>
+  ) : p.href ? (
+    <a href={p.href} class={linkClass}>{p.text}</a>
+  ) : (
+    p.text
+  )
+)}

@@ -1,0 +1,68 @@
+---
+import Icon from "./Icon.astro";
+import { APPLY_URL, CONTACT_EMAIL, CONTACT_PHONE_TEL, HUB_URL } from "../config/site";
+import { FINAL_CTA_BODY } from "../data/home-copy";
+const { cta = true } = Astro.props;
+const year = new Date().getFullYear();
+---
+{cta && (
+  <section class="relative overflow-hidden bg-navy py-16 text-white sm:py-20">
+    <div class="reveal relative z-10 mx-auto max-w-5xl space-y-6 px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="font-heading text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">Ready to Trade the Commute for a Headset and a Kitchen Table?</h2>
+      <p class="mx-auto max-w-2xl text-base leading-relaxed text-sky/90 sm:text-lg">{FINAL_CTA_BODY}</p>
+      <div class="pt-2">
+        <a href={APPLY_URL} data-apply class="btn-primary inline-flex w-full items-center justify-center gap-2.5 px-9 py-4 text-base font-bold shadow-xl sm:w-auto">
+          Apply Now <Icon name="arrowRight" class="text-xl" />
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+<footer id="contact" class="border-t border-white/10 bg-navy-dark pb-10 pt-14 text-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-10 border-b border-white/10 pb-12 md:grid-cols-12">
+      <div class="space-y-4 border border-white/10 bg-navy p-6 sm:p-8 md:col-span-6">
+        <h2 class="font-heading text-xl font-bold text-white">Contact Us &amp; More Details</h2>
+        <p class="text-sm text-sky/80">Have a specific question about client contracts or onboarding support? Our recruitment desk is standing by to help.</p>
+        <div class="space-y-3 pt-2">
+          <a href={`tel:${CONTACT_PHONE_TEL}`} class="flex items-center gap-3 text-sm font-semibold text-white hover:text-orange">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange"><Icon name="phone" class="text-base" /></span>
+            <span>+1.903.847.7904 &bull; Call or Text</span>
+          </a>
+          <a href={`mailto:${CONTACT_EMAIL}`} class="flex items-center gap-3 break-all text-sm font-semibold text-white hover:text-orange">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-orange"><Icon name="mail" class="text-base" /></span>
+            <span>{CONTACT_EMAIL}</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-left md:col-span-6">
+        <h3 class="font-heading text-2xl font-bold text-white">Have Questions Before You Apply?</h3>
+        <p class="text-sm leading-relaxed text-sky/80">We know searching for work-from-home positions can be daunting. That's why Vibe Connect Virtual provides transparent expectations, and prompt candidate communication.</p>
+        <nav aria-label="Footer" class="flex flex-wrap gap-x-4 gap-y-2 pt-2 text-sm font-semibold text-sky">
+          <a href="/#home" class="py-1 hover:text-orange">Home</a>
+          <a href="/#about" class="py-1 hover:text-orange">About Us</a>
+          <a href="/#roles" class="py-1 hover:text-orange">Available Roles</a>
+          <a href={HUB_URL} class="py-1 hover:text-orange">Remote Work From Home Jobs</a>
+          <a href="/#faq" class="py-1 hover:text-orange">FAQ</a>
+        </nav>
+        <div class="flex items-center gap-3 pt-2">
+          <span class="text-xs font-semibold text-sky">Follow us:</span>
+          <a href="https://www.facebook.com/people/Vibe-Connect-Virtual-Services/61567573289685/" target="_blank" rel="noopener noreferrer" aria-label="Follow Vibe Connect Virtual on Facebook" class="flex h-11 w-11 items-center justify-center bg-orange text-white hover:bg-orange-hover">
+            <Icon name="facebook" class="text-lg" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-sky/60 sm:flex-row">
+      <p>&copy; {year} Vibe Connect Virtual LLC. All rights reserved. Equal Opportunity Remote Staffing Partner. Agents are independent contractors (1099), not employees.</p>
+      <div class="flex items-center gap-6">
+        <a href="/privacy-policy" class="py-1 hover:text-white">Privacy Policy</a>
+        <a href="/terms" class="py-1 hover:text-white">Terms of Service</a>
+      </div>
+    </div>
+    <p class="pt-6 text-xs text-sky/60">Website by <a href="https://www.rmdigitalsolutionsph.com/" class="underline hover:text-white">RM Digital Solutions</a></p>
+  </div>
+</footer>

@@ -1,0 +1,52 @@
+---
+import Icon from "./Icon.astro";
+import { APPLY_URL } from "../config/site";
+import { HOME_INTRO, VALUE_PROPS } from "../data/home-copy";
+import { HERO_IMAGE } from "../data/images";
+const props = [
+  { icon: "dollarSign", card: "bg-orange text-white shadow-lg", iconBox: "bg-white/20 text-white", h: "text-white", p: "text-white/95" },
+  { icon: "graduationCap", card: "bg-white border border-gray-100 shadow-md", iconBox: "bg-orange/15 text-orange", h: "text-navy", p: "text-muted" },
+  { icon: "house", card: "bg-white border border-gray-100 shadow-md", iconBox: "bg-orange/15 text-orange", h: "text-navy", p: "text-muted" },
+] as const;
+---
+<section id="home" class="relative mt-[72px] flex min-h-[500px] items-center overflow-hidden bg-[#BCE1F0] md:min-h-[560px] lg:min-h-[650px] lg:py-24">
+  <div class="absolute inset-0 z-0 flex justify-end">
+    <img
+      src={HERO_IMAGE}
+      alt="Vibe Connect remote agent smiling in a headset at a laptop"
+      class="h-full w-full object-cover object-center lg:object-contain lg:object-right"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#BCE1F0] via-[#BCE1F0]/90 to-transparent md:via-[#BCE1F0]/50 lg:hidden"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-0">
+    <div class="max-w-xl border border-white bg-white/90 p-6 text-left shadow-lg sm:p-10 lg:max-w-2xl lg:p-14">
+      <h1 class="mb-5 font-heading text-[28px] font-extrabold leading-[1.2] text-navy sm:text-4xl lg:text-[40px]">
+        Work From Home.<br />Get Paid Semi-Monthly.<br />No Cubicle Required.
+      </h1>
+      <p class="mb-8 max-w-lg text-base leading-relaxed text-[#4A5568] lg:text-lg">{HOME_INTRO}</p>
+      <a href={APPLY_URL} data-apply class="btn-primary inline-flex items-center justify-center gap-2.5 bg-orange px-9 py-4 text-base font-bold">
+        <span>Apply Now!</span><Icon name="arrowRight" class="text-xl" strokeWidth={2.5} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-10" aria-label="Why work with Vibe Connect Virtual Services">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-stretch gap-5 md:grid-cols-3 md:gap-6">
+      {VALUE_PROPS.map((v, i) => (
+        <div class:list={["reveal p-7 text-left sm:p-8", props[i].card]} style={`--d:${i * 70}ms`}>
+          <div class:list={["mb-5 flex h-12 w-12 items-center justify-center", props[i].iconBox]}>
+            <Icon name={props[i].icon} class="text-2xl" strokeWidth={2.2} />
+          </div>
+          <h2 class:list={["mb-3 font-heading text-xl font-bold", props[i].h]}>{v.title}</h2>
+          <p class:list={["text-sm leading-relaxed", props[i].p]}>{v.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

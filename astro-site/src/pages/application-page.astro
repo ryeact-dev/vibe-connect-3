@@ -1,0 +1,38 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import ApplicationFormPage from "../react/ApplicationFormPage";
+import { SITE_DOMAIN } from "../config/site";
+import { OG_IMAGE } from "../data/images";
+
+const title = "Apply for Remote Customer Service Jobs | Vibe Connect Virtual";
+const description =
+  "Apply in 60 seconds for real work-from-home customer service and support roles with Vibe Connect Virtual. Quick screening form, semi-monthly pay, no experience required.";
+---
+<Base
+  title={title}
+  description={description}
+  path="/application-page"
+  ogImage={OG_IMAGE}
+  jsonLd={{ "@context": "https://schema.org", "@type": "WebPage", name: title, description, url: `${SITE_DOMAIN}/application-page` }}
+>
+  <Navbar />
+  <main class="mt-[72px] bg-sky-light px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+    <div class="mx-auto w-full max-w-4xl">
+      <a href="/" class="mb-5 inline-flex items-center gap-2 py-2 text-sm font-semibold text-navy hover:text-orange">&larr; Back to Home</a>
+      <div class="overflow-hidden border border-gray-100 bg-white shadow-xl">
+        <div class="bg-navy p-6 text-center text-white sm:p-8">
+          <h1 class="mb-2 font-heading text-2xl font-bold text-white sm:text-3xl">Apply For Remote Agent Roles</h1>
+          <p class="mx-auto max-w-lg text-sm text-sky/90">
+            Complete this quick screening form to get reviewed for real work-from-home customer service and support opportunities with Vibe Connect Virtual.
+          </p>
+        </div>
+        <div class="p-5 sm:p-10">
+          <ApplicationFormPage client:load />
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer cta={false} />
+</Base>
