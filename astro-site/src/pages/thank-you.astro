@@ -26,22 +26,31 @@ const hasPdf = pdfExternal || exists(ORIENTATION_PDF_FILE);
 >
   <Navbar />
   <main class="mt-[72px] bg-sky-light px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-    <div class="mx-auto max-w-3xl space-y-10">
-      <section class="space-y-4 text-center">
-        <div class="mx-auto flex h-16 w-16 items-center justify-center bg-orange/15 text-orange"><Icon name="check" class="text-4xl" strokeWidth={2} /></div>
-        <h1 class="font-heading text-3xl font-extrabold text-navy sm:text-4xl">Thank you for applying to Vibe Connect Virtual!</h1>
-        <div class="mx-auto max-w-xl space-y-3 text-left text-base leading-relaxed text-muted">
-          <p>Your application has been received and is now under review.</p>
-          <p>
-            Please check your inbox at <strong class="font-semibold text-navy" id="applicant-email">your email</strong> for your next steps
+    <div class="mx-auto max-w-3xl space-y-12">
+      <section class="border-t-4 border-orange bg-white px-6 py-10 text-center shadow-sm sm:px-12 sm:py-14">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange/15 text-orange">
+          <Icon name="check" class="text-4xl" strokeWidth={2} />
+        </div>
+        <h1 class="mx-auto mt-6 max-w-xl text-balance font-heading text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
+          Thank you for applying to Vibe Connect Virtual!
+        </h1>
+        <p class="mx-auto mt-4 max-w-xl text-pretty text-lg leading-relaxed text-charcoal/85">
+          Your application has been received and is now under review.
+        </p>
+
+        <div class="mx-auto mt-8 flex max-w-xl items-start gap-4 border border-sky bg-sky-light p-5 text-left">
+          <span class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center bg-orange text-white"><Icon name="mail" class="text-xl" strokeWidth={2} /></span>
+          <p class="text-base leading-relaxed text-muted">
+            Please check your inbox at <strong class="font-semibold text-navy [overflow-wrap:anywhere]" id="applicant-email">your email</strong> for your next steps
             checklist and be sure to check your <strong class="font-semibold text-navy">Spam or Junk folder</strong>, just in case it lands there.
           </p>
-          <p>We're excited about the possibility of having you on our team!</p>
         </div>
+
+        <p class="mx-auto mt-8 max-w-xl text-base text-muted">We're excited about the possibility of having you on our team!</p>
       </section>
 
-      <section class="space-y-4" aria-labelledby="orientation-heading">
-        <h2 id="orientation-heading" class="font-heading text-2xl font-bold text-navy">Watch your orientation video</h2>
+      <section class="space-y-5" aria-labelledby="orientation-heading">
+        <h2 id="orientation-heading" class="text-center font-heading text-2xl font-bold text-navy">Watch your orientation video</h2>
         <div class="relative aspect-video w-full overflow-hidden bg-navy shadow-lg">
           {videoMode === "embed" && (
             <iframe src={ORIENTATION_VIDEO_EMBED_URL} title="Vibe Connect orientation video" class="absolute inset-0 h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
@@ -62,8 +71,8 @@ const hasPdf = pdfExternal || exists(ORIENTATION_PDF_FILE);
         </div>
       </section>
 
-      <section class="space-y-4" aria-labelledby="pdf-heading">
-        <h2 id="pdf-heading" class="font-heading text-2xl font-bold text-navy">Download your orientation guide</h2>
+      <section class="space-y-5" aria-labelledby="pdf-heading">
+        <h2 id="pdf-heading" class="text-center font-heading text-2xl font-bold text-navy">Download your orientation guide</h2>
         <div class="flex flex-col items-start gap-4 border border-sky bg-white p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <div class="flex items-start gap-4">
             <span class="flex h-12 w-12 shrink-0 items-center justify-center bg-orange/15 text-orange"><Icon name="fileText" class="text-2xl" strokeWidth={2} /></span>
