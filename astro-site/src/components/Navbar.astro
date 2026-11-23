@@ -1,6 +1,7 @@
 ---
 import Icon from "./Icon.astro";
 import { APPLY_URL, HUB_URL, ORG_LOGO_URL, SITE_LEGAL_NAME } from "../config/site";
+import { SEO_PAGES } from "../data/seo-pages";
 
 const links = [
   { name: "Home", href: "/#home", id: "home" },
@@ -9,7 +10,11 @@ const links = [
   { name: "FAQ", href: "/#faq", id: "faq" },
   { name: "Contact Us", href: "/#contact", id: "contact" },
 ];
-const current = Astro.url.pathname;
+// Static builds can report "/page.html" or "/page/": normalise before comparing.
+const path = Astro.url.pathname.replace(/\.html$/, "").replace(/\/+$/, "") || "/";
+// The hub and every role page belong to the "Remote Jobs" section.
+const inJobs = SEO_PAGES.some((p) => p.path === path);
+const isActive = (id: string) => id === "jobs" && inJobs;
 ---
 <div id="top-sentinel" aria-hidden="true" class="absolute top-0 left-0 h-6 w-px pointer-events-none"></div>
 <header id="site-header" class="fixed top-0 inset-x-0 z-40 bg-white py-3 transition-shadow duration-200 data-[scrolled=true]:shadow-md">
@@ -30,8 +35,9 @@ const current = Astro.url.pathname;
         <a
           href={l.href}
           data-nav={l.id}
-          aria-current={l.href === current ? "page" : undefined}
-          class="relative py-1 font-heading text-[17px] font-bold text-navy transition-colors hover:text-orange data-[active=true]:text-orange aria-[current=page]:text-orange"
+          data-active={isActive(l.id) ? "true" : "false"}
+          aria-current={l.href === path ? "page" : undefined}
+          class="relative py-1 font-heading text-[17px] font-bold text-navy transition-colors duration-150 hover:text-orange data-[active=true]:text-orange after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-orange after:transition-transform after:duration-200 data-[active=true]:after:scale-x-100"
         >{l.name}</a>
       ))}
     </nav>
@@ -58,7 +64,7 @@ const current = Astro.url.pathname;
   <div id="mobile-menu" hidden class="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-gray-200 bg-white px-4 pb-6 pt-3 shadow-xl lg:hidden">
     <nav aria-label="Mobile" class="space-y-1">
       {links.map((l) => (
-        <a href={l.href} class="block px-3 py-3 font-heading text-base font-bold text-navy hover:bg-gray-50 hover:text-orange">{l.name}</a>
+        <a href={l.href} aria-current={l.href === path ? "page" : undefined} class:list={["block px-3 py-3 font-heading text-base font-bold hover:bg-gray-50 hover:text-orange", isActive(l.id) ? "border-l-4 border-orange bg-sky-light text-orange" : "text-navy"]}>{l.name}</a>
       ))}
     </nav>
     <div class="pt-3">

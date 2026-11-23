@@ -53,3 +53,6 @@ export const ELIGIBLE_STATES = [
 export const STATES_LIST_OXFORD = `${ELIGIBLE_STATES.slice(0, -1).join(", ")}, and ${ELIGIBLE_STATES[ELIGIBLE_STATES.length - 1]}`;
 /** "Alabama, ... Texas and Washington" (no Oxford comma, as in the page copy). */
 export const STATES_LIST = `${ELIGIBLE_STATES.slice(0, -1).join(", ")} and ${ELIGIBLE_STATES[ELIGIBLE_STATES.length - 1]}`;
+
+/** Hosted GoHighLevel form: used only as a backup if the on-site form cannot submit. */
+export const GHL_FORM_URL = "https://api.leadconnectorhq.com/widget/form/QmbwgwlB0obs3GKFFY78";
