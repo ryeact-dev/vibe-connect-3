@@ -36,9 +36,7 @@ export const Hero: React.FC = () => {
           </p>
 
           <div>
-            <ApplyLink
-              className="bg-[#F0862C] hover:bg-[#D9731C] text-white px-9 py-4 font-bold text-base shadow-md cursor-pointer transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] inline-flex items-center justify-center gap-2.5"
-            >
+            <ApplyLink className="bg-[#F0862C] hover:bg-[#D9731C] text-white px-9 py-4 font-bold text-base shadow-md cursor-pointer transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] inline-flex items-center justify-center gap-2.5">
               <span>Apply Now!</span>
               <ArrowRight className="w-5 h-5 stroke-[2.5]" />
             </ApplyLink>

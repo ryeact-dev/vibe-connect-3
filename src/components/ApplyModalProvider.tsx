@@ -18,7 +18,10 @@ export const ApplyModalProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-type ApplyLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">;
+type ApplyLinkProps = Omit<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  "href"
+>;
 
 /**
  * Apply Now link. It keeps a real href to the application page (works without

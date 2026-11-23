@@ -75,9 +75,7 @@ const BlockView: React.FC<{ block: Block }> = ({ block }) => {
 };
 
 const ApplyButton: React.FC = () => (
-  <ApplyLink
-    className="btn-primary inline-flex items-center justify-center gap-2.5 px-9 py-4 text-base font-bold shadow-lg"
-  >
+  <ApplyLink className="btn-primary inline-flex items-center justify-center gap-2.5 px-9 py-4 text-base font-bold shadow-lg">
     Apply Now
     <ArrowRight className="w-5 h-5" />
   </ApplyLink>

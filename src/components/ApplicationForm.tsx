@@ -215,6 +215,16 @@ export const ApplicationForm: React.FC<FormProps> = ({
     const firstName = nameParts[0] || formData.fullName;
     const lastName = nameParts.slice(1).join(" ") || "";
 
+    const getTrackingSessionId = () => {
+      try {
+        const sid = document.cookie.match(
+          /(?:^|;\s*)__vibe_sid=([0-9a-f-]{36})(?:;|$)/,
+        )?.[1];
+        if (sid) return sid;
+      } catch {}
+      return crypto.randomUUID();
+    };
+
     const trackingPayload = {
       type: "external_form_submission",
       timestamp: Date.now(),
@@ -238,7 +248,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       trackingId: "tk_2e4829c6cdbe4a32a29d41fcec39fd0e",
       locationId: "2pGpEHYvndYECBOCEp4h",
       projectId: "1785542809220106141",
-      sessionId: crypto.randomUUID(),
+      sessionId: getTrackingSessionId(),
       properties: {
         deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
           ? "mobile"

@@ -80,9 +80,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="pt-2">
-              <ApplyLink
-                className="btn-primary px-7 py-3.5 font-bold text-sm inline-flex items-center gap-2 cursor-pointer"
-              >
+              <ApplyLink className="btn-primary px-7 py-3.5 font-bold text-sm inline-flex items-center gap-2 cursor-pointer">
                 Start Your Remote Journey
                 <ArrowRight className="w-4 h-4" />
               </ApplyLink>
@@ -168,9 +166,7 @@ export const AgentCentricDarkSection: React.FC = () => {
           </div>
 
           <div>
-            <ApplyLink
-              className="btn-primary px-10 py-4 text-base font-bold shadow-lg w-full sm:w-auto inline-flex items-center justify-center gap-2.5 cursor-pointer"
-            >
+            <ApplyLink className="btn-primary px-10 py-4 text-base font-bold shadow-lg w-full sm:w-auto inline-flex items-center justify-center gap-2.5 cursor-pointer">
               <span>Apply Now!</span>
               <ArrowRight className="w-5 h-5 stroke-[2.5]" />
             </ApplyLink>

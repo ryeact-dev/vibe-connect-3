@@ -73,9 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
         {/* Desktop CTA Button */}
         <div className="hidden md:flex items-center">
-          <ApplyLink
-            className="btn-primary rounded-none px-7 py-3 text-base font-bold tracking-wide cursor-pointer bg-[#DF7B43] hover:bg-[#c96632] text-white transition-transform duration-200 flex items-center gap-2"
-          >
+          <ApplyLink className="btn-primary rounded-none px-7 py-3 text-base font-bold tracking-wide cursor-pointer bg-[#DF7B43] hover:bg-[#c96632] text-white transition-transform duration-200 flex items-center gap-2">
             <span>Apply Now!</span>
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
           </ApplyLink>
