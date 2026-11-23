@@ -90,8 +90,7 @@ export const webPageNode = (o: WebPageOptions) => ({
   publisher: { "@id": ORG_ID },
   about: { "@id": ORG_ID },
   ...(o.image && {
-    primaryImageOfPage: { "@id": `${o.url}#primaryimage` },
-    image: { "@id": `${o.url}#primaryimage` },
+    primaryImageOfPage: { "@type": "ImageObject", url: o.image.url, contentUrl: o.image.url, width: o.image.width, height: o.image.height },
   }),
   ...(o.breadcrumb && { breadcrumb: { "@id": `${o.url}#breadcrumb` } }),
   ...(o.speakableSelector && {
@@ -104,15 +103,6 @@ export const webPageNode = (o: WebPageOptions) => ({
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   }),
-});
-
-export const imageNode = (pageUrl: string, img: { url: string; width: number; height: number }) => ({
-  "@type": "ImageObject",
-  "@id": `${pageUrl}#primaryimage`,
-  url: img.url,
-  contentUrl: img.url,
-  width: img.width,
-  height: img.height,
 });
 
 export const graph = (...nodes: Record<string, unknown>[]) => ({

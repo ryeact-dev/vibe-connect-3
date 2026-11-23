@@ -1,4 +1,4 @@
-import { breadcrumbNode, graph, imageNode, organizationNode, webPageNode, websiteNode } from "./schema";
+import { breadcrumbNode, graph, organizationNode, webPageNode, websiteNode } from "./schema";
 import {
   APPLY_URL,
   CONTACT_EMAIL,
@@ -718,7 +718,6 @@ export function buildPageSchema(p: SeoPageData) {
       speakableSelector: "#quick-answer",
       faq: p.faq.map((f) => ({ q: f.q, a: plain(f.a) })),
     }),
-    imageNode(url, img),
     breadcrumbNode(url, crumbs),
   );
 }
