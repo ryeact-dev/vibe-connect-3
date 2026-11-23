@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { SITE_DOMAIN, SITE_NAME, SITE_LEGAL_NAME } from "../config/site";
 import { OG_IMAGE_ALT, OG_IMAGE_PATH } from "../data/images";
+import StickyApply from "../components/StickyApply.astro";
 
 interface Props {
   title: string;          // full <title>
@@ -12,8 +13,9 @@ interface Props {
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   preloadImage?: string;  // LCP image URL, if any
+  stickyCta?: boolean;    // phones: pinned Apply Now bar (off on pages where the visitor already applied)
 }
-const { title, description, path, ogImage: ogImageProp, ogImageAlt = OG_IMAGE_ALT, noindex = false, jsonLd, preloadImage } = Astro.props;
+const { title, description, path, ogImage: ogImageProp, ogImageAlt = OG_IMAGE_ALT, noindex = false, jsonLd, preloadImage, stickyCta = true } = Astro.props;
 const ogImage = ogImageProp ?? `${SITE_DOMAIN}${OG_IMAGE_PATH}`;
 const canonical = `${SITE_DOMAIN}${path === "/" ? "/" : path}`;
 const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -22,7 +24,7 @@ const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -60,8 +62,9 @@ const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <script is:inline>document.documentElement.classList.add("js")</script>
     <meta name="generator" content={SITE_LEGAL_NAME} />
   </head>
-  <body class="bg-white text-charcoal font-sans antialiased selection:bg-orange/20 selection:text-navy">
+  <body class:list={["bg-white text-charcoal font-sans antialiased selection:bg-orange/20 selection:text-navy", stickyCta && "pb-[5.5rem] md:pb-0"]}>
     <slot />
+    {stickyCta && <StickyApply />}
 
     <script>
       // ---- Scroll reveal (one shared observer, one-shot) ----
