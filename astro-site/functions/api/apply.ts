@@ -59,9 +59,15 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
   }
 
   // Bots: honeypot filled or form submitted impossibly fast. Pretend success.
-  if (str(data.website)) return json({ ok: true });
+  if (str(data.website)) {
+    console.warn("apply: dropped (honeypot field was filled)");
+    return json({ ok: true });
+  }
   const startedAt = Number(data.startedAt);
-  if (Number.isFinite(startedAt) && Date.now() - startedAt < 2500) return json({ ok: false, error: "too_fast" }, 429);
+  if (Number.isFinite(startedAt) && Date.now() - startedAt < 2500) {
+    console.warn("apply: rejected (submitted too fast)");
+    return json({ ok: false, error: "too_fast" }, 429);
+  }
 
   const fullName = str(data.fullName, 120);
   const email = str(data.email, 200).toLowerCase();
@@ -69,6 +75,7 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
   const national = digits.length === 11 && digits.startsWith("1") ? digits.slice(1) : digits;
 
   if (!fullName || !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email) || national.length !== 10 || national[0] < "2" || national[3] < "2") {
+    console.warn("apply: rejected (invalid name/email/phone)");
     return json({ ok: false, error: "invalid" }, 400);
   }
   const answers = {
@@ -124,21 +131,31 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
     return json({ ok: false, error: "upstream" }, 502);
   }
 
-  // Best effort: keep the consent wording and page on the contact's timeline.
+  let id: string | undefined;
   try {
-    const out = (await res.json()) as { contact?: { id?: string } };
-    const id = out.contact?.id;
-    if (id) {
+    const out = (await res.json()) as { new?: boolean; contact?: { id?: string } };
+    id = out.contact?.id;
+    // No personal data in logs: only whether a contact was created or updated, its GHL id,
+    // and the last 4 characters of the location id to confirm which sub-account was used.
+    console.log(`apply: GHL upsert ok status=${res.status} new=${String(out.new)} contactId=${id ?? "none"} location=...${env.LOCATION_ID.slice(-4)}`);
+  } catch {
+    console.warn(`apply: GHL upsert returned ${res.status} but the response could not be read`);
+  }
+
+  // Best effort: keep the consent wording and page on the contact's timeline.
+  if (id) {
+    try {
       const body = [
         "Website application received.",
         `Page: ${str(data.pageUrl, 300) || "unknown"}`,
         `SMS consent (hiring/newsletter, non-marketing): ${consentNon ? "Yes" : "No"}`,
         `SMS consent (marketing/promotional): ${consentMkt ? "Yes" : "No"}`,
       ].join("\n");
-      await fetch(`${GHL}/contacts/${id}/notes`, { method: "POST", headers, body: JSON.stringify({ body }) });
+      const n = await fetch(`${GHL}/contacts/${id}/notes`, { method: "POST", headers, body: JSON.stringify({ body }) });
+      if (!n.ok) console.warn("apply: note not saved, status", n.status);
+    } catch {
+      /* the contact is already saved; the note is optional */
     }
-  } catch {
-    /* the contact is already saved; the note is optional */
   }
 
   return json({ ok: true });
