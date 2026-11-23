@@ -201,7 +201,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     finalCta: {
       heading: "Ready to trade the commute for a headset?",
-      text: `If you want remote work from home in the US with paid Arise training and pay twice a month, [Apply Now](${APPLY_URL}) and start in about 60 seconds.`,
+      text: `If you want remote work from home in the US with paid Arise training and pay twice a month, Apply Now and start in about 60 seconds.`,
     },
   },
 
@@ -320,7 +320,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     finalCta: {
       heading: "Ready to apply?",
-      text: `It takes about 60 seconds to start. [Apply Now](${APPLY_URL}) and take the first step toward a remote customer service job.`,
+      text: `It takes about 60 seconds to start. Apply Now and take the first step toward a remote customer service job.`,
     },
   },
 
@@ -444,7 +444,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     finalCta: {
       heading: "Ready to start part time?",
-      text: `Applying takes about 60 seconds. [Apply Now](${APPLY_URL}), tell us about your availability, and see which shifts fit your week.`,
+      text: `Applying takes about 60 seconds. Apply Now, tell us about your availability, and see which shifts fit your week.`,
     },
   },
 
@@ -563,7 +563,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     finalCta: {
       heading: "Ready to apply?",
-      text: `It takes about 60 seconds to begin. [Apply Now](${APPLY_URL}) and start your remote call center career.`,
+      text: `It takes about 60 seconds to begin. Apply Now and start your remote call center career.`,
     },
   },
 
@@ -683,7 +683,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     finalCta: {
       heading: "Ready to put your languages to work?",
-      text: `It takes about 60 seconds to start. [Apply Now](${APPLY_URL}) and tell us you speak English and Spanish. If you prefer an English-only role, see our [remote customer service jobs](/remote-customer-service-jobs).`,
+      text: `It takes about 60 seconds to start. Apply Now and tell us you speak English and Spanish. If you prefer an English-only role, see our [remote customer service jobs](/remote-customer-service-jobs).`,
     },
   },
 ];
