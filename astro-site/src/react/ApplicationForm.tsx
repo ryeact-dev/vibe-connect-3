@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { CheckCircle2, ShieldCheck, Send } from "lucide-react";
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, GHL_FORM_URL } from "../config/site";
 
 interface FormProps {
   onSuccess?: () => void;
@@ -10,10 +11,10 @@ export const ApplicationForm: React.FC<FormProps> = ({
   onSuccess: _onSuccess,
   isModal: _isModal = false,
 }) => {
-  const [notice, setNotice] = useState<{ title: string; description: string } | null>(null);
+  const [notice, setNotice] = useState<{ title: string; description: string; link?: string } | null>(null);
   const noticeRef = useRef<HTMLDivElement>(null);
-  const notify = (title: string, description: string) => {
-    setNotice({ title, description });
+  const notify = (title: string, description: string, link?: string) => {
+    setNotice({ title, description, link });
     requestAnimationFrame(() => noticeRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }));
   };
   const [submitting, setSubmitting] = useState(false);
@@ -102,169 +103,41 @@ export const ApplicationForm: React.FC<FormProps> = ({
 
     setSubmitting(true);
 
-    // Form tracking submission
-    type StandardTrackingFieldKey = string;
-    type RegisteredCustomFieldId = string;
-    type TrackingCustomField = { value?: unknown; label: string };
-    type TrackingFileField = { file?: File; label: string };
-    type TrackingImageDataField = { dataUrl?: string; label: string };
-
-    const postTrackingEvent = (
-      trackingPayload: Record<string, unknown> & {
-        formData: Record<StandardTrackingFieldKey, unknown>;
-        formLabels: Record<StandardTrackingFieldKey, string>;
-      },
-      options: {
-        customFields?: Record<RegisteredCustomFieldId, TrackingCustomField>;
-        fileFields?: Record<RegisteredCustomFieldId, TrackingFileField>;
-        imageDataFields?: Record<
-          RegisteredCustomFieldId,
-          TrackingImageDataField
-        >;
-      } = {},
-    ) => {
-      const {
-        customFields = {},
-        fileFields = {},
-        imageDataFields = {},
-      } = options;
-      const eventPayload = {
-        ...trackingPayload,
-        formData: { ...trackingPayload.formData },
-        formLabels: { ...trackingPayload.formLabels },
-      };
-      const body = new FormData();
-
-      for (const [key, field] of Object.entries(customFields)) {
-        if (field.value === undefined) continue;
-        eventPayload.formData[key] = field.value;
-        eventPayload.formLabels[key] = field.label;
-      }
-
-      for (const [key, field] of Object.entries(imageDataFields)) {
-        const dataUrl = field.dataUrl;
-        if (!dataUrl) continue;
-        if (!dataUrl.startsWith("data:image/")) {
-          throw new Error(
-            "Image data field must be a data:image/* base64 string",
-          );
-        }
-        eventPayload.formData[key] = dataUrl;
-        eventPayload.formLabels[key] = field.label;
-      }
-
-      for (const [key, field] of Object.entries(fileFields)) {
-        const file = field.file;
-        if (!file) continue;
-        if (file.size > 50 * 1024 * 1024) {
-          throw new Error("File must be 50 MB or smaller");
-        }
-        eventPayload.formData[key] = {
-          filename: file.name,
-          size: file.size,
-          type: file.type || "application/octet-stream",
-        };
-        eventPayload.formLabels[key] = field.label;
-        body.append(key, file, file.name);
-      }
-
-      for (const key of Object.keys(eventPayload.formData)) {
-        eventPayload.formLabels[key] ||= key;
-      }
-
-      body.append("event", JSON.stringify(eventPayload));
-
-      fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
-        method: "POST",
-        headers: {
-          version: "2021-07-28",
-        },
-        body,
-      }).catch(() => {});
-    };
-
-    const nameParts = formData.fullName.trim().split(" ");
-    const firstName = nameParts[0] || formData.fullName;
-    const lastName = nameParts.slice(1).join(" ") || "";
-
-    const getTrackingSessionId = () => {
-      try {
-        const sid = document.cookie.match(
-          /(?:^|;\s*)__vibe_sid=([0-9a-f-]{36})(?:;|$)/,
-        )?.[1];
-        if (sid) return sid;
-      } catch {}
-      return crypto.randomUUID();
-    };
-
-    const trackingPayload = {
-      type: "external_form_submission",
-      timestamp: Date.now(),
-      formId: "vibe-connect-application-form",
-      formData: {
-        first_name: firstName,
-        last_name: lastName,
+    // The server function (functions/api/apply.ts) creates/updates the contact in
+    // GoHighLevel with the private integration key, which never reaches the browser.
+    fetch("/api/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
-      },
-      formLabels: {
-        first_name: "First Name",
-        last_name: "Last Name",
-        email: "Email Address",
-        phone: "Phone Number",
-      },
-      url: window.location.href,
-      title: document.title,
-      path: window.location.pathname,
-      userAgent: navigator.userAgent,
-      trackingId: "tk_2e4829c6cdbe4a32a29d41fcec39fd0e",
-      locationId: "2pGpEHYvndYECBOCEp4h",
-      projectId: "1785542809220106141",
-      sessionId: getTrackingSessionId(),
-      properties: {
-        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent)
-          ? "mobile"
-          : "desktop",
-        source: "ai_studio",
-        projectId: "1785542809220106141",
-        formName: "Vibe Connect Virtual Application Form",
-      },
-    };
-
-    postTrackingEvent(trackingPayload, {
-      customFields: {
-        kaesBf5bgOLPmByMc0Hq: {
-          value: formData.q1Contractor,
-          label: "1099 Contractor Comfort",
-        },
-        urlN2j8VUdONnMjhjdUI: {
-          value: formData.q2Equipment,
-          label: "Equipment Readiness",
-        },
-        XZqU88nxO6H4s7JMAaIX: {
-          value: formData.optionalNotes,
-          label: "Headset Brand Specification",
-        },
-        QUgI5V30qLKtxCUexEwp: {
-          value: formData.q3StartPromptly,
-          label: "Ability to Act Promptly",
-        },
-        iY8Yif0jW6cLQbRQI36D: {
-          value: formData.q4ApprovedState,
-          label: "Residing in Approved State",
-        },
-        kLdFVxqqWvPdajTgHsr9: {
-          value: formData.q5OnboardingSteps,
-          label: "Unpaid Onboarding Willingness",
-        },
-      },
-    });
-
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-      lastSubmitTime.current = Date.now(); // record for cooldown
-    }, 800);
+        q1Contractor: formData.q1Contractor,
+        q2Equipment: formData.q2Equipment,
+        q3StartPromptly: formData.q3StartPromptly,
+        q4ApprovedState: formData.q4ApprovedState,
+        q5OnboardingSteps: formData.q5OnboardingSteps,
+        notes: formData.optionalNotes,
+        tcpaConsent1: formData.tcpaConsent1,
+        tcpaConsent2: formData.tcpaConsent2,
+        website: honeypot,
+        startedAt: formStartTime.current,
+        pageUrl: window.location.href,
+      }),
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        lastSubmitTime.current = Date.now(); // record for cooldown
+        setSubmitted(true);
+      })
+      .catch(() =>
+        notify(
+          "We couldn't submit your application",
+          `Please try again in a moment, apply with our backup form, or contact us at ${CONTACT_EMAIL} / ${CONTACT_PHONE_DISPLAY}.`,
+          GHL_FORM_URL,
+        ),
+      )
+      .finally(() => setSubmitting(false));
   };
 
   if (submitted) {
@@ -548,6 +421,13 @@ export const ApplicationForm: React.FC<FormProps> = ({
         <div ref={noticeRef} role="alert" className="border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800">
           <p className="font-bold">{notice.title}</p>
           <p>{notice.description}</p>
+          {notice.link && (
+            <p className="mt-1">
+              <a href={notice.link} target="_blank" rel="noopener noreferrer" className="font-semibold underline">
+                Open the backup application form
+              </a>
+            </p>
+          )}
         </div>
       )}
 

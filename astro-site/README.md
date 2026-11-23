@@ -32,6 +32,25 @@ npm run check      # type check
 4. Submit `https://your-domain/sitemap-index.xml` in Google Search Console and
    Bing Webmaster Tools.
 
+## GoHighLevel form submission
+
+The form posts to `/api/apply`, a Cloudflare Pages Function
+(`functions/api/apply.ts`) that creates/updates the contact in GHL and writes
+the answers to the existing custom fields. Set these in Cloudflare Pages →
+Settings → Variables and Secrets (Production):
+
+| Variable | Value |
+|---|---|
+| `LOCATION_ID` | GHL sub-account (location) ID |
+| `PRIVATE_INTEGRATION_KEY` | GHL Private Integration token (store as a Secret) |
+
+The token needs the `contacts.write` scope (add `contacts.readonly` if you also
+read contacts). The key stays on the server and is never sent to the browser.
+If the function fails, the applicant sees an error with a link to the hosted
+backup form (`GHL_FORM_URL` in `src/config/site.ts`), so no application is
+silently lost. `astro dev` does not run the function; use
+`npx wrangler pages dev dist` after a build to test it locally.
+
 ## Where things are
 
 | What | Where |
@@ -41,7 +60,8 @@ npm run check      # type check
 | Homepage copy, FAQ, roles | `src/data/home-copy.ts`, `faq-data.ts`, `roles-data.ts` |
 | Privacy Policy / Terms (drafts, get legal review) | `src/data/legal-pages.ts` |
 | Banners (1600x600 WebP) | `src/assets/banners` (page) and `public/images` (og:image) |
-| Application form + GHL tracking | `src/react/ApplicationForm.tsx` |
+| Application form (UI) | `src/react/ApplicationForm.tsx` |
+| Form to GHL (server side) | `functions/api/apply.ts` |
 | AI crawler summary | `src/pages/llms.txt.ts` |
 
 When pay changes, update `PAY_RATE`, `LAST_UPDATED_*` in `src/config/site.ts`
@@ -52,5 +72,3 @@ and the Quick answer / pay paragraphs in `src/data/seo-pages.ts`.
 - Hero/about/logo photos are still loaded from the old platform's CDN
   (`src/data/images.ts`, `ORG_LOGO_URL`). Download them into `src/assets` and
   use `<Image>` to self-host before leaving that platform.
-- The form posts to GoHighLevel's external tracking endpoint using the existing
-  tracking/location IDs, so submissions keep reaching the same GHL account.
