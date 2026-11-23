@@ -1,0 +1,31 @@
+---
+// Inline SVG icons (lucide), no client JS. Size with font-size / w-* classes.
+import arrowRight from "lucide-static/icons/arrow-right.svg?raw";
+import menu from "lucide-static/icons/menu.svg?raw";
+import x from "lucide-static/icons/x.svg?raw";
+import dollarSign from "lucide-static/icons/dollar-sign.svg?raw";
+import graduationCap from "lucide-static/icons/graduation-cap.svg?raw";
+import house from "lucide-static/icons/house.svg?raw";
+import headphones from "lucide-static/icons/headphones.svg?raw";
+import phoneCall from "lucide-static/icons/phone-call.svg?raw";
+import userCheck from "lucide-static/icons/user-check.svg?raw";
+import phone from "lucide-static/icons/phone.svg?raw";
+import mail from "lucide-static/icons/mail.svg?raw";
+import plus from "lucide-static/icons/plus.svg?raw";
+import shield from "lucide-static/icons/shield.svg?raw";
+
+const facebook =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>';
+
+const icons = { arrowRight, menu, x, dollarSign, graduationCap, house, headphones, phoneCall, userCheck, phone, mail, plus, shield, facebook } as const;
+
+interface Props {
+  name: keyof typeof icons;
+  class?: string;
+  strokeWidth?: number;
+}
+const { name, class: className = "", strokeWidth } = Astro.props;
+let svg = icons[name];
+if (strokeWidth) svg = svg.replace(/stroke-width="[^"]*"/, `stroke-width="${strokeWidth}"`);
+---
+<span class:list={["icon", className]} aria-hidden="true" set:html={svg} />

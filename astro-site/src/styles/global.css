@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/poppins/700.css";
+@import "@fontsource/poppins/800.css";
+@import "@fontsource/open-sans/latin-400.css";
+@import "@fontsource/open-sans/latin-600.css";
+
+@theme {
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-navy: #1b2a4a;
+  --color-navy-dark: #121d34;
+  --color-orange: #f0862c;
+  --color-orange-hover: #d9731c;
+  --color-sky: #dceef5;
+  --color-sky-light: #f2f8fa;
+  --color-charcoal: #2b2b2b;
+  --color-muted: #5a6578;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5.5rem; /* fixed header */
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background: #fff;
+    overflow-x: clip; /* never allow sideways scroll on phones/tablets */
+  }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+  img { max-width: 100%; height: auto; }
+  :focus-visible { outline: 3px solid var(--color-orange); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+}
+
+/* ---- Buttons: only cheap properties (transform/opacity/background) animate ---- */
+.btn-primary {
+  background-color: var(--color-orange);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(240, 134, 44, 0.25);
+  transition: transform 180ms var(--ease-out-expo), background-color 180ms;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .btn-primary:hover { background-color: var(--color-orange-hover); transform: translateY(-2px); }
+}
+.btn-primary:active { transform: scale(0.98); }
+
+/* ---- Scroll reveal: CSS-only transition, one-shot, GPU properties only.
+   Content is fully visible without JS or with reduced motion. ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(14px); }
+  .js .reveal.in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 420ms var(--ease-out-expo), transform 420ms var(--ease-out-expo);
+    transition-delay: var(--d, 0ms);
+  }
+}
+
+/* ---- FAQ (native <details>: no JS, all answers stay in the DOM for crawlers/AI) ---- */
+details.faq > summary { list-style: none; cursor: pointer; }
+details.faq > summary::-webkit-details-marker { display: none; }
+details.faq .faq-icon { transition: transform 200ms var(--ease-out-expo); }
+details.faq[open] .faq-icon { transform: rotate(45deg); }
+details.faq .faq-body { animation: faq-in 220ms var(--ease-out-expo); }
+@keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { details.faq .faq-body { animation: none; } }
+
+/* ---- Application pop-up ---- */
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scale-up { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: none; } }
+.animate-fade-in { animation: fade-in 180ms ease-out both; }
+.animate-scale-up { animation: scale-up 220ms var(--ease-out-expo) both; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in, .animate-scale-up { animation: none; }
+}
+
+@layer components {
+  .icon { width: 1em; height: 1em; display: inline-block; flex-shrink: 0; }
+  .icon svg { width: 100%; height: 100%; }
+}

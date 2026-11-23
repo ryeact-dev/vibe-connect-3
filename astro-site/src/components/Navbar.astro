@@ -1,0 +1,107 @@
+---
+import Icon from "./Icon.astro";
+import { APPLY_URL, HUB_URL, ORG_LOGO_URL, SITE_LEGAL_NAME } from "../config/site";
+
+const links = [
+  { name: "Home", href: "/#home", id: "home" },
+  { name: "About Us", href: "/#about", id: "about" },
+  { name: "Remote Jobs", href: HUB_URL, id: "jobs" },
+  { name: "FAQ", href: "/#faq", id: "faq" },
+  { name: "Contact Us", href: "/#contact", id: "contact" },
+];
+const current = Astro.url.pathname;
+---
+<div id="top-sentinel" aria-hidden="true" class="absolute top-0 left-0 h-6 w-px pointer-events-none"></div>
+<header id="site-header" class="fixed top-0 inset-x-0 z-40 bg-white py-3 transition-shadow duration-200 data-[scrolled=true]:shadow-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <a href="/" class="flex items-center" aria-label={`${SITE_LEGAL_NAME} home`}>
+      <img
+        src={ORG_LOGO_URL}
+        alt={SITE_LEGAL_NAME}
+        height="48"
+        class="h-10 w-auto object-contain md:h-12"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-7 lg:flex xl:gap-9">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          data-nav={l.id}
+          aria-current={l.href === current ? "page" : undefined}
+          class="relative py-1 font-heading text-[17px] font-bold text-navy transition-colors hover:text-orange data-[active=true]:text-orange aria-[current=page]:text-orange"
+        >{l.name}</a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center lg:flex">
+      <a href={APPLY_URL} data-apply class="btn-primary inline-flex items-center gap-2 bg-[#DF7B43] px-7 py-3 text-base font-bold tracking-wide">
+        <span>Apply Now!</span><Icon name="arrowRight" class="text-base" strokeWidth={2.5} />
+      </a>
+    </div>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="-mr-2 inline-flex h-11 w-11 items-center justify-center text-navy hover:text-orange lg:hidden"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="menu" class="text-[28px] icon-open" />
+      <Icon name="x" class="hidden text-[28px] icon-close" />
+    </button>
+  </div>
+
+  <div id="mobile-menu" hidden class="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-gray-200 bg-white px-4 pb-6 pt-3 shadow-xl lg:hidden">
+    <nav aria-label="Mobile" class="space-y-1">
+      {links.map((l) => (
+        <a href={l.href} class="block px-3 py-3 font-heading text-base font-bold text-navy hover:bg-gray-50 hover:text-orange">{l.name}</a>
+      ))}
+    </nav>
+    <div class="pt-3">
+      <a href={APPLY_URL} data-apply class="btn-primary flex w-full items-center justify-center gap-2 bg-[#DF7B43] py-3.5 text-center font-heading text-base font-bold">
+        <span>Apply Now!</span><Icon name="arrowRight" class="text-base" strokeWidth={2.5} />
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("site-header")!;
+  const toggle = document.getElementById("menu-toggle")!;
+  const menu = document.getElementById("mobile-menu")!;
+
+  // Header shadow: one observer on a sentinel instead of a scroll handler.
+  const sentinel = document.getElementById("top-sentinel");
+  if (sentinel && "IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => header.setAttribute("data-scrolled", String(!e.isIntersecting))).observe(sentinel);
+  }
+
+  const setOpen = (open: boolean) => {
+    menu.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.querySelector(".icon-open")!.classList.toggle("hidden", open);
+    toggle.querySelector(".icon-close")!.classList.toggle("hidden", !open);
+  };
+  toggle.addEventListener("click", () => setOpen(menu.hasAttribute("hidden")));
+  menu.addEventListener("click", (e) => { if ((e.target as Element).closest("a")) setOpen(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hasAttribute("hidden")) { setOpen(false); toggle.focus(); } });
+  matchMedia("(min-width: 1024px)").addEventListener("change", (m) => { if (m.matches) setOpen(false); });
+
+  // Homepage scroll-spy (only runs where the sections exist).
+  const ids = ["home", "about", "faq", "contact"];
+  const targets = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+  if (targets.length && "IntersectionObserver" in window) {
+    const spy = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        document.querySelectorAll<HTMLElement>("[data-nav]").forEach((a) =>
+          a.setAttribute("data-active", String(a.dataset.nav === e.target.id)));
+      }
+    }, { threshold: 0.3 });
+    targets.forEach((t) => spy.observe(t));
+  }
+</script>
