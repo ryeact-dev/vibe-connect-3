@@ -32,7 +32,7 @@ export const AboutSection: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 pt-2">
               {/* Feature 1: 24/7 Customer Support */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full border-2 border-[#F0862C] text-[#F0862C] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold font-heading">
+                <div className="w-10 h-10 border-2 border-[#F0862C] text-[#F0862C] flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold font-heading">
                   24h
                 </div>
                 <div>
@@ -48,7 +48,7 @@ export const AboutSection: React.FC = () => {
 
               {/* Feature 2: Always Reach */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full border-2 border-[#F0862C] text-[#F0862C] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-10 h-10 border-2 border-[#F0862C] text-[#F0862C] flex items-center justify-center shrink-0 mt-0.5">
                   <PhoneCall className="w-5 h-5" />
                 </div>
                 <div>
@@ -64,7 +64,7 @@ export const AboutSection: React.FC = () => {
 
               {/* Feature 3: Chat Support */}
               <div className="flex items-start gap-3 sm:col-span-2 sm:max-w-xs">
-                <div className="w-10 h-10 rounded-full border-2 border-[#F0862C] text-[#F0862C] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-10 h-10 border-2 border-[#F0862C] text-[#F0862C] flex items-center justify-center shrink-0 mt-0.5">
                   <Headphones className="w-5 h-5" />
                 </div>
                 <div>
