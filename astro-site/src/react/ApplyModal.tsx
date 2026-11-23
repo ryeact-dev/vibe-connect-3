@@ -55,7 +55,7 @@ export function ApplyModal({ onClose }: { onClose: () => void }) {
           <h2 id="apply-title" className="pr-12 font-heading text-xl font-bold text-white sm:text-2xl">
             Apply For Remote Agent Roles
           </h2>
-          <p className="mt-1 text-xs text-[#DCEEF5]/80">
+          <p className="mt-1 text-sm text-[#DCEEF5]/80">
             Complete this 60-second form to start your candidate review.
           </p>
         </div>
