@@ -1,8 +1,8 @@
+import { ApplyLink } from "@/components/ApplyModalProvider";
 import React from "react";
 import { ArrowRight, Phone, Mail, ShieldCheck, Facebook } from "lucide-react";
 
 import {
-  APPLY_URL,
   CONTACT_EMAIL,
   CONTACT_PHONE_TEL,
   HUB_URL,
@@ -25,13 +25,12 @@ export const FinalCTABanner: React.FC = () => {
         </p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href={APPLY_URL}
+          <ApplyLink
             className="w-full sm:w-auto btn-primary px-9 py-4 text-base font-bold flex items-center justify-center gap-2.5 shadow-xl cursor-pointer"
           >
             Apply Now
             <ArrowRight className="w-5 h-5" />
-          </a>
+          </ApplyLink>
         </div>
       </div>
     </section>

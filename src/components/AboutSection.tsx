@@ -9,7 +9,7 @@ import {
   LifeBuoy,
   Calendar,
 } from "lucide-react";
-import { APPLY_URL } from "@/lib/site-config";
+import { ApplyLink } from "@/components/ApplyModalProvider";
 import { ABOUT_PARAGRAPH } from "@/lib/home-copy";
 
 export const AboutSection: React.FC = () => {
@@ -80,13 +80,12 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="pt-2">
-              <a
-                href={APPLY_URL}
+              <ApplyLink
                 className="btn-primary px-7 py-3.5 font-bold text-sm inline-flex items-center gap-2 cursor-pointer"
               >
                 Start Your Remote Journey
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </ApplyLink>
             </div>
           </div>
 
@@ -169,13 +168,12 @@ export const AgentCentricDarkSection: React.FC = () => {
           </div>
 
           <div>
-            <a
-              href={APPLY_URL}
+            <ApplyLink
               className="btn-primary px-10 py-4 text-base font-bold shadow-lg w-full sm:w-auto inline-flex items-center justify-center gap-2.5 cursor-pointer"
             >
               <span>Apply Now!</span>
               <ArrowRight className="w-5 h-5 stroke-[2.5]" />
-            </a>
+            </ApplyLink>
           </div>
         </div>
       </div>

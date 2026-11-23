@@ -1,3 +1,4 @@
+import { ApplyLink } from "@/components/ApplyModalProvider";
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
@@ -18,7 +19,14 @@ import { APPLY_URL, HUB_URL, PAY_SOURCE } from "@/lib/site-config";
 const Inline: React.FC<{ text: string }> = ({ text }) => (
   <>
     {parseInline(text).map((p, i) =>
-      p.href ? (
+      p.href === APPLY_URL ? (
+        <ApplyLink
+          key={i}
+          className="font-semibold text-[#0d627b] underline underline-offset-4 hover:text-[#F0862C]"
+        >
+          {p.text}
+        </ApplyLink>
+      ) : p.href ? (
         <a
           key={i}
           href={p.href}
@@ -67,13 +75,12 @@ const BlockView: React.FC<{ block: Block }> = ({ block }) => {
 };
 
 const ApplyButton: React.FC = () => (
-  <a
-    href={APPLY_URL}
+  <ApplyLink
     className="btn-primary inline-flex items-center justify-center gap-2.5 px-9 py-4 text-base font-bold shadow-lg"
   >
     Apply Now
     <ArrowRight className="w-5 h-5" />
-  </a>
+  </ApplyLink>
 );
 
 export const SeoPage: React.FC<{ page: SeoPageData }> = ({ page }) => (
