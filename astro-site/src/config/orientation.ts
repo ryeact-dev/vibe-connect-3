@@ -1,5 +1,5 @@
 /**
- * Orientation materials shown on the thank-you page.
+ * Orientation materials shown on the /orientation page (applicants are sent there from /thank-you).
  *
  * Video (the first one that is set wins):
  *  1. ORIENTATION_VIDEO_EMBED_URL: a YouTube / Vimeo / Cloudflare Stream embed URL.
@@ -14,7 +14,7 @@
 export const ORIENTATION_VIDEO_FILE = "/videos/orientation.mp4";
 export const ORIENTATION_VIDEO_POSTER = "/videos/orientation-poster.jpg";
 export const ORIENTATION_VIDEO_EMBED_URL = ""; // e.g. "https://www.youtube.com/embed/VIDEO_ID"
-export const ORIENTATION_VIDEO_URL = ""; // e.g. "https://assets.cdn.filesafe.space/.../orientation.mp4"
+export const ORIENTATION_VIDEO_URL = "https://files.leadconnectorhq.com/file/6a7dcdc399074f5ef6c483a2/arise-tutorial.mp4";
 export const ORIENTATION_PDF_FILE = "/downloads/vibe-connect-orientation.pdf";
 export const ORIENTATION_PDF_LABEL = "Download the orientation PDF";
-export const ORIENTATION_PDF_URL = ""; // e.g. "https://assets.cdn.filesafe.space/.../orientation.pdf"
+export const ORIENTATION_PDF_URL = "https://files.leadconnectorhq.com/file/6af4e282421749dec7d4738a/vibe-connect-vs-orientation-1.pdf";

@@ -51,20 +51,22 @@ backup form (`GHL_FORM_URL` in `src/config/site.ts`), so no application is
 silently lost. `astro dev` does not run the function; use
 `npx wrangler pages dev dist` after a build to test it locally.
 
-## Thank-you page (orientation video and PDF)
+## Thank-you and orientation pages
 
-After a successful submission the form redirects to `/thank-you` (noindex, not in the sitemap).
-The page shows a "coming soon" placeholder until you add the files:
+After a successful submission the form redirects to `/thank-you`, which confirms the application and sends
+the applicant to `/orientation` with one large button. `/orientation` holds the orientation video and the
+downloadable orientation PDF. Both pages are `noindex` and are not in the sitemap.
 
-- **Video hosted in GoHighLevel:** upload the MP4 to the GHL Media Library, copy its direct link and
-  paste it into `ORIENTATION_VIDEO_URL` in `src/config/orientation.ts`.
-- **Other video options:** set `ORIENTATION_VIDEO_EMBED_URL` (YouTube / Vimeo / Cloudflare Stream
-  embed URL), or save an MP4 as `public/videos/orientation.mp4` (optional poster:
-  `public/videos/orientation-poster.jpg`). Cloudflare Pages rejects files over 25 MB.
-- **PDF:** paste a direct link (for example from the GHL Media Library) into `ORIENTATION_PDF_URL`, or
-  save the file as `public/downloads/vibe-connect-orientation.pdf`.
+The video and PDF links live in `src/config/orientation.ts`:
 
-Commit and push; the placeholder switches to the real video and download button automatically.
+- `ORIENTATION_VIDEO_URL`: direct MP4 link (currently a file in the GHL Media Library).
+- `ORIENTATION_PDF_URL`: direct PDF link (currently a file in the GHL Media Library).
+- Alternatives: `ORIENTATION_VIDEO_EMBED_URL` (YouTube / Vimeo / Cloudflare Stream embed), or files in
+  `public/videos/orientation.mp4` and `public/downloads/vibe-connect-orientation.pdf` (Cloudflare Pages
+  rejects files over 25 MB). If nothing is set, the page shows a "coming soon" placeholder.
+
+To replace the video or PDF, upload the new file to GHL, copy its direct link and paste it into the config.
+The GHL file must stay public, and the video should be MP4 (H.264).
 
 ## Where things are
 

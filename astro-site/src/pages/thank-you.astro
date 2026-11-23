@@ -1,26 +1,13 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
 import Base from "../layouts/Base.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
-import {
-  ORIENTATION_PDF_FILE, ORIENTATION_PDF_LABEL, ORIENTATION_PDF_URL, ORIENTATION_VIDEO_EMBED_URL, ORIENTATION_VIDEO_FILE, ORIENTATION_VIDEO_POSTER, ORIENTATION_VIDEO_URL,
-} from "../config/orientation";
 import { CONTACT_EMAIL } from "../config/site";
-
-const exists = (url: string) => fs.existsSync(path.join(process.cwd(), "public", url));
-const videoMode = ORIENTATION_VIDEO_EMBED_URL ? "embed" : ORIENTATION_VIDEO_URL ? "url" : exists(ORIENTATION_VIDEO_FILE) ? "file" : "placeholder";
-const videoSrc = videoMode === "url" ? ORIENTATION_VIDEO_URL : ORIENTATION_VIDEO_FILE;
-const hasPoster = exists(ORIENTATION_VIDEO_POSTER);
-const pdfExternal = Boolean(ORIENTATION_PDF_URL);
-const pdfHref = pdfExternal ? ORIENTATION_PDF_URL : ORIENTATION_PDF_FILE;
-const hasPdf = pdfExternal || exists(ORIENTATION_PDF_FILE);
 ---
 <Base
   title="Thank You for Applying | Vibe Connect Virtual"
-  description="Your application to Vibe Connect Virtual Services has been received. Watch the orientation video and download the orientation PDF."
+  description="Your application to Vibe Connect Virtual Services has been received. Next step: watch your orientation."
   path="/thank-you"
   noindex
 >
@@ -49,44 +36,14 @@ const hasPdf = pdfExternal || exists(ORIENTATION_PDF_FILE);
         <p class="mx-auto mt-8 max-w-xl text-base text-muted">We're excited about the possibility of having you on our team!</p>
       </section>
 
-      <section class="space-y-5" aria-labelledby="orientation-heading">
-        <h2 id="orientation-heading" class="text-center font-heading text-2xl font-bold text-navy">Watch your orientation video</h2>
-        <div class="relative aspect-video w-full overflow-hidden bg-navy shadow-lg">
-          {videoMode === "embed" && (
-            <iframe src={ORIENTATION_VIDEO_EMBED_URL} title="Vibe Connect orientation video" class="absolute inset-0 h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
-          )}
-          {(videoMode === "file" || videoMode === "url") && (
-            <video class="absolute inset-0 h-full w-full bg-black" controls playsinline preload="metadata" poster={videoMode === "file" && hasPoster ? ORIENTATION_VIDEO_POSTER : undefined}>
-              <source src={videoSrc} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-          {videoMode === "placeholder" && (
-            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center text-white" role="img" aria-label="Orientation video placeholder">
-              <span class="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/60"><Icon name="play" class="text-3xl" strokeWidth={2} /></span>
-              <p class="font-heading text-lg font-bold">Orientation video coming soon</p>
-              <p class="max-w-sm text-sm text-sky/80">Your orientation video will appear here.</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section class="space-y-5" aria-labelledby="pdf-heading">
-        <h2 id="pdf-heading" class="text-center font-heading text-2xl font-bold text-navy">Download your orientation guide</h2>
-        <div class="flex flex-col items-start gap-4 border border-sky bg-white p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <div class="flex items-start gap-4">
-            <span class="flex h-12 w-12 shrink-0 items-center justify-center bg-orange/15 text-orange"><Icon name="fileText" class="text-2xl" strokeWidth={2} /></span>
-            <p class="text-base leading-relaxed text-charcoal/85">{hasPdf ? "Keep the orientation PDF handy while you complete your next steps." : "The orientation PDF will be available here soon."}</p>
-          </div>
-          {hasPdf ? (
-            <a href={pdfHref} download={pdfExternal ? undefined : true} target={pdfExternal ? "_blank" : undefined} rel={pdfExternal ? "noopener" : undefined} class="btn-primary inline-flex w-full items-center justify-center gap-2.5 px-7 py-3.5 text-base font-bold sm:w-auto">
-              <Icon name="download" class="text-xl" />{ORIENTATION_PDF_LABEL}
-            </a>
-          ) : (
-            <span class="inline-flex w-full cursor-not-allowed items-center justify-center gap-2.5 bg-gray-200 px-7 py-3.5 text-base font-bold text-gray-500 sm:w-auto" aria-disabled="true">
-              <Icon name="download" class="text-xl" />PDF coming soon
-            </span>
-          )}
+      <section class="bg-navy px-6 py-10 text-center text-white shadow-lg sm:px-12 sm:py-12" aria-labelledby="orientation-cta">
+        <p class="text-sm font-bold uppercase tracking-wide text-orange">Important: do this first</p>
+        <h2 id="orientation-cta" class="mx-auto mt-3 max-w-xl text-balance font-heading text-2xl font-extrabold leading-tight text-white sm:text-3xl">Watch your orientation before you do anything else</h2>
+        <p class="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-sky/90 sm:text-lg">Please watch the orientation video and review the orientation guide first. It explains your next steps.</p>
+        <div class="mt-8">
+          <a href="/orientation" class="btn-primary inline-flex w-full items-center justify-center gap-3 px-10 py-5 text-lg font-bold shadow-xl sm:w-auto">
+            Go to the orientation <Icon name="arrowRight" class="text-2xl" strokeWidth={2.5} />
+          </a>
         </div>
       </section>
 
