@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import type { FC } from "react";
 
 /**
@@ -26,6 +26,27 @@ export interface SEOHeadProps {
   /** Use `title` as the full <title> (it already includes the site name) */
   rawTitle?: boolean;
 }
+
+// useLayoutEffect warns during SSR; the effect only matters in the browser.
+const useIsoLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+/**
+ * Build-time prerender hook: entry-server.tsx sets `current` to an array, and
+ * every <SEOHead> rendered during SSR pushes its resolved tags into it, so
+ * the static HTML head is generated from the same props as the live page.
+ */
+export interface ResolvedHead {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  ogImage: string;
+  noIndex: boolean;
+  schemaJson?: Record<string, unknown>;
+}
+export const headCollector: { current: ResolvedHead[] | null } = {
+  current: null,
+};
 
 /**
  * Marks every tag this component manages so we can clean up stale
@@ -93,7 +114,16 @@ export const SEOHead: FC<SEOHeadProps> = ({
     ? canonical
     : `${SITE_DOMAIN}${canonical}`;
 
-  useLayoutEffect(() => {
+  headCollector.current?.push({
+    title: fullTitle,
+    description,
+    canonicalUrl,
+    ogImage,
+    noIndex,
+    schemaJson,
+  });
+
+  useIsoLayoutEffect(() => {
     document.title = fullTitle;
     upsertMeta("name", "description", description);
     upsertLink("canonical", canonicalUrl);

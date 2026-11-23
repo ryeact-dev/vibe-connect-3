@@ -127,7 +127,7 @@ export const SeoPage: React.FC<{ page: SeoPageData }> = ({ page }) => (
           width={1600}
           height={600}
           loading="eager"
-          fetchPriority="high"
+          {...{ fetchpriority: "high" }}
           decoding="async"
           className="w-full h-auto max-h-[420px] object-cover"
         />
