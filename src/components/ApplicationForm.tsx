@@ -426,9 +426,8 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           2. Do you have a Windows computer, a quiet and distraction-free
-          workspace, stable wired internet connection, a USB wired headset
-          (Plantronics or Logitech is recommended, but please indicate if you
-          are using a different brand), and a working webcam?{" "}
+          workspace, stable wired internet connection, a USB wired headset,
+          and a working webcam?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
         <div className="flex items-center gap-3">
