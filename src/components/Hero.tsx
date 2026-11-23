@@ -34,7 +34,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenApplyModal }) => {
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-[#4A5568] font-normal leading-relaxed mb-8 max-w-lg">
-            VibeConnect connects motivated people across the U.S. with real,
+            Vibe Connect connects motivated people across the U.S. with real,
             remote customer service roles. No commute, no rigid 9-to-5, no
             experience required to start.
           </p>
