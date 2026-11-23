@@ -19,7 +19,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     question: "What is Arise, and how does it relate to Vibe Connect?",
     answer:
-      "Arise is the platform where independent contractors register and find online jobs. Vibe Connect Virtual Services helps you get started on Arise: you apply and complete onboarding with us, pass the Arise assessment, complete your Arise registration and background check (unpaid), take your paid certification days, and then find jobs on Arise.",
+      "Arise is the platform where independent contractors register and find online jobs. Vibe Connect Virtual Services helps you get started on Arise: you apply and complete onboarding with us, pass the Arise assessment (taken through Harver), complete your Arise registration and background check (unpaid), take your paid certification days, and then find jobs on Arise.",
   },
   {
     question: "Is this a real job or a scam?",
@@ -47,7 +47,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     question: "How and when do I get paid?",
     answer:
-      "Active independent contractors supporting clients through Vibe Connect earn $18.00 per hour (paid in 30-minute serviced intervals), with performance incentives available to earn even more. Payments are issued semi-monthly via direct deposit. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures, and class schedules unlock inside the Arise portal immediately after you complete registration and sign the standard Agent NDA. Incentives are not guaranteed, and eligibility requirements apply.",
+      "Active independent contractors supporting clients through Vibe Connect earn $18.00 per hour (paid in 30-minute serviced intervals), with performance incentives available to earn even more. Payments are issued semi-monthly via direct deposit. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures, and class schedules unlock inside the Arise portal immediately after you complete registration and sign the standard Agent NDA. Certification training on Arise is paid from the first day of class. Incentives are not guaranteed, and eligibility requirements apply.",
   },
   {
     question: "Is the schedule flexible?",

@@ -504,7 +504,7 @@ export const ApplicationForm: React.FC<FormProps> = ({
       <div>
         <label className="block text-xs font-heading font-bold text-[#1B2A4A] mb-2 leading-snug">
           5. Are you willing to complete the unpaid initial registration steps
-          (profile setup, Harver assessment, and $30 background check) before
+          (profile setup, Arise (Harver) assessment, and $30 background check) before
           starting paid certification training and client production?{" "}
           <span className="text-[#F0862C]">*</span>
         </label>
