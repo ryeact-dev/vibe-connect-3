@@ -21,7 +21,7 @@ export const ROLES_DATA: RoleItem[] = [
   {
     title: "Sales & Retention Specialist",
     description:
-      "Warm leads, quick connections, and earn performance commissions by assist customers with renewals.",
+      "Warm leads, quick connections, and earn performance commissions by assisting customers with renewals.",
   },
   {
     title: "Onboard Support Rep",
