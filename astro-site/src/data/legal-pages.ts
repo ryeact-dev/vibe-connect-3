@@ -64,7 +64,7 @@ export const LEGAL_PAGES: LegalPageData[] = [
       {
         h2: "Applying, costs and pay",
         blocks: [
-          p("Vibe Connect charges $0 upfront to apply or register. Before you enroll in a client certification class, Arise requires a standard third-party national background check ($30, paid directly to the background check provider). This is a one-time $30.00 fee paid directly to Arise's screening vendor, valid for 36 months, prior to client enrollment. Once you are enrolled and actively earning revenue (including paid certification), a flat $35.00 administrative service fee applies per semi-monthly pay period ($0 is charged when $0 is earned). Arise runs its own registration, assessment and background check under its own terms and decides their outcome."),
+          p("Vibe Connect charges $0 upfront to apply or register. Before you enroll in a client certification class, Arise requires a standard third-party national background check ($30, paid directly to the background check provider). This is a one-time $30.00 fee paid directly to Arise's screening vendor, valid for 36 months, prior to client enrollment. Arise runs its own registration, assessment and background check under its own terms and decides their outcome."),
           p("Pay figures on this site describe active independent contractors supporting clients through Vibe Connect. Performance incentives, where available, are not guaranteed and eligibility requirements apply. Exact client-specific rates, bonus structures and class schedules appear in the Arise portal after registration and signing the standard Agent NDA."),
         ],
       },
