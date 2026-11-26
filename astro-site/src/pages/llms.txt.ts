@@ -33,7 +33,6 @@ export const GET: APIRoute = () => {
     "",
     link("Home", "/", "who we are, roles, pay, states and FAQ"),
     link(HUB_PAGE.h1, HUB_PAGE.path, HUB_PAGE.description),
-    link("Apply", "/application-page", "the 60-second application form"),
     "",
     "## Role pages",
     "",

@@ -106,7 +106,6 @@ const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       document.addEventListener("click", (e) => {
         const a = isApply(e.target);
         if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        if (location.pathname === new URL(a.href).pathname) return; // already on the form page
         e.preventDefault();
         load().then((m) => m.openApplyModal()).catch(() => { location.href = a.href; });
       });
