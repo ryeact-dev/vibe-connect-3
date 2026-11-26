@@ -10,7 +10,7 @@ export { SITE_DOMAIN, SITE_NAME };
 
 export const HOME_TITLE = "Work From Home Jobs | No Experience Needed";
 export const HOME_DESCRIPTION =
-  "Remote customer service jobs with Vibe Connect Virtual. Active contractors earn $18.00 per hour, paid semi-monthly. No experience required. Apply in 60 seconds.";
+  "Remote customer service jobs with Vibe Connect Virtual. Active contractors earn $18.00 per hour or more, paid semi-monthly. No experience required. Apply in 60 seconds.";
 export const HOME_OG_IMAGE =
   "https://vibe.filesafe.space/1785542809220106141/attachments/dc354123-a298-403e-b9f8-e3f0ed1ce92d.png";
 

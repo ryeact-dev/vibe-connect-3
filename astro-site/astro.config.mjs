@@ -23,7 +23,7 @@ export default defineConfig({
       filter: (page) => !/\/(404|thank-you|orientation)$/.test(page),
       serialize(item) {
         // Pages whose content changes with pay updates carry the last-updated date.
-        item.lastmod = process.env.SITEMAP_LASTMOD || "2026-11-23";
+        item.lastmod = process.env.SITEMAP_LASTMOD || "2026-11-26";
         const path = new URL(item.url).pathname;
         item.priority = path === "/" ? 1.0 : path === "/privacy-policy" || path === "/terms" ? 0.3 : 0.8;
         return item;
