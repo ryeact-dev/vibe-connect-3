@@ -42,7 +42,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     question: "Is there a cost to apply?",
     answer:
-      "Vibe Connect charges $0 upfront to apply or register under our agency. All roles are 1099 independent contractor positions, not W-2 employment. Before enrolling in a client certification class on the Arise platform, Arise requires a standard third-party national background check ($30 paid directly to the background check provider). This is a one-time $30.00 third-party background check fee paid directly to Arise's screening vendor (valid for 36 months) prior to client enrollment.",
+      "Vibe Connect charges $0 upfront to apply or register under our agency. All roles are 1099 independent contractor positions, not W-2 employment. Before enrolling in a client certification class on the Arise platform, Arise requires a standard third-party national background check ($30 paid directly to the background check provider). This is a one-time $30.00 third-party background check fee paid directly to Arise's screening vendor (valid for 36 months) prior to client enrollment. Once you are enrolled and actively earning revenue (including paid certification), a flat $35.00 administrative service fee applies per semi-monthly pay period ($0 is charged when $0 is earned).",
   },
   {
     question: "How and when do I get paid?",
