@@ -2,7 +2,7 @@
 
 Static Astro 7 site (Tailwind 4). The only client JavaScript is a ~5 KB script
 for the mobile menu and scroll animations. The application form (React) loads
-only when someone clicks an Apply Now link or opens `/application-page`.
+only when someone clicks an Apply Now link (the application form is a pop-up; there is no separate form page).
 
 ## Commands
 
