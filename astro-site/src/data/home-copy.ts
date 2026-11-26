@@ -13,7 +13,7 @@ export const HOME_INTRO =
 export const VALUE_PROPS = [
   {
     title: "Paid twice a month, on time",
-    body: `You're paid twice a month by direct deposit following Arise's semi-monthly invoice schedule (typically around the 8th–11th and 23rd–26th of each month). Active independent contractors earn ${PAY_RATE}, with performance incentives available (not guaranteed).`,
+    body: `You're paid twice a month by direct deposit following Arise's semi-monthly invoice schedule. Active independent contractors earn ${PAY_RATE}, with performance incentives available (not guaranteed).`,
   },
   {
     title: "No Experience? No Problem",
