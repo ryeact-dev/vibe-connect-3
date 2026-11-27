@@ -15,8 +15,6 @@
  *   sms_consent_job_hiring_newsletter   {{contact.sms_consent_job_hiring_newsletter}}   Yes / No
  *   sms_consent_marketing_promotional   {{contact.sms_consent_marketing_promotional}}   Yes / No
  *   sms_consent_date                    {{contact.sms_consent_date}}                    UTC date and time of the submission
- *   sms_consent_page                    {{contact.sms_consent_page}}                    page the form was submitted from
- *   applicant_notes (optional)          {{contact.applicant_notes}}                     the optional notes box
  */
 
 interface Env {
@@ -43,8 +41,6 @@ const OPTIONAL_KEYS = [
   "sms_consent_job_hiring_newsletter",
   "sms_consent_marketing_promotional",
   "sms_consent_date",
-  "sms_consent_page",
-  "applicant_notes",
 ] as const;
 type OptionalKey = (typeof OPTIONAL_KEYS)[number];
 
@@ -158,8 +154,6 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
     ...(extra.sms_consent_job_hiring_newsletter ? [{ id: extra.sms_consent_job_hiring_newsletter, field_value: consentNon ? "Yes" : "No" }] : []),
     ...(extra.sms_consent_marketing_promotional ? [{ id: extra.sms_consent_marketing_promotional, field_value: consentMkt ? "Yes" : "No" }] : []),
     ...(extra.sms_consent_date ? [{ id: extra.sms_consent_date, field_value: consentAt }] : []),
-    ...(extra.sms_consent_page && pageUrl ? [{ id: extra.sms_consent_page, field_value: pageUrl }] : []),
-    ...(extra.applicant_notes && notes ? [{ id: extra.applicant_notes, field_value: notes }] : []),
   ];
 
   const res = await fetch(`${GHL}/contacts/upsert`, {

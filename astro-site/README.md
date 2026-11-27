@@ -60,8 +60,6 @@ is stored in these **contact custom fields, which you create once in GHL** (Sett
 | SMS Consent - Job Hiring and Newsletter | `sms_consent_job_hiring_newsletter` | Yes or No |
 | SMS Consent - Marketing and Promotional | `sms_consent_marketing_promotional` | Yes or No |
 | SMS Consent Date | `sms_consent_date` | UTC date and time of the submission |
-| SMS Consent Page | `sms_consent_page` | page the form was submitted from |
-| Applicant Notes (optional) | `applicant_notes` | the optional notes box |
 
 The Cloudflare real-time log shows `apply: custom fields found=N missing=[...]` so you can see which keys
 still need to be created. The same data is always in the contact's Note, in case a field is missing.
@@ -92,13 +90,10 @@ A: {{contact.residing_in_approved_state}}
 Q5: Are you willing to complete the unpaid initial registration steps (profile setup, Arise assessment, and $30 background check) before starting paid certification training and client production?
 A: {{contact.unpaid_onboarding_willingness}}
 
-Notes from the applicant: {{contact.applicant_notes}}
-
 SMS consent:
 Job Hiring and Newsletter (non-marketing): {{contact.sms_consent_job_hiring_newsletter}}
 Marketing and Promotional: {{contact.sms_consent_marketing_promotional}}
 Consent recorded: {{contact.sms_consent_date}}
-Consent page: {{contact.sms_consent_page}}
 ```
 
 If a merge field shows blank, check the field's exact key in GHL (Settings, Custom Fields) and that the
