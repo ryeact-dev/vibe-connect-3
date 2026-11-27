@@ -13,7 +13,7 @@ export const HOME_INTRO =
 export const VALUE_PROPS = [
   {
     title: "Paid twice a month, on time",
-    body: `You're paid twice a month by direct deposit following Arise's semi-monthly invoice schedule. Active independent contractors earn ${PAY_RATE}, with performance incentives available.`,
+    body: `You're paid twice a month by direct deposit following Arise's semi-monthly invoice schedule. Active independent contractors can earn up to ${PAY_RATE}, with performance incentives available.`,
   },
   {
     title: "No Experience? No Problem",
@@ -36,4 +36,4 @@ export const ROLES_INTRO =
 
 export const HUB_LINK_TEXT = "Browse all remote work from home jobs in the US";
 
-export const FINAL_CTA_BODY = `Skip the traffic, avoid expensive office attire, and earn ${PAY_RATE} from your home workstation, paid semi-monthly. Applications take less than 60 seconds.`;
+export const FINAL_CTA_BODY = `Skip the traffic, avoid expensive office attire, and can earn up to ${PAY_RATE} from your home workstation, paid semi-monthly. Applications take less than 60 seconds.`;

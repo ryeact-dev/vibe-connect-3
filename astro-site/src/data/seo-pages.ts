@@ -77,7 +77,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Remote work from home in the US as an independent contractor on Arise, with flexible shifts and semi-monthly pay. Browse customer service, sales and bilingual roles. Apply today.",
     h1: "Remote Work From Home Jobs in the US",
     quickAnswer:
-      "Remote work from home in the US means doing customer service or sales by phone from your own home. Vibe Connect Virtual Services helps you start as an independent contractor on Arise in 18 eligible states. Active contractors earn $18 or more, paid in 30-minute serviced intervals.",
+      "Remote work from home in the US means doing customer service or sales by phone from your own home. Vibe Connect Virtual Services helps you start as an independent contractor on Arise in 18 eligible states. Active contractors can earn up to $18 or more, paid in 30-minute serviced intervals.",
     banner: {
       file: "remote-work-from-home-jobs-us-banner.webp",
       alt: "Woman wearing a headset smiling as she works on a laptop from a living room sofa",
@@ -147,7 +147,7 @@ export const SEO_PAGES: SeoPageData[] = [
           },
           {
             type: "p",
-            text: "Active independent contractors earn $18 or more, paid in 30-minute serviced intervals, with performance incentives available to earn even more. Incentives vary by client and availability, are not guaranteed, and eligibility requirements apply. Payments are issued semi-monthly by direct deposit, on the 15th and the 30th. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures and class schedules unlock inside the Arise portal after you complete registration and sign the standard Agent NDA.",
+            text: "Active independent contractors can earn up to $18 or more, paid in 30-minute serviced intervals, with performance incentives available to earn even more. Incentives vary by client and availability, are not guaranteed, and eligibility requirements apply. Payments are issued semi-monthly by direct deposit, on the 15th and the 30th. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures and class schedules unlock inside the Arise portal after you complete registration and sign the standard Agent NDA.",
           },
           src(),
         ],
@@ -216,7 +216,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Remote customer service jobs with no experience needed. Paid Arise training, flexible shifts and pay twice a month. Apply in 60 seconds.",
     h1: "Remote Customer Service Jobs (No Experience Needed)",
     quickAnswer:
-      "Remote customer service jobs let you help customers by phone from home, and most do not require experience. You work as an independent contractor through Vibe Connect and Arise. Active contractors earn $18 or more, paid in 30-minute serviced intervals.",
+      "Remote customer service jobs let you help customers by phone from home, and most do not require experience. You work as an independent contractor through Vibe Connect and Arise. Active contractors can earn up to $18 or more, paid in 30-minute serviced intervals.",
     banner: {
       file: "remote-customer-service-jobs-banner.webp",
       alt: "Smiling customer service agent in a headset talking to a computer screen at a desk",
@@ -275,7 +275,7 @@ export const SEO_PAGES: SeoPageData[] = [
           },
           {
             type: "p",
-            text: "Active independent contractors earn $18 or more, paid in 30-minute serviced intervals. Performance incentives are available, but they are not guaranteed, and eligibility requirements apply. Exact client-specific rates unlock inside the Arise portal after you complete registration and sign the standard Agent NDA.",
+            text: "Active independent contractors can earn up to $18 or more, paid in 30-minute serviced intervals. Performance incentives are available, but they are not guaranteed, and eligibility requirements apply. Exact client-specific rates unlock inside the Arise portal after you complete registration and sign the standard Agent NDA.",
           },
           src(),
         ],
@@ -336,7 +336,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Part-time work from home customer service jobs with flexible shifts, paid Arise training and semi-monthly pay. No experience needed. Apply today.",
     h1: "Part-Time Work From Home Customer Service Jobs",
     quickAnswer:
-      "Part-time work from home customer service jobs are possible because shifts are flexible, but weekly hours depend on the job and the company you apply to. You work as an independent contractor through Arise, and active contractors earn $18 or more.",
+      "Part-time work from home customer service jobs are possible because shifts are flexible, but weekly hours depend on the job and the company you apply to. You work as an independent contractor through Arise, and active contractors can earn up to $18 or more.",
     banner: {
       file: "part-time-work-from-home-customer-service-banner.webp",
       alt: "Parent holding a baby while working on a laptop with a headset",
@@ -407,7 +407,7 @@ export const SEO_PAGES: SeoPageData[] = [
           },
           {
             type: "p",
-            text: "The rate does not change with part-time or full-time hours. Active independent contractors earn $18 or more, paid in 30-minute serviced intervals, so your earnings depend on how many hours you work.",
+            text: "The rate does not change with part-time or full-time hours. Active independent contractors can earn up to $18 or more, paid in 30-minute serviced intervals, so your earnings depend on how many hours you work.",
           },
           src(),
         ],
@@ -459,7 +459,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Remote call center jobs you can do from home. Paid Arise training, flexible shifts and semi-monthly pay. No call center experience needed. Apply today.",
     h1: "Remote Call Center Jobs (No Experience Needed)",
     quickAnswer:
-      "Remote call center jobs let you take customer calls from home with a headset and a quiet room. Most roles need no call center experience. You work as an independent contractor through Arise, and active contractors earn $18 or more.",
+      "Remote call center jobs let you take customer calls from home with a headset and a quiet room. Most roles need no call center experience. You work as an independent contractor through Arise, and active contractors can earn up to $18 or more.",
     banner: {
       file: "remote-call-center-jobs-banner.webp",
       alt: "Smiling call center agent in a headset touching the microphone while working at a computer",
@@ -531,7 +531,7 @@ export const SEO_PAGES: SeoPageData[] = [
           },
           {
             type: "p",
-            text: "Active independent contractors earn $18 or more, paid in 30-minute serviced intervals. Performance incentives are available, but they are not guaranteed, and eligibility requirements apply.",
+            text: "Active independent contractors can earn up to $18 or more, paid in 30-minute serviced intervals. Performance incentives are available, but they are not guaranteed, and eligibility requirements apply.",
           },
           src(),
         ],
@@ -579,7 +579,7 @@ export const SEO_PAGES: SeoPageData[] = [
       "Bilingual work from home jobs for English and Spanish speakers. Paid Arise training, flexible shifts and pay twice a month. Apply in 60 seconds.",
     h1: "Bilingual Work From Home Jobs for English and Spanish Speakers",
     quickAnswer:
-      "Bilingual work from home jobs are customer service roles for English and Spanish speakers, and you do not need to be a native speaker. Active contractors earn $18 or more, paid in 30-minute serviced intervals. Some programs are omnichannel.",
+      "Bilingual work from home jobs are customer service roles for English and Spanish speakers, and you do not need to be a native speaker. Active contractors can earn up to $18 or more, paid in 30-minute serviced intervals. Some programs are omnichannel.",
     banner: {
       file: "bilingual-work-from-home-jobs-banner.webp",
       alt: "Smiling woman in headphones working on a laptop at a desk",
@@ -651,7 +651,7 @@ export const SEO_PAGES: SeoPageData[] = [
         blocks: [
           {
             type: "p",
-            text: "We pay semi-monthly, on the 15th and the 30th. Certification training on Arise is paid, and shifts are flexible. Active independent contractors earn $18 or more, paid in 30-minute serviced intervals. Performance incentives are available, but they are not guaranteed, and eligibility requirements apply.",
+            text: "We pay semi-monthly, on the 15th and the 30th. Certification training on Arise is paid, and shifts are flexible. Active independent contractors can earn up to $18 or more, paid in 30-minute serviced intervals. Performance incentives are available, but they are not guaranteed, and eligibility requirements apply.",
           },
           src(),
         ],
