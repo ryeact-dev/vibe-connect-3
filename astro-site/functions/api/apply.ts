@@ -55,10 +55,23 @@ async function optionalFieldIds(env: Env, headers: Record<string, string>) {
       console.warn("apply: could not read custom field definitions, status", r.status);
       return ids; // not cached, so the next request tries again
     }
-    const out = (await r.json()) as { customFields?: { id?: string; fieldKey?: string }[] };
+    const out = (await r.json()) as { customFields?: { id?: string; fieldKey?: string; name?: string }[] };
+    // GHL builds the field key from the field name, so match on the exact key first and then on the
+    // key or name wording (e.g. "SMS Consent - Job Hiring and Newsletter" -> sms_consent_job_hiring_and_newsletter).
+    const norm = (v: string) => v.toLowerCase().replace(/^contact\./, "").replace(/[^a-z0-9]/g, "");
+    const rules: Record<OptionalKey, string[]> = {
+      sms_consent_job_hiring_newsletter: ["smsconsent", "hiring"],
+      sms_consent_marketing_promotional: ["smsconsent", "marketing"],
+      sms_consent_date: ["smsconsent", "date"],
+    };
     for (const f of out.customFields ?? []) {
-      const key = (f.fieldKey ?? "").replace(/^contact\./, "").toLowerCase() as OptionalKey;
-      if (f.id && (OPTIONAL_KEYS as readonly string[]).includes(key)) ids[key] = f.id;
+      if (!f.id) continue;
+      const hay = [norm(f.fieldKey ?? ""), norm(f.name ?? "")];
+      for (const k of OPTIONAL_KEYS) {
+        if (ids[k]) continue;
+        const exact = (f.fieldKey ?? "").replace(/^contact\./, "").toLowerCase() === k;
+        if (exact || hay.some((h) => rules[k].every((w) => h.includes(w)))) ids[k] = f.id;
+      }
     }
     const missing = OPTIONAL_KEYS.filter((k) => !ids[k]);
     console.log(`apply: custom fields found=${Object.keys(ids).length} missing=[${missing.join(",")}]`);
