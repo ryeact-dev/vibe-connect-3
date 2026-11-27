@@ -11,8 +11,7 @@ export const onRequest = async (context: Ctx): Promise<Response> => {
   const url = new URL(context.request.url);
 
   if (url.hostname === PAGES_HOST) {
-    // 302 while testing; change to 301 once the domain is confirmed stable.
-    return Response.redirect(`${TARGET_ORIGIN}${url.pathname}${url.search}`, 302);
+    return Response.redirect(`${TARGET_ORIGIN}${url.pathname}${url.search}`, 301);
   }
 
   return context.next();
