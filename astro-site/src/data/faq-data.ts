@@ -47,7 +47,7 @@ export const FAQ_DATA: FAQItem[] = [
   {
     question: "How and when do I get paid?",
     answer:
-      "Active independent contractors supporting clients through Vibe Connect earn $18.00 per hour or more (paid in 30-minute serviced intervals), with performance incentives available to earn even more. Payments are issued semi-monthly via direct deposit. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures, and class schedules unlock inside the Arise portal immediately after you complete registration and sign the standard Agent NDA.",
+      "Active independent contractors supporting clients through Vibe Connect earn $18 or more (paid in 30-minute serviced intervals), with performance incentives available to earn even more. Payments are issued semi-monthly via direct deposit. Because Arise protects client confidentiality, exact client-specific rate breakdowns, bonus structures, and class schedules unlock inside the Arise portal immediately after you complete registration and sign the standard Agent NDA.",
   },
   {
     question: "Is the schedule flexible?",

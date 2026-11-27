@@ -24,7 +24,7 @@ export const ORG_LOGO_URL =
   "https://assets.cdn.filesafe.space/2pGpEHYvndYECBOCEp4h/media/6a6aba12cf81b06f05cfd1fe.png";
 
 /** Update with every pay change (and the "Last updated" line below). */
-export const PAY_RATE = "$18.00 per hour or more";
+export const PAY_RATE = "$18 or more";
 export const LAST_UPDATED_DISPLAY = "November 26, 2026";
 export const LAST_UPDATED_ISO = "2026-11-26";
 export const PAY_SOURCE =
