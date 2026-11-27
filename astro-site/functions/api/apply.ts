@@ -7,7 +7,16 @@
  * Environment variables (Cloudflare Pages → Settings → Variables and Secrets):
  *   LOCATION_ID              GHL sub-account (location) ID
  *   PRIVATE_INTEGRATION_KEY  GHL Private Integration token (never sent to the browser)
- * The token needs these scopes: contacts.write (and contacts.readonly).
+ * The token needs these scopes: contacts.write, contacts.readonly and locations/customFields.readonly.
+ *
+ * SMS consent is also written to contact custom fields so emails and workflows can use merge fields.
+ * Create these contact custom fields in GHL (type: Single Line text); the function finds them by key and
+ * simply skips any that do not exist yet:
+ *   sms_consent_job_hiring_newsletter   {{contact.sms_consent_job_hiring_newsletter}}   Yes / No
+ *   sms_consent_marketing_promotional   {{contact.sms_consent_marketing_promotional}}   Yes / No
+ *   sms_consent_date                    {{contact.sms_consent_date}}                    UTC date and time of the submission
+ *   sms_consent_page                    {{contact.sms_consent_page}}                    page the form was submitted from
+ *   applicant_notes (optional)          {{contact.applicant_notes}}                     the optional notes box
  */
 
 interface Env {
@@ -28,6 +37,41 @@ const FIELD = {
   q4ApprovedState: "iY8Yif0jW6cLQbRQI36D", // Residing in Approved State
   q5OnboardingSteps: "kLdFVxqqWvPdajTgHsr9", // Unpaid Onboarding Willingness
 } as const;
+
+/** Optional custom fields (created in GHL by hand), looked up by field key and cached for a few minutes. */
+const OPTIONAL_KEYS = [
+  "sms_consent_job_hiring_newsletter",
+  "sms_consent_marketing_promotional",
+  "sms_consent_date",
+  "sms_consent_page",
+  "applicant_notes",
+] as const;
+type OptionalKey = (typeof OPTIONAL_KEYS)[number];
+
+let fieldCache: { at: number; ids: Partial<Record<OptionalKey, string>> } | null = null;
+
+async function optionalFieldIds(env: Env, headers: Record<string, string>) {
+  if (fieldCache && Date.now() - fieldCache.at < 10 * 60_000) return fieldCache.ids;
+  const ids: Partial<Record<OptionalKey, string>> = {};
+  try {
+    const r = await fetch(`${GHL}/locations/${env.LOCATION_ID}/customFields?model=contact`, { headers });
+    if (!r.ok) {
+      console.warn("apply: could not read custom field definitions, status", r.status);
+      return ids; // not cached, so the next request tries again
+    }
+    const out = (await r.json()) as { customFields?: { id?: string; fieldKey?: string }[] };
+    for (const f of out.customFields ?? []) {
+      const key = (f.fieldKey ?? "").replace(/^contact\./, "").toLowerCase() as OptionalKey;
+      if (f.id && (OPTIONAL_KEYS as readonly string[]).includes(key)) ids[key] = f.id;
+    }
+    const missing = OPTIONAL_KEYS.filter((k) => !ids[k]);
+    console.log(`apply: custom fields found=${Object.keys(ids).length} missing=[${missing.join(",")}]`);
+    fieldCache = { at: Date.now(), ids };
+  } catch {
+    console.warn("apply: custom field lookup failed");
+  }
+  return ids;
+}
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -93,6 +137,16 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
   const consentMkt = data.tcpaConsent2 === true;
 
   const tags = ["website application", ...(consentNon ? ["sms consent: hiring/newsletter"] : []), ...(consentMkt ? ["sms consent: marketing"] : [])];
+  const consentAt = new Date().toISOString().replace("T", " ").slice(0, 16) + " UTC";
+  const pageUrl = str(data.pageUrl, 300);
+  const headers = {
+    Authorization: `Bearer ${env.PRIVATE_INTEGRATION_KEY}`,
+    Version: "2021-07-28",
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  };
+
+  const extra = await optionalFieldIds(env, headers);
   const customFields = [
     { id: FIELD.q1Contractor, field_value: answers.q1Contractor },
     { id: FIELD.q2Equipment, field_value: answers.q2Equipment },
@@ -100,14 +154,13 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
     { id: FIELD.q4ApprovedState, field_value: answers.q4ApprovedState },
     { id: FIELD.q5OnboardingSteps, field_value: answers.q5OnboardingSteps },
     ...(notes ? [{ id: FIELD.notes, field_value: notes }] : []),
+    // SMS consent records ("No" is stored too, so every application has a recorded choice)
+    ...(extra.sms_consent_job_hiring_newsletter ? [{ id: extra.sms_consent_job_hiring_newsletter, field_value: consentNon ? "Yes" : "No" }] : []),
+    ...(extra.sms_consent_marketing_promotional ? [{ id: extra.sms_consent_marketing_promotional, field_value: consentMkt ? "Yes" : "No" }] : []),
+    ...(extra.sms_consent_date ? [{ id: extra.sms_consent_date, field_value: consentAt }] : []),
+    ...(extra.sms_consent_page && pageUrl ? [{ id: extra.sms_consent_page, field_value: pageUrl }] : []),
+    ...(extra.applicant_notes && notes ? [{ id: extra.applicant_notes, field_value: notes }] : []),
   ];
-
-  const headers = {
-    Authorization: `Bearer ${env.PRIVATE_INTEGRATION_KEY}`,
-    Version: "2021-07-28",
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  };
 
   const res = await fetch(`${GHL}/contacts/upsert`, {
     method: "POST",
@@ -142,14 +195,25 @@ export const onRequestPost = async ({ request, env }: Ctx): Promise<Response> =>
     console.warn(`apply: GHL upsert returned ${res.status} but the response could not be read`);
   }
 
-  // Best effort: keep the consent wording and page on the contact's timeline.
+  // Best effort: keep the full application (answers, notes and SMS consent) on the contact's timeline.
   if (id) {
     try {
       const body = [
         "Website application received.",
-        `Page: ${str(data.pageUrl, 300) || "unknown"}`,
-        `SMS consent (hiring/newsletter, non-marketing): ${consentNon ? "Yes" : "No"}`,
-        `SMS consent (marketing/promotional): ${consentMkt ? "Yes" : "No"}`,
+        `Page: ${pageUrl || "unknown"}`,
+        `Received: ${consentAt}`,
+        "",
+        "Answers:",
+        `1. 1099 independent contractor arrangement understood and agreed: ${answers.q1Contractor}`,
+        `2. Windows computer, quiet workspace, wired internet, USB wired headset and working webcam: ${answers.q2Equipment}`,
+        `3. Able to act promptly when opportunities open: ${answers.q3StartPromptly}`,
+        `4. Resides in an approved state: ${answers.q4ApprovedState}`,
+        `5. Willing to complete the unpaid initial registration steps (profile setup, Arise assessment, $30 background check) before paid certification training: ${answers.q5OnboardingSteps}`,
+        ...(notes ? ["", `Applicant notes: ${notes}`] : []),
+        "",
+        "SMS consent:",
+        `- Job hiring and newsletter (non-marketing): ${consentNon ? "Yes" : "No"}`,
+        `- Marketing and promotional: ${consentMkt ? "Yes" : "No"}`,
       ].join("\n");
       const n = await fetch(`${GHL}/contacts/${id}/notes`, { method: "POST", headers, body: JSON.stringify({ body }) });
       if (!n.ok) console.warn("apply: note not saved, status", n.status);
