@@ -34,22 +34,70 @@ npm run check      # type check
 
 ## GoHighLevel form submission
 
-The form posts to `/api/apply`, a Cloudflare Pages Function
-(`functions/api/apply.ts`) that creates/updates the contact in GHL and writes
-the answers to the existing custom fields. Set these in Cloudflare Pages →
-Settings → Variables and Secrets (Production):
+The form posts to `/api/apply`, a Cloudflare Pages Function (`functions/api/apply.ts`) that creates/updates
+the contact in GHL, writes the answers to custom fields, adds a Note with the full application, and records
+the SMS consent. Set these in Cloudflare Pages, Settings, Variables and Secrets (Production):
 
 | Variable | Value |
 |---|---|
 | `LOCATION_ID` | GHL sub-account (location) ID |
 | `PRIVATE_INTEGRATION_KEY` | GHL Private Integration token (store as a Secret) |
 
-The token needs the `contacts.write` scope (add `contacts.readonly` if you also
-read contacts). The key stays on the server and is never sent to the browser.
-If the function fails, the applicant sees an error with a link to the hosted
-backup form (`GHL_FORM_URL` in `src/config/site.ts`), so no application is
-silently lost. `astro dev` does not run the function; use
+Token scopes: `contacts.write`, `contacts.readonly` and `locations/customFields.readonly`. The key stays on
+the server. If the function fails, the applicant sees an error with a link to the hosted backup form
+(`GHL_FORM_URL`), so no application is silently lost. `astro dev` does not run the function; use
 `npx wrangler pages dev dist` after a build to test it locally.
+
+### Custom fields (use them as merge fields in emails and workflows)
+
+The five answers go to existing fields (`1099_contractor_comfort`, `equipment_readiness`,
+`ability_to_act_promptly`, `residing_in_approved_state`, `unpaid_onboarding_willingness`). The SMS consent
+is stored in these **contact custom fields, which you create once in GHL** (Settings, Custom Fields, type
+"Single Line"). The function finds them by key and skips any that do not exist yet:
+
+| Field name | Key (merge field) | Value |
+|---|---|---|
+| SMS Consent - Job Hiring and Newsletter | `sms_consent_job_hiring_newsletter` | Yes or No |
+| SMS Consent - Marketing and Promotional | `sms_consent_marketing_promotional` | Yes or No |
+| SMS Consent Date | `sms_consent_date` | UTC date and time of the submission |
+
+The Cloudflare real-time log shows `apply: custom fields found=N missing=[...]` so you can see which keys
+still need to be created. The same data is always in the contact's Note, in case a field is missing.
+
+### "New Applicant" email template
+
+```
+New Applicant
+
+Full Legal Name: {{contact.name}}
+Email: {{contact.email}}
+Contact Number: {{contact.phone}}
+
+New Application Form Response:
+
+Q1: Please read carefully: This is a 1099 Independent Contractor position, NOT a W-2 employee role. This means you will be operating as your own business. You are responsible for your own taxes (no automatic withholding), you will not receive employee benefits, and you control how you run your work as an independent contractor. Do you understand and agree to this arrangement?
+A: {{contact.1099_contractor_comfort}}
+
+Q2: Do you have a Windows computer, a quiet and distraction-free workspace, stable wired internet connection, a USB wired headset, and a working webcam?
+A: {{contact.equipment_readiness}}
+
+Q3: Since Arise programs open and close quickly, are you able to act promptly when opportunities become available?
+A: {{contact.ability_to_act_promptly}}
+
+Q4: Are you currently residing in one of the approved states (Alabama, Arizona, Arkansas, Delaware, Florida, Georgia, Kentucky, Louisiana, Michigan, Mississippi, Missouri, Nevada, North Carolina, Ohio, Oklahoma, South Carolina, Texas, Washington)?
+A: {{contact.residing_in_approved_state}}
+
+Q5: Are you willing to complete the unpaid initial registration steps (profile setup, Arise assessment, and $30 background check) before starting paid certification training and client production?
+A: {{contact.unpaid_onboarding_willingness}}
+
+SMS consent:
+Job Hiring and Newsletter (non-marketing): {{contact.sms_consent_job_hiring_newsletter}}
+Marketing and Promotional: {{contact.sms_consent_marketing_promotional}}
+Consent recorded: {{contact.sms_consent_date}}
+```
+
+If a merge field shows blank, check the field's exact key in GHL (Settings, Custom Fields) and that the
+workflow runs after the contact is saved.
 
 ## Thank-you and orientation pages
 
